@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E13120</color>
+    <color name="colorPrimaryDark">#E13120</color>
+    <color name="colorAccent">#E13120</color>
+
+    <color name="app_color">#E13120</color>
+    <color name="home_bottom_checked_false">#575757</color>
+    <color name="Background">#f4f1f1</color>
+
+</resources>
