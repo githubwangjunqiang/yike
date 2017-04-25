@@ -7,6 +7,8 @@ import android.view.View;
 import com.yunyou.yike.utils.ActivityCollector;
 import com.zhy.autolayout.AutoLayoutActivity;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by ${王俊强} on 2017/4/19.
  */
@@ -17,7 +19,8 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         super.onCreate(savedInstanceState);
         beforeWindow(savedInstanceState);
         setContentView(setLayoutResourceID());
-        init();
+        ButterKnife.bind(this);
+        init(savedInstanceState);
         setListener();
 
     }
@@ -34,7 +37,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
     protected abstract int setLayoutResourceID();
 
-    protected abstract void init();
+    protected abstract void init(Bundle savedInstanceState);
 
     protected abstract void setListener();
 
