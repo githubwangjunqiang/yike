@@ -13,16 +13,8 @@ import com.yunyou.yike.R;
  * Created by ${王俊强} on 2017/4/19.
  */
 public class MessageFragment extends BaseMainFragment {
-    private static final String ARG_PARAM1 = "param1";
-
-    private String mParam1;
 
 
-    /**
-     * 构造方法
-     */
-    public MessageFragment() {
-    }
 
     /**
      * 传参构造方法
@@ -32,19 +24,9 @@ public class MessageFragment extends BaseMainFragment {
      */
     public static MessageFragment newInstance(String param1) {
         MessageFragment fragment = new MessageFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
-    }
 
     @Override
     protected IPrenester setIPrenester() {
@@ -59,6 +41,11 @@ public class MessageFragment extends BaseMainFragment {
 
     @Override
     protected void initView(View viewLayout, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void setlistener() {
 
     }
 

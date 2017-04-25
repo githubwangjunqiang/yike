@@ -3,6 +3,8 @@ package com.yunyou.yike;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 /**
  * Created by ${王俊强} on 2017/4/19.
  */
@@ -18,6 +20,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+        Fresco.initialize(this);
     }
 
     public static Context getContext() {

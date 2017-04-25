@@ -13,4 +13,18 @@
     <string name="zhaogongzuo">找工作</string>
     <string name="jiancaidaojia">建材到家</string>
     <string name="gongsi">公司</string>
+    <string name="kaishi">开始</string>
+    <string name="quxiao">取消</string>
+    <string name="xiadan">下单</string>
+    <string name="wodeqianbao">我的钱包</string>
+    <string name="xinxiguanli">信息管理</string>
+    <string name="yaoqinghaoyou">邀请好友</string>
+    <string name="zuixingonggao">最新公告</string>
+    <string name="tousujianyi">投诉建议</string>
+    <string name="pingfenshuoming">评分说明</string>
+    <string name="fuwuxieyi">服务协议</string>
+    <string name="pingtaijiangcheng">平台奖惩</string>
+    <string name="xuxiyuandi">学习园地</string>
+    <string name="lianxikefu">联系客服</string>
+    <string name="tuichudenglu">退出登录</string>
 </resources>

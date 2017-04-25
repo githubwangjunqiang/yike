@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/itme_order_tvorder_sn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="20px"
+        android:textColor="@color/app_color"
+        android:textSize="25px"
+        tools:text="订单编号：00000000"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="20px"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/itme_order_sv_image"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:failureImage="@mipmap/a1"
+            fresco:failureImageScaleType="centerInside"
+            fresco:progressBarAutoRotateInterval="1000"
+            fresco:progressBarImage="@mipmap/pressagebar"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:roundAsCircle="true"
+            />
+
+        <TextView
+            android:id="@+id/itme_order_tvorder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="20px"
+            android:textColor="@color/text_color"
+            android:textSize="28px"
+            tools:text="姓名"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:background="@drawable/yuan_order_itme_btn_2"
+            android:paddingBottom="4px"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:paddingTop="4px"
+            android:text="@string/xiadan"
+            android:textColor="@color/app_color"
+            android:textSize="20px"/>
+
+        <TextView
+            android:id="@+id/itme_order_tvorder_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:maxLines="1"
+            android:paddingLeft="20px"
+            android:textColor="@color/text_color"
+            android:textSize="22px"
+            tools:text="2017/0/0\t00:00"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/itme_order_tvorder_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ellipsize="end"
+        android:lineSpacingExtra="14px"
+        android:maxLines="3"
+        android:padding="20px"
+        android:textColor="@color/text_color"
+        android:textSize="25px"
+        tools:text="费用：300\n工种：工种\n工作地址：王府井大街，北京饭店"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/itme_order_tvorder_stas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="20px"
+            android:text="未服务"
+            android:textColor="@color/text_color_alp"
+            android:textSize="25px"
+            />
+
+        <Button
+            android:id="@+id/itme_order_btnorder_start"
+            android:layout_width="100px"
+            android:layout_height="45px"
+            android:background="@drawable/yuan_order_itme_btn"
+            android:gravity="center"
+            android:text="@string/kaishi"
+            android:textColor="@color/white"
+            android:textSize="25px"/>
+
+        <Button
+            android:id="@+id/itme_order_btnorder_stop"
+            android:layout_width="100px"
+            android:layout_height="45px"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:background="@drawable/yuan_order_itme_btn_2"
+            android:gravity="center"
+            android:text="@string/quxiao"
+            android:textColor="@color/app_color"
+            android:textSize="25px"/>
+    </LinearLayout>
+</LinearLayout>

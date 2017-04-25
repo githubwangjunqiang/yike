@@ -3,7 +3,6 @@ package com.yunyou.yike.utils.httpmanager;
 import android.os.Handler;
 
 import com.google.gson.Gson;
-import com.yunyouzhiyuan.qianbaoshangcheng.uitl.LogUtils;
 
 import org.json.JSONObject;
 
@@ -88,7 +87,6 @@ public class HttpManager {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String string = response.body().string();
-                    LogUtils.LongShitou(string);
                     if (callback.type == null || callback.type == String.class) {
                         senOnSuccessMsg(callback, string);
                     } else {

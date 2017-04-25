@@ -1,5 +1,7 @@
 package com.yunyou.yike.Interface;
 
+import com.yunyou.yike.entity.Order;
+
 import java.util.List;
 
 /**
@@ -11,5 +13,9 @@ public interface IView {
 
     interface IHomeFragmentView extends IView {
         void showBanner(List<String> listBanners);
+    }
+    interface IAllOrderFragmentView extends IView {
+        void showOrder(List<Order> listBanners);
+        void loodOrder(List<Order> listBanners);
     }
 }

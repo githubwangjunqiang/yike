@@ -9,5 +9,9 @@ public interface IPrenester {
     interface IHomeFragmentPrenester extends IPrenester {
         void getBanner();
     }
+    interface IAllOrderFragmentPrenester extends IPrenester {
+        void getOrder();
+        void loodOrder();
+    }
 
 }

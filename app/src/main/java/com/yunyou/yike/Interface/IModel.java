@@ -16,5 +16,8 @@ public interface IModel {
     interface IHomeFragmentModel {
         void getBanner(AsyCallback callback);
     }
+    interface IOrderFragmentModel {
+        void getOrder(AsyCallback callback);
+    }
 
 }

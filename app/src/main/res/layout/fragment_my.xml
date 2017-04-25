@@ -1,10 +1,541 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.yunyou.yike.home.HomeFragment">
-    <TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.yunyou.yike.home.HomeFragment">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#0cec22"/>
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:background="@color/app_color"
+        android:paddingBottom="4px"
+        >
+
+        <ImageView
+            android:layout_width="37px"
+            android:layout_height="36px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="42px"
+            app:srcCompat="@drawable/ic_jiahao"/>
+    </RelativeLayout>
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/my_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:refreshType="material"
+        >
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_color"
+                    >
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/my_image"
+                        android:layout_width="108px"
+                        android:layout_height="108px"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4px"
+                        fresco:actualImageScaleType="focusCrop"
+                        fresco:failureImage="@mipmap/a1"
+                        fresco:failureImageScaleType="centerInside"
+                        fresco:progressBarAutoRotateInterval="1000"
+                        fresco:progressBarImage="@mipmap/pressagebar"
+                        fresco:progressBarImageScaleType="centerInside"
+                        fresco:roundAsCircle="true"
+                        />
+
+                    <TextView
+                        android:id="@+id/my_tvname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/my_image"
+                        android:layout_centerHorizontal="true"
+                        android:maxLines="1"
+                        android:paddingBottom="14px"
+                        android:paddingTop="16px"
+                        android:textColor="@color/white"
+                        android:textSize="28px"
+                        tools:text="昵称"/>
+
+                    <RatingBar
+                        android:id="@+id/my_ratingbar"
+                        style="@style/roomRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/my_tvname"
+                        android:layout_centerHorizontal="true"
+                        android:clickable="true"
+                        android:isIndicator="true"
+                        android:maxHeight="50px"
+                        android:minHeight="50px"
+                        android:rating="5"
+                        android:stepSize="0.5"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@+id/my_ratingbar"
+                        android:layout_marginTop="50px"
+                        android:background="#54000000"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                >
+
+                                <ImageView
+                                    android:layout_width="34px"
+                                    android:layout_height="34px"
+                                    android:layout_marginRight="21px"
+                                    app:srcCompat="@drawable/ic_iconfont"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="29px"
+                                    android:paddingTop="29px"
+                                    android:textColor="@color/white"
+                                    android:textSize="25px"
+                                    tools:text="0000"/>
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/white"/>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                >
+
+                                <ImageView
+                                    android:layout_width="34px"
+                                    android:layout_height="34px"
+                                    android:layout_marginRight="21px"
+                                    app:srcCompat="@drawable/ic_meiyuan"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="29px"
+                                    android:paddingTop="29px"
+                                    android:textColor="@color/white"
+                                    android:textSize="25px"
+                                    tools:text="0000"/>
+                            </LinearLayout>
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="9px"
+                    android:layout_marginTop="9px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_qianbao"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/wodeqianbao"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_xinxiguanli"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/xinxiguanli"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="9px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_yaoqinghaoyou"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/yaoqinghaoyou"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_zuixingonggao"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/zuixingonggao"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_tousujianyi"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/tousujianyi"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_pingfenshuoming"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/pingfenshuoming"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_fuwuxieyi"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/fuwuxieyi"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_pingtaijiangcheng"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/pingtaijiangcheng"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="9px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_xuexiyuandi"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/xuxiyuandi"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20px"
+                    android:paddingRight="20px"
+                    >
+
+                    <ImageView
+                        android:layout_width="35px"
+                        android:layout_height="41px"
+                        app:srcCompat="@drawable/ic_lianxikefu"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingBottom="33px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="33px"
+                        android:text="@string/lianxikefu"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"
+                        />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="710px"
+                    android:layout_marginTop="16px"
+                    android:layout_marginBottom="16px"
+                    android:layout_height="80px"
+                    android:textSize="28px"
+                    android:textColor="@color/app_color"
+                    android:background="@drawable/ic_out_login"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/tuichudenglu"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </com.baoyz.widget.PullRefreshLayout>
+</LinearLayout>

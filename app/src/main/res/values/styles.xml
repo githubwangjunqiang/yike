@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/Background</item>
         <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:listDivider">@drawable/list_divder</item>
     </style>
 
+    <style name="text_tablayout_style" parent="AppTheme">
+        <item name="android:textSize">28px</item>
+    </style>
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar</item>
+        <item name="android:numColumns">5</item>
+    </style>
 </resources>

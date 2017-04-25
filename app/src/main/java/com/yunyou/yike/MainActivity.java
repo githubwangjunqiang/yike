@@ -8,13 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
-import com.yunyou.yike.Interface.IMainFragmentListener;
 import com.yunyou.yike.home.HomeFragment;
 import com.yunyou.yike.msg.MessageFragment;
 import com.yunyou.yike.my.MyFragment;
 import com.yunyou.yike.order.OrderFragment;
 
-public class MainActivity extends BaseActivity implements IMainFragmentListener {
+public class MainActivity extends BaseActivity {
     private HomeFragment homeFragment;
     private OrderFragment orderFragment;
     private MessageFragment messageFragment;
@@ -44,7 +43,7 @@ public class MainActivity extends BaseActivity implements IMainFragmentListener 
         if (savedInstanceState == null) {
             homeFragment = HomeFragment.newInstance("");
             fragmentTransaction.add(R.id.content_main, homeFragment, "HomeFragment");
-            orderFragment = OrderFragment.newInstance("");
+            orderFragment = OrderFragment.newInstance();
             fragmentTransaction.add(R.id.content_main, orderFragment, "OrderFragment");
             messageFragment = MessageFragment.newInstance("");
             fragmentTransaction.add(R.id.content_main, messageFragment, "MessageFragment");
@@ -82,32 +81,31 @@ public class MainActivity extends BaseActivity implements IMainFragmentListener 
 
     @Override
     protected void setListener() {
+        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home://点击首页
+                        showHideFragment(0);
+                        return true;
+                    case R.id.navigation_dashboard://点击订单
+                        showHideFragment(1);
+                        return true;
+                    case R.id.navigation_msg://点击消息
+                        showHideFragment(2);
+                        return true;
+                    case R.id.navigation_notifications://点击我的
+                        showHideFragment(3);
+                        return true;
+                }
+                return false;
+            }
+
+        };
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home://点击首页
-                    showHideFragment(0);
-                    return true;
-                case R.id.navigation_dashboard://点击订单
-                    showHideFragment(1);
-                    return true;
-                case R.id.navigation_msg://点击消息
-                    showHideFragment(2);
-                    return true;
-                case R.id.navigation_notifications://点击我的
-                    showHideFragment(3);
-                    return true;
-            }
-            return false;
-        }
-
-    };
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
     /**
      * 显示隐藏碎片
@@ -134,8 +132,4 @@ public class MainActivity extends BaseActivity implements IMainFragmentListener 
 
     }
 
-    @Override
-    public void callBack(int position) {//四个主碎片的监听回调
-
-    }
 }

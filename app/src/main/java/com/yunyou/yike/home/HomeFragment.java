@@ -88,6 +88,11 @@ public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmen
         banner.setIndicatorGravity(BannerConfig.CENTER);
     }
 
+    @Override
+    protected void setlistener() {
+
+    }
+
 
     private void toCall3(Api api) {
         Map<String, String> map = new ArrayMap<>();
@@ -105,9 +110,6 @@ public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmen
         });
     }
 
-    private void toCall2(Api api) {
-
-    }
 
 
     @Override
