@@ -1,0 +1,36 @@
+<com.fingdo.statelayout.StateLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/top_statrlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:emptyText="@string/meiyourenheshuju"
+    app:errorText="@string/jiazaishibai"
+    app:loadingText="@string/jiazaizhong"
+    app:loginText="@string/chongxindenglu"
+    app:noNetworkText="@string/meiyouwangluo"
+    app:timeOutText="@string/chaoshil"
+    android:background="@color/background"
+    >
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/feel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:refreshType="material"
+        >
+
+        <com.yunyou.yike.ui_view.ScrollExpandableListView
+            android:layout_width="match_parent"
+            android:id="@+id/feel_exlistview"
+            android:layout_height="match_parent"
+            android:childDivider="@color/background"
+            android:childIndicator="@null"
+            android:background="@color/white"
+            android:divider="@color/background"
+            android:dividerHeight="1dp"
+            android:groupIndicator="@null"/>
+
+    </com.baoyz.widget.PullRefreshLayout>
+
+</com.fingdo.statelayout.StateLayout>

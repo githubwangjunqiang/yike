@@ -154,14 +154,17 @@ public class Text_Size {
 //        Drawable drawable = content.getResources().getDrawable(R.mipmap.vip);
 //        drawable.setBounds(0,0,drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight());
 //        ImageSpan imageSpan1 = new ImageSpan(drawable);
-        AbsoluteSizeSpan absoluteSizeSpan = new AbsoluteSizeSpan((int) App.getContext().getResources().getDimension(R.dimen.text_size_12sp));
+        AbsoluteSizeSpan absoluteSizeSpan = new AbsoluteSizeSpan((int) App.getContext()
+                .getResources().getDimension(R.dimen.text_size_12sp));
         builder.setSpan(absoluteSizeSpan, o, ot, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
-        AbsoluteSizeSpan absoluteSizeSpan1 = new AbsoluteSizeSpan((int)  App.getContext().getResources().getDimension(R.dimen.text_size_10sp));
+        AbsoluteSizeSpan absoluteSizeSpan1 = new AbsoluteSizeSpan((int)
+                App.getContext().getResources().getDimension(R.dimen.text_size_10sp));
         builder.setSpan(absoluteSizeSpan1, t, tt, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
 
-        AbsoluteSizeSpan absoluteSizeSpan2 = new AbsoluteSizeSpan((int)  App.getContext().getResources().getDimension(R.dimen.text_size_12sp));
+        AbsoluteSizeSpan absoluteSizeSpan2 = new AbsoluteSizeSpan((int)
+                App.getContext().getResources().getDimension(R.dimen.text_size_12sp));
         builder.setSpan(absoluteSizeSpan2, h, ht, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
 

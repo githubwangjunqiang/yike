@@ -4,7 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="msg">消息</string>
-    <string name="ordermanagement">订单管理</string>
+    <string name="ordermanagement">我的发单</string>
     <string name="my">我的</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -27,4 +27,17 @@
     <string name="xuxiyuandi">学习园地</string>
     <string name="lianxikefu">联系客服</string>
     <string name="tuichudenglu">退出登录</string>
+    <string name="wodedingdan">我的接单</string>
+    <string name="haoyou">好友</string>
+    <string name="ganxiang">感想</string>
+    <string name="jiazaishibai">加载失败......</string>
+    <string name="meiyourenheshuju">没有任何数据......</string>
+    <string name="meiyouwangluo">没有网络了亲</string>
+    <string name="chaoshil">亲，超时了......</string>
+    <string name="chongxindenglu">重新登陆</string>
+    <string name="jiazaizhong">加载中......</string>
+    <string name="woyelaipinglun">我也来评论</string>
+    <string name="ok">确定</string>
+    <string name="qingshuruninyaopinglun">请输入您要评论回复的内容</string>
+    <string name="ninmeiyourenheshuru">您没有任何输入</string>
 </resources>

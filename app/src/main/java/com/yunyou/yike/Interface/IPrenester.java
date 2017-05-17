@@ -13,5 +13,12 @@ public interface IPrenester {
         void getOrder();
         void loodOrder();
     }
+    interface IMyFragmentPrenester extends IPrenester {
+        void getUserInfo();
+    }
+    interface IFeelFragmentPrenester extends IPrenester {
+        void getFeelData(boolean isShowLoading);
+        void loodMoreFeelData();
+    }
 
 }

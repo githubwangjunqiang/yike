@@ -15,7 +15,6 @@ import com.yunyou.yike.entity.Order;
 import com.yunyou.yike.utils.LogUtils;
 import com.yunyou.yike.utils.To;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +26,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     private Context mContext;
 
     public OrderAdapter(List<Order> list, Context context) {
-        mList = list == null ? new ArrayList<>() : list;
+        mList = list;
         mContext = context;
     }
 

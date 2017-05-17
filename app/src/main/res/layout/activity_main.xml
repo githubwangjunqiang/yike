@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yunyou.yike.MainActivity">
+    tools:context="com.yunyou.yike.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/content_main"

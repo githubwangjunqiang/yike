@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.yunyou.yike.order.fragment.AllOrderFragment">
+             tools:context=".fragment.order.fragment.AllOrderFragment">
 
     <com.baoyz.widget.PullRefreshLayout
         android:id="@+id/all_order_layout"

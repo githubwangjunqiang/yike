@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/background"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:padding="@dimen/pading_20"
+    >
+
+
+    <EditText
+        android:id="@+id/dialog_feel_editing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/yuan_feel_et"
+        android:hint="@string/qingshuruninyaopinglun"
+        android:imeOptions="actionGo"
+        android:inputType="textMultiLine"
+        android:maxHeight="300px"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/text_color_alp"
+        android:textSize="@dimen/pading_25"
+        />
+
+    <Button
+        android:id="@+id/dialog_feel_btnok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/pading_20"
+        android:background="@drawable/feel_editing_p"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:paddingBottom="@dimen/pading_16"
+        android:paddingLeft="@dimen/pading_30"
+        android:paddingRight="@dimen/pading_30"
+        android:paddingTop="@dimen/pading_16"
+        android:text="@string/ok"
+        android:textColor="@color/text_whlie_c"
+        android:textSize="@dimen/text_size_25px"/>
+</LinearLayout>

@@ -10,6 +10,10 @@
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_order_management"
         android:title="@string/ordermanagement" />
+    <item
+        android:id="@+id/navigation_wodedingdan"
+        android:icon="@drawable/ic_myorder"
+        android:title="@string/wodedingdan" />
 
     <item
         android:id="@+id/navigation_msg"

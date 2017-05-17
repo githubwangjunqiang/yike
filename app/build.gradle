@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        yike {
+            keyAlias 'yike'
+            keyPassword '123456789'
+            storeFile file('D:/华硕云空间/xiangmu/艺科/yikeqianming.jks')
+            storePassword '123456789'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -12,13 +20,19 @@ android {
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         jackOptions {
-            enabled true
+            enabled false//开启jack 编译器 及试运行run即将失效
         }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.yike
+            zipAlignEnabled true
+        }
+        debug {
+            signingConfig signingConfigs.yike
         }
     }
 }
@@ -28,6 +42,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    // 支持 GIF 动图，需要添加
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-vector-drawable:25.3.1'
@@ -37,12 +52,11 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.youth.banner:banner:1.4.9'
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     compile 'io.reactivex.rxjava2:rxjava:2.0.9'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'com.facebook.fresco:fresco:0.12.0'
-    // 支持 GIF 动图，需要添加
     compile 'com.facebook.fresco:animated-gif:0.12.0'
+    compile 'com.github.fingdo:stateLayout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

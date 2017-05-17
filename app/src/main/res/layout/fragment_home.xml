@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yunyou.yike.home.HomeFragment">
+    tools:context=".fragment.home.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="750px"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@color/white"
