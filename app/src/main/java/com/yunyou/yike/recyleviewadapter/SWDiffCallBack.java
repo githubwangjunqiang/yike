@@ -11,9 +11,9 @@ public class SWDiffCallBack<T> extends DiffUtil.Callback {
 
     private List<T> olddatas;
     private List<T> newDatas;
-    private DiffUtilesListener listener;
+    private DiffUtilesListener<T> listener;
 
-    public SWDiffCallBack(List<T> olddatas, List<T> newDatas, DiffUtilesListener listener) {
+    public SWDiffCallBack(List<T> olddatas, List<T> newDatas, DiffUtilesListener<T> listener) {
         if (null == olddatas || null == newDatas || listener == null) {
             throw new NullPointerException("SWDiffCallBack 构造方法不能有null值");
         }
@@ -31,11 +31,11 @@ public class SWDiffCallBack<T> extends DiffUtil.Callback {
     }
 
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return listener.areItemsTheSame(oldItemPosition, newItemPosition);
+        return listener.areItemsTheSame(olddatas,oldItemPosition,newDatas ,newItemPosition);
     }
 
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        return listener.contentsTheSame(oldItemPosition, newItemPosition);
+        return listener.contentsTheSame(olddatas,oldItemPosition,newDatas ,newItemPosition);
     }
 
 

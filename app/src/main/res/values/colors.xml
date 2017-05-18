@@ -11,8 +11,8 @@
 
 
     <color name="white">#ffffff</color>
-    <color name="text_color">#646464</color>
-    <color name="text_color_alp">#bb646464</color>
+    <color name="text_color">#3c3b3b</color>
+    <color name="text_color_alp">#646464</color>
     <color name="blue">#4BCEAE</color>
     <color name="blue_p">#05a880</color>
     <color name="red">#ca1f1f</color>

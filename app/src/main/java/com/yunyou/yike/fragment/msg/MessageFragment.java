@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.yunyou.yike.BaseMainFragment;
-import com.yunyou.yike.Interface.IPrenester;
 import com.yunyou.yike.R;
 import com.yunyou.yike.fragment.msg.fragment.FeelFragment;
 import com.yunyou.yike.fragment.msg.fragment.FriendsFragment;
@@ -35,10 +34,6 @@ public class MessageFragment extends BaseMainFragment {
     }
 
 
-    @Override
-    protected IPrenester setIPrenester() {
-        return null;
-    }
 
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

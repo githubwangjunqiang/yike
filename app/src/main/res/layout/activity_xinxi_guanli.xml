@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.XinxiGuanliActivity">
+
+    <include layout="@layout/top_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9px"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="37px"
+            android:paddingLeft="20px"
+            android:paddingTop="37px"
+            android:text="@string/nichen"
+            android:textColor="@color/text_color_alp"
+            android:textSize="28px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingBottom="37px"
+            android:paddingRight="20px"
+            android:paddingTop="37px"
+            android:textColor="@color/text_color"
+            android:textSize="28px"
+            tools:text="@string/nichen"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2px"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="37px"
+            android:paddingLeft="20px"
+            android:paddingTop="37px"
+            android:text="@string/nichen"
+            android:textColor="@color/text_color_alp"
+            android:textSize="28px"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            xmlns:fresco="http://schemas.android.com/apk/res-auto"
+            android:layout_width="61px"
+            android:layout_height="61px"
+            android:layout_marginRight="20px"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:failureImage="@mipmap/a1"
+            fresco:failureImageScaleType="centerInside"
+            fresco:progressBarAutoRotateInterval="1000"
+            fresco:progressBarImage="@mipmap/pressagebar"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:roundAsCircle="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9px"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="37px"
+            android:paddingLeft="20px"
+            android:paddingTop="37px"
+            android:text="@string/xingming"
+            android:textColor="@color/text_color_alp"
+            android:textSize="28px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingBottom="37px"
+            android:paddingRight="20px"
+            android:paddingTop="37px"
+            android:textColor="@color/text_color"
+            android:textSize="28px"
+            tools:text="@string/nichen"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9px"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="37px"
+            android:paddingLeft="20px"
+            android:paddingTop="37px"
+            android:text="@string/dianhua"
+            android:textColor="@color/text_color_alp"
+            android:textSize="28px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingBottom="37px"
+            android:paddingRight="20px"
+            android:paddingTop="37px"
+            android:textColor="@color/text_color"
+            android:textSize="28px"
+            tools:text="@string/nichen"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9px"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="37px"
+            android:paddingLeft="20px"
+            android:paddingTop="37px"
+            android:text="@string/shenfenzhenghao"
+            android:textColor="@color/text_color_alp"
+            android:textSize="28px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingBottom="37px"
+            android:paddingRight="20px"
+            android:paddingTop="37px"
+            android:textColor="@color/text_color"
+            android:textSize="28px"
+            tools:text="12345467894561234656"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9px"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="37px"
+            android:paddingLeft="20px"
+            android:paddingTop="37px"
+            android:text="@string/gongzhong"
+            android:textColor="@color/text_color_alp"
+            android:textSize="28px"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingBottom="37px"
+            android:paddingRight="20px"
+            android:paddingTop="37px"
+            android:textColor="@color/text_color"
+            android:textSize="28px"
+            tools:text="工种"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="24px"
+        android:paddingLeft="20px"
+        android:paddingTop="25px"
+        android:text="@string/techangaihao"
+        android:textColor="@color/text_color_alp"/>
+
+
+</LinearLayout>

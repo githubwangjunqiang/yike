@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.OrderInfoActivity">
+
+    <include layout="@layout/top_title"/>
+
+    <com.fingdo.statelayout.StateLayout
+        android:id="@+id/job_looking_statslayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/pading_20"
+        app:emptyText="@string/meiyourenheshuju"
+        app:errorText="@string/jiazaishibai"
+        app:loadingText="@string/jiazaizhong"
+        app:loginText="@string/chongxindenglu"
+        app:noNetworkText="@string/meiyouwangluo"
+        app:timeOutText="@string/chaoshil"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/pading_20"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="49px"
+                    android:textColor="@color/text_color_alp"
+                    android:textSize="22px"
+                    tools:text="@string/app_name"/>
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/order_info_iamgeview"
+                    android:layout_width="80px"
+                    android:layout_height="80px"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="37px"
+                    fresco:actualImageScaleType="focusCrop"
+                    fresco:failureImage="@mipmap/a1"
+                    fresco:failureImageScaleType="centerInside"
+                    fresco:progressBarAutoRotateInterval="1000"
+                    fresco:progressBarImage="@mipmap/pressagebar"
+                    fresco:progressBarImageScaleType="centerInside"
+                    fresco:roundAsCircle="true"/>
+
+                <TextView
+                    android:id="@+id/orderinfo_tvname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order_info_iamgeview"
+                    android:layout_centerHorizontal="true"
+                    android:paddingBottom="19px"
+                    android:paddingTop="15px"
+                    tools:text="@string/app_name"
+                    android:textColor="@color/text_color"
+                    android:textSize="28px"
+                    />
+
+                <RatingBar
+                    android:id="@+id/orderinfo_ratbar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderinfo_tvname"
+                    android:layout_centerHorizontal="true"
+                    android:isIndicator="false"
+                    tools:rating="3.5"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="37px"
+                    android:background="@drawable/btn_biankuang"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="10px"
+                    android:text="@string/jiahaoyou"
+                    android:textColor="@color/app_color"
+                    android:textSize="28px"/>
+
+                <TextView
+                    android:id="@+id/orderinfo_tvmingcheng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderinfo_ratbar"
+                    android:layout_marginBottom="19px"
+                    android:layout_marginTop="60px"
+                    android:text="@string/fuwumingcheng"
+                    android:textColor="@color/text_color"
+                    android:textSize="28px"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/orderinfo_ratbar"
+                    android:layout_marginTop="60px"
+                    android:textColor="@color/app_color"
+                    android:textSize="28px"
+                    tools:text="00￥/单位"/>
+
+                <TextView
+                    android:id="@+id/orderinfo_tvcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderinfo_tvmingcheng"
+                    android:textColor="@color/text_color_alp"
+                    android:textSize="25px"
+                    tools:text="具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容具体内容"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderinfo_tvcontent"
+                    android:paddingTop="20px"
+                    android:textColor="@color/text_color_alp"
+                    android:textSize="22px"
+                    tools:text="工作地址：地址地址地址"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:lineSpacingExtra="22px"
+                    android:paddingBottom="30px"
+                    android:paddingLeft="20px"
+                    android:paddingTop="30px"
+                    tools:text="近期接单量：000\n特长：特长名称"
+                    android:textColor="@color/text_color"
+                    tools:textSize="25px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="31px"
+                    android:textColor="@color/text_color_alp"
+                    android:textSize="22px"
+                    tools:text="开始服务时间2017-00-00\t00:00"
+                    />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="30px"
+                    android:textColor="@color/text_color"
+                    android:textSize="25px"
+                    tools:text="工作天数00天"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="30px"
+                    android:textColor="@color/text_color"
+                    android:textSize="25px"
+                    tools:text="合计金额"
+                    />
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="300px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60px"
+                android:background="@drawable/btn_biankuang"
+                android:minHeight="0dp"
+                android:paddingBottom="20px"
+                android:paddingTop="20px"
+                android:text="@string/zhongzhidingdan"
+                android:textColor="@color/app_color"
+                android:textSize="32px"
+                />
+
+            <Button
+                android:layout_width="300px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="9px"
+                android:background="@drawable/btn_p"
+                android:minHeight="0dp"
+                android:paddingBottom="20px"
+                android:paddingTop="20px"
+                android:text="@string/dingdanwancheng"
+                android:textColor="@color/white"
+                android:textSize="32px"
+                />
+
+
+        </LinearLayout>
+    </com.fingdo.statelayout.StateLayout>
+</LinearLayout>

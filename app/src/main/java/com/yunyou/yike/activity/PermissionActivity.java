@@ -33,6 +33,7 @@ public class PermissionActivity extends BaseActivity {
     }
 
 
+
     /**
      * 请求 授权
      */
@@ -46,7 +47,7 @@ public class PermissionActivity extends BaseActivity {
                 }
             }
             if (list.isEmpty()) {//如果是空的 说明 已经授权 返回成功
-                mPermissionListener.success();
+                sendSucess();
             } else {
                 ActivityCompat.requestPermissions(this,
                         list.toArray(new String[list.size()]), permissionsCode);
@@ -64,6 +65,8 @@ public class PermissionActivity extends BaseActivity {
     private void sendSucess() {
         mPermissionListener.success();
         finish();
+        overridePendingTransition(0, 0);
+
     }
 
     /**
@@ -72,6 +75,7 @@ public class PermissionActivity extends BaseActivity {
     private void sendEeeoe(String[] permissions) {
         mPermissionListener.error(permissions);
         finish();
+        overridePendingTransition(0, 0);
     }
 
     /**
@@ -84,10 +88,22 @@ public class PermissionActivity extends BaseActivity {
             mlistener.error(permissions);
             return;
         }
-        Intent intent = new Intent(topActivity, PermissionActivity.class);
-        intent.putExtra("permissions", permissions);
-        topActivity.startActivity(intent);
-        mPermissionListener = mlistener;
+        List<String> list = new ArrayList<>();
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(topActivity, permission)
+                    != PackageManager.PERMISSION_GRANTED) {//等于授权
+                list.add(permission);
+            }
+        }
+        if (list.isEmpty()) {//如果是空的 说明 已经授权 返回成功
+            mlistener.success();
+        } else {
+            Intent intent = new Intent(topActivity, PermissionActivity.class);
+            intent.putExtra("permissions", permissions);
+            topActivity.startActivity(intent);
+            topActivity.overridePendingTransition(0, 0);
+            mPermissionListener = mlistener;
+        }
         return;
     }
 

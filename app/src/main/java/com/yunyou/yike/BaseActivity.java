@@ -8,7 +8,7 @@ import com.yunyou.yike.utils.ActivityCollector;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 /**
- * Created by ${王俊强} on 2017/4/19.AutoLayoutActivity
+ * Created by ${王俊强} on 2017/5/18.
  */
 
 public abstract class BaseActivity extends AutoLayoutActivity {
@@ -16,10 +16,32 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         beforeWindow(savedInstanceState);
-        setContentView(setLayoutResourceID());
+        if (setLayoutResourceID() != 0) {
+            setContentView(setLayoutResourceID());
+        }
+        setPresenter();
         init(savedInstanceState);
         setListener();
 
+    }
+
+    /**
+     * 创建presenter
+     */
+    protected void setPresenter() {
+
+    }
+
+
+    /**
+     * 初始化view
+     *
+     * @param id
+     * @param <T>
+     * @return
+     */
+    protected <T extends View> T optionView(int id) {
+        return (T) super.findViewById(id);
     }
 
     /***
@@ -37,10 +59,6 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     protected abstract void init(Bundle savedInstanceState);
 
     protected abstract void setListener();
-
-    protected <T extends View> T $(int id) {
-        return (T) super.findViewById(id);
-    }
 
     @Override
     protected void onStart() {
@@ -75,4 +93,6 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         ActivityCollector.removeActivity(this);
         super.onDestroy();
     }
+
+
 }

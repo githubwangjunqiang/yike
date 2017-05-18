@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.DecorationWorkerActivity">
+
+    <include layout="@layout/top_title"/>
+
+    <LinearLayout
+        android:layout_width="710px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/pading_20"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/pading_20"
+            android:paddingRight="@dimen/pading_20"
+            >
+
+            <ImageView
+                android:minWidth="64px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/shigongshijian"
+                />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="36px"
+                android:paddingLeft="@dimen/pading_20"
+                android:paddingTop="37px"
+                android:text="@string/shiyongshijian"
+                android:textColor="@color/text_color"
+                android:textSize="28px"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/pading_20"
+                android:text="@string/dianjixuanze"
+                android:textColor="@color/text_color_alp"
+                android:textSize="27px"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/xiala"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="2px"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/pading_20"
+            android:paddingRight="@dimen/pading_20"
+            >
+
+            <ImageView
+                android:minWidth="64px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/shigongdizhi"
+                />
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="36px"
+                android:paddingLeft="@dimen/pading_20"
+                android:paddingTop="37px"
+                android:text="@string/shigongdizhi"
+                android:textColor="@color/text_color"
+                android:textSize="28px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/pading_20"
+                android:text="@string/dianjixuanze"
+                android:textColor="@color/text_color_alp"
+                android:textSize="27px"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/xiala"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="2px"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/pading_20"
+            android:paddingRight="@dimen/pading_20"
+            >
+
+            <ImageView
+                android:minWidth="64px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/shiyongrenshu"
+                />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="36px"
+                android:paddingLeft="@dimen/pading_20"
+                android:paddingTop="37px"
+                android:text="@string/shiyongrenshu"
+                android:textColor="@color/text_color"
+                android:textSize="28px"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/pading_20"
+                android:text="@string/dianjixuanze"
+                android:textColor="@color/text_color_alp"
+                android:textSize="27px"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/xiala"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="2px"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/pading_20"
+            android:paddingRight="@dimen/pading_20"
+            >
+
+            <ImageView
+                android:minWidth="64px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ewaifuwu"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="36px"
+                android:paddingLeft="@dimen/pading_20"
+                android:paddingTop="37px"
+                android:text="@string/ewaifuwu"
+                android:textColor="@color/text_color"
+                android:textSize="28px"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/pading_20"
+                android:text="@string/dianjixuanze"
+                android:textColor="@color/text_color_alp"
+                android:textSize="27px"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/xiala"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="216px"
+        android:layout_marginBottom="9px"
+        android:layout_marginTop="9px"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/pading_20"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="19px"
+            android:text="@string/geishifuliuyan"
+            android:textColor="@color/text_color"
+            android:textSize="28px"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="top"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:textColor="@color/text_color_alp"
+            android:textSize="25px"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/pading_20"
+        android:layout_marginRight="@dimen/pading_20"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="40px"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color"
+            android:textSize="38px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24px"
+            android:text="@string/zuizhongfeiyong"
+            android:textColor="@color/text_color_alp"
+            android:textSize="25px"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="60px"
+        android:paddingTop="11px"
+        >
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/pading_20"
+            android:text="@string/wotongyi"
+            android:textColor="@color/text_color_alp"
+            android:textSize="24px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/xieyi"
+            android:textColor="@color/app_color"
+            android:textSize="24px"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="300px"
+        android:layout_height="80px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="60px"
+        android:background="@drawable/btn_p"
+        android:text="@string/ok"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

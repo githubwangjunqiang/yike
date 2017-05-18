@@ -40,4 +40,27 @@
     <string name="ok">确定</string>
     <string name="qingshuruninyaopinglun">请输入您要评论回复的内容</string>
     <string name="ninmeiyourenheshuru">您没有任何输入</string>
+    <string name="shiyongshijian">使用时间</string>
+    <string name="dianjixuanze">点击选择</string>
+    <string name="shigongdizhi">请输入施工地址</string>
+    <string name="shiyongrenshu">请输入工种/人数/天数</string>
+    <string name="ewaifuwu">额外服务</string>
+    <string name="geishifuliuyan">给师傅留言</string>
+    <string name="zuizhongfeiyong">最终费用以工程报表为准...</string>
+    <string name="wotongyi">我同意并已阅读</string>
+    <string name="xieyi">《艺科协议》</string>
+    <string name="zhuangxiugongren">装修工人</string>
+    <string name="wanshandingdan">完善订单</string>
+    <string name="qingdan">抢单</string>
+    <string name="jiahaoyou">加好友</string>
+    <string name="fuwumingcheng">服务名称</string>
+    <string name="zhongzhidingdan">终止订单</string>
+    <string name="dingdanwancheng">订单完成结算</string>
+    <string name="dingdanxiangqing">订单详情</string>
+    <string name="nichen">昵称</string>
+    <string name="xingming">姓名</string>
+    <string name="dianhua">电话</string>
+    <string name="shenfenzhenghao">身份证号</string>
+    <string name="gongzhong">工种</string>
+    <string name="techangaihao">特长爱好</string>
 </resources>

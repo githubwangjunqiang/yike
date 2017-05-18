@@ -1,20 +1,24 @@
 package com.yunyou.yike.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.activity.OrderInfoActivity;
 import com.yunyou.yike.entity.Order;
 import com.yunyou.yike.utils.LogUtils;
 import com.yunyou.yike.utils.To;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +30,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
     private Context mContext;
 
     public OrderAdapter(List<Order> list, Context context) {
-        mList = list;
+        if (list == null) {
+            mList = new ArrayList<>();
+        } else {
+            mList = list;
+        }
         mContext = context;
     }
 
@@ -68,7 +76,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
 
     @Override
     public void onBindViewHolder(OrderViewHolder holder, int position) {
-        holder.setData(mList.get(position));
+        holder.setData(mList.get(position), mContext);
     }
 
     @Override
@@ -82,10 +90,12 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
     private Button mBtnStart, mBtnStop;
     private SimpleDraweeView mDraweeView;
     private TextView mTvJiaZai;
+    private LinearLayout mLinearLayout;
 
     public OrderViewHolder(View itemView, int type) {
         super(itemView);
         if (type == 0) {
+            mLinearLayout = (LinearLayout) itemView.findViewById(R.id.itme_order_lltop);
             mTvName = (TextView) itemView.findViewById(R.id.itme_order_tvorder_name);
             mTvOrderSn = (TextView) itemView.findViewById(R.id.itme_order_tvorder_sn);
             mTvOrderTime = (TextView) itemView.findViewById(R.id.itme_order_tvorder_time);
@@ -99,7 +109,7 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public void setData(Order data) {
+    public void setData(Order data, final Context context) {
         if (data.getType() == 0) {
             try {
                 mTvOrderSn.setText("订单编号：00000000");
@@ -118,6 +128,12 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
                     @Override
                     public void onClick(View v) {
                         To.oo("结束");
+                    }
+                });
+                mLinearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        context.startActivity(new Intent(context,OrderInfoActivity.class));
                     }
                 });
             } catch (Exception e) {

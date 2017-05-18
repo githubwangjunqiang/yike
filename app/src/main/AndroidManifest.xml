@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".App"
@@ -38,10 +40,29 @@
         <activity
             android:name=".activity.WebViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
-        <!--权限请求界面-->
+        <!-- 权限请求界面 -->
         <activity
             android:name=".activity.PermissionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/notAnimation"/>
+        <!-- 找工人界面 -->
+        <activity
+            android:name=".activity.LookingWorkersActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <!-- 装修工人 -->
+        <activity
+            android:name=".activity.DecorationWorkerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <!-- 找工作列表界面 -->
+        <activity
+            android:name=".activity.JobActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <!-- 订单详情界面 -->
+        <activity
+            android:name=".activity.OrderInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name=".activity.XinxiGuanliActivity">
+        </activity>
     </application>
 
 </manifest>

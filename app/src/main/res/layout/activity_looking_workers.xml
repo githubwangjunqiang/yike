@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.LookingWorkersActivity">
+
+    <include layout="@layout/top_title"/>
+
+    <ImageView
+        android:id="@+id/looking_worker_ivzhuang"
+        android:layout_width="164px"
+        android:layout_height="164px"
+        android:layout_marginTop="120px"
+        android:onClick="onClick"
+        android:src="@mipmap/ic_zhuangxiugongren"
+        />
+
+    <ImageView
+        android:id="@+id/looking_worker_ivjian"
+        android:layout_width="164px"
+        android:layout_height="164px"
+        android:layout_marginTop="60px"
+        android:onClick="onClick"
+        android:src="@mipmap/ic_jianzhugongren"
+        />
+
+    <ImageView
+        android:id="@+id/looking_worker_ivanzhuang"
+        android:layout_width="164px"
+        android:layout_height="164px"
+        android:layout_marginTop="60px"
+        android:onClick="onClick"
+        android:src="@mipmap/ic_anzhuanggongren"
+        />
+
+    <ImageView
+        android:id="@+id/looking_worker_ivtuandui"
+        android:layout_width="164px"
+        android:layout_height="164px"
+        android:layout_marginTop="60px"
+        android:onClick="onClick"
+        android:src="@mipmap/ic_tuandui"
+        />
+
+</LinearLayout>

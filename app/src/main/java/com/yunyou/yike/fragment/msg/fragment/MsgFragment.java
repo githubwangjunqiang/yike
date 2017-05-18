@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yunyou.yike.BaseMainFragment;
-import com.yunyou.yike.Interface.IPrenester;
 import com.yunyou.yike.R;
 
 public class MsgFragment extends BaseMainFragment {
@@ -57,10 +56,6 @@ public class MsgFragment extends BaseMainFragment {
         return inflater.inflate(R.layout.fragment_feel, container, false);
     }
 
-    @Override
-    protected IPrenester setIPrenester() {
-        return null;
-    }
 
 
 

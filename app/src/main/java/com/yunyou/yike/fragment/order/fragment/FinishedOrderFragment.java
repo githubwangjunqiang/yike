@@ -10,13 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.baoyz.widget.PullRefreshLayout;
-import com.yunyou.yike.BaseMainFragment;
-import com.yunyou.yike.Interface.IPrenester;
-import com.yunyou.yike.Interface.IView;
+import com.yunyou.yike.BaseMVPFragment;
+import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.OrderAdapter;
 import com.yunyou.yike.entity.Order;
-import com.yunyou.yike.fragment.order.presenter.ALLOrderFragmentPresenter;
+import com.yunyou.yike.presenter.ALLOrderFragmentPresenter;
 import com.yunyou.yike.recyleviewadapter.LoadMoreScrollListener;
 
 import java.util.List;
@@ -24,7 +23,8 @@ import java.util.List;
 /**
  * Created by ${王俊强} on 2017/4/19.
  */
-public class FinishedOrderFragment extends BaseMainFragment implements IView.IAllOrderFragmentView {
+public class FinishedOrderFragment extends BaseMVPFragment<IView.IAllOrderFragmentView, ALLOrderFragmentPresenter>
+        implements IView.IAllOrderFragmentView {
 
 
     public static FinishedOrderFragment newInstance() {
@@ -47,7 +47,7 @@ public class FinishedOrderFragment extends BaseMainFragment implements IView.IAl
         mRecyclerView.addOnScrollListener(new LoadMoreScrollListener() {
             @Override
             public void loadMore() {
-                ((IPrenester.IAllOrderFragmentPrenester) mIPrenester).loodOrder();
+                mPresenter.loodOrder();
             }
         });
     }
@@ -63,10 +63,6 @@ public class FinishedOrderFragment extends BaseMainFragment implements IView.IAl
         mRecyclerView.setAdapter(mOrderAdapter);
     }
 
-    @Override
-    protected IPrenester setIPrenester() {
-        return new ALLOrderFragmentPresenter(this);
-    }
 
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,7 +72,7 @@ public class FinishedOrderFragment extends BaseMainFragment implements IView.IAl
     @Override
     public void startRefresh(Object object) {
         mRefreshLayout.setRefreshing(true);
-        ((IPrenester.IAllOrderFragmentPrenester) mIPrenester).getOrder();
+        mPresenter.getOrder();
     }
 
     @Override
@@ -118,5 +114,10 @@ public class FinishedOrderFragment extends BaseMainFragment implements IView.IAl
     @Override
     public void loodOrder(List<Order> listBanners) {
         mOrderAdapter.loodList(listBanners);
+    }
+
+    @Override
+    protected ALLOrderFragmentPresenter mPresenterCreate() {
+        return new ALLOrderFragmentPresenter();
     }
 }

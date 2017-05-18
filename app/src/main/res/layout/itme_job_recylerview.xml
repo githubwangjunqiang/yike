@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="@dimen/pading_20"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/itme_job_image"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:failureImage="@mipmap/a1"
+            fresco:failureImageScaleType="centerInside"
+            fresco:progressBarAutoRotateInterval="1000"
+            fresco:progressBarImage="@mipmap/pressagebar"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:roundAsCircle="true"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="20px"
+            >
+
+            <TextView
+                android:id="@+id/itme_job_tvname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color"
+                android:textSize="25px"
+                tools:text="@string/app_name"
+                />
+
+            <RatingBar
+                android:id="@+id/itme_job_ratingbar"
+                style="@style/ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="false"
+                tools:rating="3"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/itme_job_tvtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_alp"
+            android:textSize="22px"
+            tools:text="2000/01/01\t00:00"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/itme_job_tvcontent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lineSpacingExtra="15px"
+            android:paddingTop="24px"
+            android:textColor="@color/text_color"
+            android:textSize="25px"
+            tools:text="工种：工种\t\t姓名：姓名\n工作地址：王府井大街\t北京饭店\n合计价格：300.00"/>
+
+        <Button
+            android:id="@+id/itme_job_btn"
+            android:layout_width="100px"
+            android:layout_height="45px"
+            android:layout_gravity="bottom"
+            android:background="@drawable/btn_p"
+            android:text="@string/qingdan"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

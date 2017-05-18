@@ -8,18 +8,19 @@ import android.widget.ExpandableListView;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.fingdo.statelayout.StateLayout;
-import com.yunyou.yike.BaseMainFragment;
+import com.yunyou.yike.BaseMVPFragment;
 import com.yunyou.yike.ExListViewAdapter.LoadMoreExListviewAdapter;
-import com.yunyou.yike.Interface.IPrenester;
-import com.yunyou.yike.Interface.IView;
+import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.FeelAdapter;
 import com.yunyou.yike.entity.Feel;
+import com.yunyou.yike.presenter.FeelFragmentPresenter;
 import com.yunyou.yike.ui_view.ScrollExpandableListView;
 
 import java.util.List;
 
-public class FeelFragment extends BaseMainFragment implements IView.IFeelFragmentView {
+public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelFragmentPresenter>
+        implements IView.IFeelFragmentView {
 
     public static FeelFragment newInstance() {
         FeelFragment fragment = new FeelFragment();
@@ -29,11 +30,6 @@ public class FeelFragment extends BaseMainFragment implements IView.IFeelFragmen
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_feel, container, false);
-    }
-
-    @Override
-    protected IPrenester setIPrenester() {
-        return new FeelFragmentPresenter(this);
     }
 
 
@@ -57,7 +53,7 @@ public class FeelFragment extends BaseMainFragment implements IView.IFeelFragmen
         mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ((IPrenester.IFeelFragmentPrenester) mIPrenester).getFeelData(false);
+                mPresenter.getFeelData(false);
             }
         });
         mExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -70,7 +66,7 @@ public class FeelFragment extends BaseMainFragment implements IView.IFeelFragmen
 
     @Override
     public void startRefresh(Object object) {
-        ((IPrenester.IFeelFragmentPrenester) mIPrenester).getFeelData(true);
+        mPresenter.getFeelData(true);
     }
 
     @Override
@@ -112,7 +108,7 @@ public class FeelFragment extends BaseMainFragment implements IView.IFeelFragmen
             mFeelAdapter.setOnLoadListener(new LoadMoreExListviewAdapter.OnLoadListener() {
                 @Override
                 public void onLoadMore() {
-                    ((IPrenester.IFeelFragmentPrenester) mIPrenester).loodMoreFeelData();
+                    mPresenter.loodMoreFeelData();
                 }
             });
             mExpandableListView.setAdapter(mFeelAdapter);
@@ -134,5 +130,10 @@ public class FeelFragment extends BaseMainFragment implements IView.IFeelFragmen
                 mFeelAdapter.setLoosMoreText("-- end --");
             }
         }
+    }
+
+    @Override
+    protected FeelFragmentPresenter mPresenterCreate() {
+        return new FeelFragmentPresenter();
     }
 }

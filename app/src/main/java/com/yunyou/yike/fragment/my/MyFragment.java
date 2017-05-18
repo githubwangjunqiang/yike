@@ -1,24 +1,26 @@
 package com.yunyou.yike.fragment.my;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.baoyz.widget.PullRefreshLayout;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.yunyou.yike.BaseMainFragment;
-import com.yunyou.yike.Interface.IPrenester;
-import com.yunyou.yike.Interface.IView;
+import com.yunyou.yike.BaseMVPFragment;
+import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.presenter.MyFragmentPresenter;
 
 /**
  * Created by ${王俊强} on 2017/4/19.
  */
-public class MyFragment extends BaseMainFragment implements IView.IMyFragmentView {
+public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmentPresenter> implements IView.IMyFragmentView {
 
 
     /**
@@ -34,22 +36,19 @@ public class MyFragment extends BaseMainFragment implements IView.IMyFragmentVie
 
 
     @Override
-    protected IPrenester setIPrenester() {
-        return new MyFragmentPresenter(this);
-    }
-
-    @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_my, container, false);
     }
 
     private PullRefreshLayout mRefreshLayout;
     private SimpleDraweeView mDraweeView;
+    private TextView mTextViewDataInfo;//信息管理
 
     @Override
     protected void initView(View viewLayout, Bundle savedInstanceState) {
-        mRefreshLayout = (PullRefreshLayout) viewLayout.findViewById(R.id.my_layout);
-        mDraweeView = (SimpleDraweeView) viewLayout.findViewById(R.id.my_image);
+        mRefreshLayout = obtainView(R.id.my_layout);
+        mDraweeView = obtainView(R.id.my_image);
+        mTextViewDataInfo = obtainView(R.id.my_tvxinxiguanli);
     }
 
     @Override
@@ -65,11 +64,17 @@ public class MyFragment extends BaseMainFragment implements IView.IMyFragmentVie
                 }, 2000);
             }
         });
+        mTextViewDataInfo.setOnClickListener(new View.OnClickListener() {//信息管理
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),));
+            }
+        });
     }
 
     @Override
     public void startRefresh(Object object) {
-        ((IPrenester.IMyFragmentPrenester)mIPrenester).getUserInfo();
+        mPresenter.getUserInfo();
     }
 
     @Override
@@ -109,5 +114,10 @@ public class MyFragment extends BaseMainFragment implements IView.IMyFragmentVie
                 .setAutoPlayAnimations(true)
                 .build();
         mDraweeView.setController(controller);
+    }
+
+    @Override
+    protected MyFragmentPresenter mPresenterCreate() {
+        return new MyFragmentPresenter();
     }
 }

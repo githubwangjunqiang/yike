@@ -1,28 +1,31 @@
 package com.yunyou.yike.fragment.home;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
-import com.yunyou.yike.BaseMainFragment;
-import com.yunyou.yike.Interface.Api;
-import com.yunyou.yike.Interface.IPrenester;
-import com.yunyou.yike.Interface.IView;
+import com.yunyou.yike.BaseMVPFragment;
+import com.yunyou.yike.Interface_view.Api;
+import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.activity.JobActivity;
+import com.yunyou.yike.activity.LookingWorkersActivity;
 import com.yunyou.yike.activity.PermissionActivity;
 import com.yunyou.yike.activity.WebViewActivity;
 import com.yunyou.yike.banner.GlideImageLoader;
 import com.yunyou.yike.entity.BannerData;
 import com.yunyou.yike.entity.Bean;
-import com.yunyou.yike.fragment.home.imP.HomePresenter;
 import com.yunyou.yike.listener.PermissionListener;
+import com.yunyou.yike.presenter.HomePresenter;
 import com.yunyou.yike.utils.LogUtils;
 import com.yunyou.yike.utils.To;
 
@@ -38,10 +41,11 @@ import retrofit2.Response;
 /**
  * Created by ${王俊强} on 2017/4/19.
  */
-public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmentView {
+public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomePresenter>
+        implements IView.IHomeFragmentView {
     private BannerData mBannerData;//轮播图 的实体类
-
-
+    private LinearLayout mLoadPeoPle;//找工人
+    private LinearLayout mLoadWorker;//找工作
     /**
      * 构造方法
      */
@@ -58,10 +62,6 @@ public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmen
         return fragment;
     }
 
-    @Override
-    protected IPrenester setIPrenester() {
-        return new HomePresenter(this);
-    }
 
     private Banner banner;
 
@@ -73,7 +73,12 @@ public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmen
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        banner = (Banner) view.findViewById(R.id.banner_home);
+        banner = obtainView(R.id.banner_home);
+        mLoadPeoPle = obtainView(R.id.home_load_gongren);
+        mLoadWorker = obtainView(R.id.home_load_worker);
+
+
+
         banner.setImageLoader(new GlideImageLoader());
         banner.setBannerAnimation(Transformer.ZoomOut);
         banner.setDelayTime(3000);  //设置指示器位置（当banner模式中有指示器时）
@@ -89,6 +94,21 @@ public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmen
                         .getSlide_url(), null);
             }
         });
+        mLoadPeoPle.setOnClickListener(new View.OnClickListener() {//找工人
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), LookingWorkersActivity.class);
+                startActivity(intent);
+            }
+        });
+        mLoadWorker.setOnClickListener(new View.OnClickListener() {//找工作
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), JobActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -133,7 +153,7 @@ public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmen
         PermissionActivity.startPermissionActivity(permissions, new PermissionListener() {
             @Override
             public void success() {
-                ((IPrenester.IHomeFragmentPrenester) mIPrenester).getBanner();
+                mPresenter.getBanner();
             }
 
             @Override
@@ -207,4 +227,8 @@ public class HomeFragment extends BaseMainFragment implements IView.IHomeFragmen
 
     }
 
+    @Override
+    protected HomePresenter mPresenterCreate() {
+        return new HomePresenter();
+    }
 }

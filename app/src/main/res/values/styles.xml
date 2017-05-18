@@ -11,6 +11,28 @@
         <item name="android:listDivider">@drawable/list_divder</item>
     </style>
 
+    <style name="ratingbar" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="colorAccent">@color/yellow_p</item>
+        <item name="colorPrimary">@color/yellow_p</item>
+    </style>
+
+    <style name="notAnimation" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+
     <style name="text_tablayout_style" parent="AppTheme">
         <item name="android:textSize">28px</item>
     </style>
@@ -29,6 +51,7 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowSoftInputMode">stateAlwaysVisible|adjustPan</item>
     </style>
+
     <style name="WinDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>

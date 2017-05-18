@@ -34,6 +34,7 @@ public class WebViewActivity extends BaseActivity {
         super.onDestroy();
     }
 
+
     @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_webview;
@@ -42,9 +43,9 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void init(Bundle savedInstanceState) {
 
-        mView = (WebView) findViewById(R.id.webviewactivity_webview);
-        ibBack = (ImageView) findViewById(R.id.webView_ivback);
-        tvtitle = (TextView) findViewById(R.id.webview_tvtitle);
+        mView = optionView(R.id.webviewactivity_webview);
+        ibBack = optionView(R.id.webView_ivback);
+        tvtitle = optionView(R.id.webview_tvtitle);
         String url = getIntent().getStringExtra("url");
         if (getIntent().getStringExtra("title") != null) {
             tvtitle.setText(getIntent().getStringExtra("title"));

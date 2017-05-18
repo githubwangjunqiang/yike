@@ -237,12 +237,13 @@ public abstract class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerVi
      */
     public void showLoadSuccess(List<T> listNews) {
         for (int i = 0; i < list.size(); i++) {
-            if (i != (listNews.size() - 1)) {
-                listNews.add(list.get(i));
+            if (i != (list.size() - 1)) {
+                listNews.add(0, list.get(i));
             }
         }
         addRefresh(list, listNews, ITEM_TYPE_LOAD_MORE_VIEW);
     }
+
     /**
      * 刷新整体数据
      */
@@ -256,7 +257,7 @@ public abstract class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerVi
      *
      * @param listOlds
      * @param listNews
-     * @param itemTypeLoadMoreView  制定的类型
+     * @param itemTypeLoadMoreView 制定的类型
      */
     protected abstract void addRefresh(List<T> listOlds, List<T> listNews, int itemTypeLoadMoreView);
 

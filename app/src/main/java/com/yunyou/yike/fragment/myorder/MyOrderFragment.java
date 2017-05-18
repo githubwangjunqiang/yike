@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yunyou.yike.BaseMainFragment;
-import com.yunyou.yike.Interface.IPrenester;
 import com.yunyou.yike.R;
 import com.yunyou.yike.fragment.order.fragment.AllOrderFragment;
 import com.yunyou.yike.fragment.order.fragment.CancelOrderFragment;
@@ -36,10 +35,6 @@ public class MyOrderFragment extends BaseMainFragment {
     }
 
 
-    @Override
-    protected IPrenester setIPrenester() {
-        return null;
-    }
 
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
