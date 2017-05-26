@@ -26,4 +26,14 @@ public class App extends Application {
     public static Context getContext() {
         return context;
     }
+
+    private static String userId;
+
+    public static String getUserId() {
+        return userId;
+    }
+
+    public static void setUserId(String userId) {
+        App.userId = userId;
+    }
 }

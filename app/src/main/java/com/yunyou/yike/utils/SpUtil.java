@@ -4,14 +4,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.yunyou.yike.App;
+
 /**
- * Created by _SOLID
+ * Created by _wangjunqiang
  * Date:2016/9/26
  * Time:15:34
  * Desc:SharedPreferences工具类
  */
 
 public class SpUtil {
+    public static final String mobile = App.getUserId() + "mobile";
+    public static final String nickname = App.getUserId()+"nickname";
+    public static final String r_token = App.getUserId()+"r_token";
+
+
     public static int getInt(Context context, final String key, int defaultValue) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getInt(key, defaultValue);

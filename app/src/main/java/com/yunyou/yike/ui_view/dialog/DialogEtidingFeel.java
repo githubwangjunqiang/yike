@@ -29,7 +29,7 @@ public class DialogEtidingFeel extends Dialog {
     private int grPosition, chidPosition;
 
     public DialogEtidingFeel(Context context, int grPosition, int chidPosition, CallBack callBack) {
-        super(context, R.style.WinDialog);
+        super(context, R.style.dialogWindowAnim);
         this.mCallBack = callBack;
         this.grPosition = grPosition;
         this.chidPosition = chidPosition;
@@ -118,7 +118,7 @@ public class DialogEtidingFeel extends Dialog {
         wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         wlp.gravity = Gravity.BOTTOM;
         window.setAttributes(wlp);
-        window.setWindowAnimations(R.style.WinDialog);
+        window.setWindowAnimations(R.style.dialogWindowAnim);
     }
 
     @Override

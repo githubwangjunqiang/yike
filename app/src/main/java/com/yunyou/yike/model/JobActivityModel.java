@@ -3,6 +3,7 @@ package com.yunyou.yike.model;
 import android.os.Handler;
 
 import com.yunyou.yike.entity.JobList;
+import com.yunyou.yike.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,11 @@ public class JobActivityModel implements IModel.IJobActivityModel {
                 for (int i = 0; i < 3; i++) {
                     lists.add(new JobList("name", 0));
                 }
-                callback.success(lists);
+                try {
+                    callback.success(lists);
+                } catch (Exception e) {
+                    LogUtils.e(e.getMessage());
+                }
             }
         }, 2000);
     }

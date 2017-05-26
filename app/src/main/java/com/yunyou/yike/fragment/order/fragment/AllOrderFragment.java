@@ -81,6 +81,11 @@ public class AllOrderFragment extends BaseMVPFragment<IView.IAllOrderFragmentVie
     }
 
     @Override
+    public void showLoodingDialog(Object object) {
+
+    }
+
+    @Override
     public void showContentView(Object object) {
 
     }

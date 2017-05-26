@@ -13,6 +13,11 @@ public class DecorationWorkerActivity extends BaseActivity {
     private ImageView mImageViewBack;
 
     @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_decoration_worker;
     }
@@ -33,5 +38,10 @@ public class DecorationWorkerActivity extends BaseActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void startRefresh(Object object) {
+
     }
 }

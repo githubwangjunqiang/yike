@@ -12,6 +12,9 @@ public abstract class BasePresenter<T> {
     }
 
     protected T getView() {
+        if(mTReference == null){
+            return null;
+        }
         return mTReference.get();
     }
 

@@ -16,6 +16,8 @@ public interface IView {
 
     void showLoodingView(Object object);//显示等待圈
 
+    void showLoodingDialog(Object object);//显示等待圈
+
     void showContentView(Object object);//显示主页面
 
     void showErrorView(Object object);//显示加载失败
@@ -70,13 +72,39 @@ public interface IView {
     /**
      * 订单详情页
      */
-    interface IOrderInfoActivityView extends IView{
+    interface IOrderInfoActivityView extends IView {
 
     }
+
     /**
      * 信息管理
      */
-    interface IxinxiGuanliActivityView extends IView{
+    interface IxinxiGuanliActivityView extends IView {
 
+    }
+
+    /**
+     * 我的钱包
+     */
+    interface IQianBaoActivityView extends IView {
+    }
+
+    /**
+     * 登陆界面
+     */
+    interface ILoginActivityView extends IView {
+    }
+
+    /**
+     * 注册界面
+     */
+    interface IRegisterActivityView extends IView {
+        void sendCodeSuccess(Object string);//发送验证码成功
+
+        void sendCodeError(Object string);//发送验证码失败
+
+        void registerSuccess(Object string);//注册成功
+
+        void registerError(Object string);//注册失败
     }
 }

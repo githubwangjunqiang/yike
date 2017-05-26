@@ -132,6 +132,11 @@ public class OrderFragment extends BaseMainFragment {
     }
 
     @Override
+    public void showLoodingDialog(Object object) {
+
+    }
+
+    @Override
     public void showContentView(Object object) {
 
     }

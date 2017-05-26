@@ -14,7 +14,7 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.yunyou.yike.BaseMVPFragment;
-import com.yunyou.yike.Interface_view.Api;
+import com.yunyou.yike.http.entity.RxApi;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.activity.JobActivity;
@@ -112,12 +112,12 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
     }
 
 
-    private void toCall3(Api api) {
+    private void toCall3(RxApi rxApi) {
         Map<String, String> map = new ArrayMap<>();
         map.put("mobile", "15075818555");
         map.put("password", "123456");
         map.put("device_token", "123456");
-        api.ulogin("123456", "15075818555", "123456", "123456").enqueue(new Callback<ResponseBody>() {
+        rxApi.ulogin("123456", "15075818555", "123456", "123456").enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             }
@@ -184,6 +184,11 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
 
     @Override
     public void showLoodingView(Object object) {
+
+    }
+
+    @Override
+    public void showLoodingDialog(Object object) {
 
     }
 

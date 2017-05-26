@@ -36,6 +36,11 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_main;
     }
@@ -144,4 +149,8 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void startRefresh(Object object) {
+
+    }
 }

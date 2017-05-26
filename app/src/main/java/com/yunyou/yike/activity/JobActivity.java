@@ -12,7 +12,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.baoyz.widget.PullRefreshLayout;
-import com.fingdo.statelayout.StateLayout;
 import com.yunyou.yike.BaseMVPActivity;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
@@ -32,7 +31,6 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
     private ImageView mImageViewBack;
     private RecyclerView mRecyclerView;
     private LoadJobAdapter mLoadJobAdapter;
-    private StateLayout mStateLayout;
     private PullRefreshLayout mRefreshLayout;
     private List<JobList> mJobLists;
 
@@ -40,6 +38,11 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
     @Override
     protected IJobActivityPresenter mPresenterCreate() {
         return new IJobActivityPresenter();
+    }
+
+    @Override
+    protected int getStateLayoutID() {
+        return R.id.job_looking_statslayout;
     }
 
     @Override
@@ -53,11 +56,9 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
         mTextViewTitle = optionView(R.id.title_tvtitle);
         mImageViewBack = optionView(R.id.title_ivback);
         mRecyclerView = optionView(R.id.job_recylerview);
-        mStateLayout = optionView(R.id.job_looking_statslayout);
         mRefreshLayout = optionView(R.id.looking_layout);
         mTextViewTitle.setText(R.string.zhaogongzuo);
         mJobLists = new ArrayList<>();
-        mStateLayout.setUseAnimation(true);
         startRefresh(null);
     }
 
@@ -88,35 +89,12 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
         mPresenter.getJobData(true);
     }
 
-    @Override
-    public void showLoodingView(Object object) {
-        mStateLayout.showLoadingView();
-    }
+
 
     @Override
     public void showContentView(Object object) {
-        mStateLayout.showContentView();
+        super.showContentView(object);
         mRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void showErrorView(Object object) {
-        mStateLayout.showErrorView();
-    }
-
-    @Override
-    public void showEmptyView(Object object) {
-        mStateLayout.showEmptyView();
-    }
-
-    @Override
-    public void showNoNetworkView(Object object) {
-        mStateLayout.showNoNetworkView();
-    }
-
-    @Override
-    public void showTimeErrorView(Object object) {
-        mStateLayout.showTimeoutView();
     }
 
     @Override

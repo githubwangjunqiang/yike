@@ -25,28 +25,43 @@ public class FeelFragmentPresenter extends BasePresenter<IView.IFeelFragmentView
             @Override
             public void startModel(Object o) {
                 if (isShowLoading) {
+                    if (getView() == null) {
+                        return;
+                    }
                     getView().showLoodingView(null);
                 }
             }
 
             @Override
             public void noNetWork(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().showNoNetworkView(null);
             }
 
             @Override
             public void success(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().showFeelData((List<Feel>) o);
                 getView().showContentView(null);
             }
 
             @Override
             public void error(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().showLoodingView(o);
             }
 
             @Override
             public void fail(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().showTimeErrorView(o);
             }
         });
@@ -61,21 +76,33 @@ public class FeelFragmentPresenter extends BasePresenter<IView.IFeelFragmentView
 
             @Override
             public void noNetWork(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().loodMoreFeelData(null);
             }
 
             @Override
             public void success(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().loodMoreFeelData((List<Feel>) o);
             }
 
             @Override
             public void error(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().loodMoreFeelData(null);
             }
 
             @Override
             public void fail(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().loodMoreFeelData(null);
             }
         });

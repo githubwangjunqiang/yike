@@ -35,7 +35,9 @@ public class ALLOrderFragmentPresenter extends BasePresenter<IView.IAllOrderFrag
 
             @Override
             public void success(Object o) {
-                getView().showOrder((List<Order>) o);
+                if(getView() != null){
+                    getView().showOrder((List<Order>) o);
+                }
             }
 
             @Override
@@ -65,7 +67,9 @@ public class ALLOrderFragmentPresenter extends BasePresenter<IView.IAllOrderFrag
 
             @Override
             public void success(Object o) {
-                getView().loodOrder((List<Order>) o);
+                if (getView() != null) {
+                    getView().loodOrder((List<Order>) o);
+                }
             }
 
             @Override

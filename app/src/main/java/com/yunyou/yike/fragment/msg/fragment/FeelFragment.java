@@ -75,6 +75,11 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
     }
 
     @Override
+    public void showLoodingDialog(Object object) {
+
+    }
+
+    @Override
     public void showContentView(Object object) {
         mRefreshLayout.setRefreshing(false);
         mStateLayout.showContentView();

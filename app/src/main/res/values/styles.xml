@@ -9,7 +9,17 @@
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textColorPrimary">@color/text_color</item>
         <item name="android:listDivider">@drawable/list_divder</item>
+        <item name="colorControlActivated">@color/yellow_p</item>
     </style>
+
+    <style name="login" parent="AppTheme">
+        <!--AppCompatEditText未选中的底线颜色   ratingbar checkedbox radiobutton 未选中-->
+        <item name="colorControlNormal">@color/white</item>
+        <!-- AppCompatEditText选中的底线颜色 -->
+        <!--控制 ratingbar checkedbox radiobutton 选中时的颜色-->
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
 
     <style name="ratingbar" parent="Base.Widget.AppCompat.RatingBar.Small">
         <item name="colorAccent">@color/yellow_p</item>
@@ -43,7 +53,7 @@
     </style>
 
 
-    <style name="dialogWindowAnim" mce_bogus="1" parent="android:Animation">
+    <style name="dialogWindowAnim" mce_bogus="1" parent="@android:style/Theme.Dialog">
         <item name="android:windowEnterAnimation">@anim/bottom_top_in</item>
         <item name="android:windowExitAnimation">@anim/top_bottom_out</item>
         <item name="android:backgroundDimEnabled">true</item>
@@ -60,10 +70,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:background">@android:color/transparent</item>
         <!--背景不变暗-->
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowEnterAnimation">@anim/bottom_top_in</item>
-        <item name="android:windowExitAnimation">@anim/top_bottom_out</item>
-        <item name="android:windowSoftInputMode">stateAlwaysVisible</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
 </resources>

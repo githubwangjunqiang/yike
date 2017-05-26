@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.neenbedankt.android-apt'
 android {
     signingConfigs {
         yike {
@@ -13,7 +13,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.yunyou.yike"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -42,21 +42,36 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    // 支持 GIF 动图，需要添加
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
+    // 支持 GIF 动图，需要添加
     compile 'com.android.support:support-vector-drawable:25.3.1'
+    //autolayout  全局适配器
     compile 'com.zhy:autolayout:1.4.5'
+    //注解fingdview框架
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    //retrofit2
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
+    //rxjava
+    compile 'io.reactivex:rxjava:1.1.2'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    //轮播图
     compile 'com.youth.banner:banner:1.4.9'
-    compile 'io.reactivex.rxjava2:rxjava:2.0.9'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // 下拉刷新框架
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
+    // 图片加载框架
     compile 'com.facebook.fresco:fresco:0.12.0'
     compile 'com.facebook.fresco:animated-gif:0.12.0'
+    // 切换布局 框架
     compile 'com.github.fingdo:stateLayout:1.0.2'
     testCompile 'junit:junit:4.12'
+    //path动画
+    compile 'com.eftimoff:android-pathview:1.0.8@aar'
+//    dagger2
+    apt 'com.google.dagger:dagger-compiler:2.2'
+    compile 'com.google.dagger:dagger:2.2'
+    provided 'javax.annotation:jsr250-api:1.0'
 }

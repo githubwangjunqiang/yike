@@ -7,12 +7,16 @@ import com.yunyou.yike.presenter.BasePresenter;
  */
 
 public abstract class BaseMVPActivity<V, A extends BasePresenter<V>> extends BaseActivity {
+
     protected A mPresenter;
 
     @Override
     protected void setPresenter() {
         super.setPresenter();
         mPresenter = mPresenterCreate();
+
+
+
         if (mPresenter == null) {
             throw new NullPointerException("请把管理者实现类new出来呦");
         }

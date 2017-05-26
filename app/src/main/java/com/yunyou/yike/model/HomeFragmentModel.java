@@ -1,6 +1,6 @@
 package com.yunyou.yike.model;
 
-import com.yunyou.yike.Interface_view.Api;
+import com.yunyou.yike.http.entity.RxApi;
 import com.yunyou.yike.entity.BannerData;
 import com.yunyou.yike.entity.Bean;
 
@@ -22,8 +22,8 @@ public class HomeFragmentModel implements IModel.IHomeFragmentModel {
                 .baseUrl(Bean.base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        final Api api = retrofit.create(Api.class);
-        api.index_banner().enqueue(new Callback<BannerData>() {
+        final RxApi rxApi = retrofit.create(RxApi.class);
+        rxApi.index_banner().enqueue(new Callback<BannerData>() {
             @Override
             public void onResponse(Call<BannerData> call, Response<BannerData> response) {
                 if (response.isSuccessful()) {

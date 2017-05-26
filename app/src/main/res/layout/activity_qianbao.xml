@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.QianbaoActivity">
+
+    <include layout="@layout/top_title"/>
+
+    <com.fingdo.statelayout.StateLayout
+        android:id="@+id/qianbao_staslayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyText="@string/meiyourenheshuju"
+        app:errorText="@string/jiazaishibai"
+        app:loadingText="@string/jiazaizhong"
+        app:loginText="@string/chongxindenglu"
+        app:noNetworkText="@string/meiyouwangluo"
+        app:timeOutText="@string/chaoshil"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="49px"
+                android:paddingTop="50px"
+                android:text="@string/jine"
+                android:textColor="@color/text_color"
+                android:textSize="28px"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:paddingBottom="59px"
+                android:textColor="@color/app_color"
+                android:textSize="80px"
+                tools:text="00"/>
+
+            <Button
+                android:layout_width="300px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60px"
+                android:background="@drawable/btn_biankuang"
+                android:minHeight="0dp"
+                android:onClick="onClickRecharge"
+                android:paddingBottom="20px"
+                android:paddingTop="20px"
+                android:text="@string/chongzhi"
+                android:textColor="@color/app_color"
+                android:textSize="32px"
+                />
+
+            <Button
+                android:layout_width="300px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20px"
+                android:background="@drawable/btn_p"
+                android:minHeight="0dp"
+                android:onClick="onClickWithdrawals"
+                android:paddingBottom="20px"
+                android:paddingTop="20px"
+                android:text="@string/tixian"
+                android:textColor="@color/white"
+                android:textSize="32px"
+                />
+        </LinearLayout>
+    </com.fingdo.statelayout.StateLayout>
+</LinearLayout>

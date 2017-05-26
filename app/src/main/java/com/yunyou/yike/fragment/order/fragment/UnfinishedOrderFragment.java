@@ -82,6 +82,11 @@ public class UnfinishedOrderFragment extends BaseMVPFragment<IView.IAllOrderFrag
     }
 
     @Override
+    public void showLoodingDialog(Object object) {
+
+    }
+
+    @Override
     public void showContentView(Object object) {
 
     }

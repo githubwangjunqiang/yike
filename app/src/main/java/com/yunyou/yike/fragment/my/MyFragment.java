@@ -15,6 +15,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunyou.yike.BaseMVPFragment;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.activity.MyYueActivity;
+import com.yunyou.yike.activity.XinxiGuanliActivity;
 import com.yunyou.yike.presenter.MyFragmentPresenter;
 
 /**
@@ -42,13 +44,15 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
 
     private PullRefreshLayout mRefreshLayout;
     private SimpleDraweeView mDraweeView;
-    private TextView mTextViewDataInfo;//信息管理
+    private TextView mTextViewDataInfo,//信息管理
+            mTextViewQianbao;//我的钱包
 
     @Override
     protected void initView(View viewLayout, Bundle savedInstanceState) {
         mRefreshLayout = obtainView(R.id.my_layout);
         mDraweeView = obtainView(R.id.my_image);
         mTextViewDataInfo = obtainView(R.id.my_tvxinxiguanli);
+        mTextViewQianbao = obtainView(R.id.my_qianbao);
     }
 
     @Override
@@ -66,8 +70,14 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
         });
         mTextViewDataInfo.setOnClickListener(new View.OnClickListener() {//信息管理
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),));
+            public void onClick(View v) {//信息管理
+                startActivity(new Intent(getContext(), XinxiGuanliActivity.class));
+            }
+        });
+        mTextViewQianbao.setOnClickListener(new View.OnClickListener() {//我的钱包
+            @Override
+            public void onClick(View v) {//我的钱包界面（我的余额我的银行卡）
+                startActivity(new Intent(getContext(), MyYueActivity.class));
             }
         });
     }
@@ -79,6 +89,11 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
 
     @Override
     public void showLoodingView(Object object) {
+
+    }
+
+    @Override
+    public void showLoodingDialog(Object object) {
 
     }
 

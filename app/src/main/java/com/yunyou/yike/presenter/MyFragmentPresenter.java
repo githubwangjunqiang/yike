@@ -31,6 +31,9 @@ public class MyFragmentPresenter extends BasePresenter<IView.IMyFragmentView> im
 
             @Override
             public void success(Object o) {
+                if (getView() == null) {
+                    return;
+                }
                 getView().showUserInfo();
             }
 

@@ -133,6 +133,11 @@ public class PermissionActivity extends BaseActivity {
     }
 
     @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
 
     }
@@ -142,4 +147,8 @@ public class PermissionActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void startRefresh(Object object) {
+
+    }
 }

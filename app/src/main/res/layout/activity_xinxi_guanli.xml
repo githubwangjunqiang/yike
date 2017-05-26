@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -62,7 +62,6 @@
             android:textSize="28px"/>
 
         <com.facebook.drawee.view.SimpleDraweeView
-            xmlns:fresco="http://schemas.android.com/apk/res-auto"
             android:layout_width="61px"
             android:layout_height="61px"
             android:layout_marginRight="20px"
@@ -201,12 +200,60 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2px"
         android:background="@color/white"
         android:paddingBottom="24px"
         android:paddingLeft="20px"
         android:paddingTop="25px"
         android:text="@string/techangaihao"
-        android:textColor="@color/text_color_alp"/>
+        android:textColor="@color/text_color_alp"
+        android:textSize="28px"/>
 
+    <com.yunyou.yike.ui_view.MyGridView
+        android:id="@+id/xinxi_gvaihao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:horizontalSpacing="28px"
+        android:numColumns="5"
+        android:paddingBottom="28px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:verticalSpacing="10px"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9px"
+        android:background="@color/white"
+        android:paddingBottom="30px"
+        android:paddingLeft="20px"
+        android:paddingTop="30px"
+        android:text="@string/benrenshouchishenzheng"
+        android:textColor="@color/text_color_alp"
+        android:textSize="28px"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="20px"
+        android:paddingLeft="20px"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="150px"
+            android:layout_height="150px"
+            fresco:actualImageScaleType="focusCrop"
+            fresco:failureImage="@mipmap/a1"
+            fresco:failureImageScaleType="centerInside"
+            fresco:progressBarAutoRotateInterval="1000"
+            fresco:progressBarImage="@mipmap/pressagebar"
+            fresco:progressBarImageScaleType="centerInside"
+            fresco:roundAsCircle="false"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>

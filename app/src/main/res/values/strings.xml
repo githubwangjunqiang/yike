@@ -63,4 +63,27 @@
     <string name="shenfenzhenghao">身份证号</string>
     <string name="gongzhong">工种</string>
     <string name="techangaihao">特长爱好</string>
+    <string name="benrenshouchishenzheng">本人手持身份证照片</string>
+    <string name="jine">金额</string>
+    <string name="chongzhi">充值</string>
+    <string name="tixian">提现</string>
+    <string name="qingshurushoujihao">\t请输入手机号</string>
+    <string name="qingshurumima">\t请输入密码</string>
+    <string name="login">登陆</string>
+    <string name="wangjimima">忘记密码?</string>
+    <string name="regist">还没有账号去注册?</string>
+    <string name="register">注册</string>
+    <string name="huoquyanzhengma">获取验证码</string>
+    <string name="yanzhengma">\t请输入验证码</string>
+    <string name="shezhizhanghaomima">\t数字+字母六位以上组合密码</string>
+    <string name="querenmima">\t确认密码</string>
+    <string name="wotongyui">我同意并已阅读</string>
+    <string name="wodeyue">我的余额</string>
+    <string name="wodeyinhangka">我的银行卡</string>
+    <string name="lookingworker">找工人</string>
+    <string name="fasongyanzhengma">发送验证码</string>
+    <string name="weizhicuowu">未知错误</string>
+    <string name="jiexichucuo">解析出错</string>
+    <string name="lianjiechaoshi">链接超时</string>
+    <string name="wuwangluolianjie">无网络连接</string>
 </resources>

@@ -14,7 +14,6 @@ import com.yunyou.yike.presenter.BasePresenter;
 
 public abstract class BaseMVPFragment<V, A extends BasePresenter<V>> extends BaseMainFragment {
     protected A mPresenter;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

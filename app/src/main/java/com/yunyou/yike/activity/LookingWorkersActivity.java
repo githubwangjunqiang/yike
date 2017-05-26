@@ -15,6 +15,11 @@ public class LookingWorkersActivity extends BaseActivity {
 
 
     @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_looking_workers;
     }
@@ -23,6 +28,7 @@ public class LookingWorkersActivity extends BaseActivity {
     protected void init(Bundle savedInstanceState) {
         mImageViewBack = optionView(R.id.title_ivback);
         mTextViewTitle = optionView(R.id.title_tvtitle);
+        mTextViewTitle.setText(R.string.lookingworker);
     }
 
     @Override
@@ -57,5 +63,10 @@ public class LookingWorkersActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    public void startRefresh(Object object) {
+
     }
 }

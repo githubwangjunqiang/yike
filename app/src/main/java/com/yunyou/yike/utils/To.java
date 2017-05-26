@@ -49,7 +49,7 @@ public class To {
         if (toast2 == null) {
             View view = LayoutInflater.from(App.getContext()).inflate(R.layout.toast, null);
             toast2 = new Toast(App.getContext());
-            toast2.setDuration(Toast.LENGTH_SHORT);
+            toast2.setDuration(Toast.LENGTH_LONG);
             toast2.setGravity(Gravity.CENTER, 0, 0);
             toast2.setView(view);
             tv = (TextView) view.findViewById(R.id.toast_tv);
@@ -63,13 +63,13 @@ public class To {
         if (toast3 == null) {
             View view = LayoutInflater.from(App.getContext()).inflate(R.layout.toast, null);
             toast3 = new Toast(App.getContext());
-            toast3.setDuration(Toast.LENGTH_SHORT);
+            toast3.setDuration(Toast.LENGTH_LONG);
             toast3.setGravity(Gravity.CENTER, 0, 0);
             toast3.setView(view);
             tv3 = (TextView) view.findViewById(R.id.toast_tv);
             tv3.setText(s == null ? string : s.toString());
             iviamge = (ImageView) view.findViewById(R.id.toast_iviamge);
-            iviamge.setImageResource(R.mipmap.kulian);
+            iviamge.setImageResource(R.drawable.ic_error);
         } else {
             tv3.setText(s == null ? string : s.toString());
         }

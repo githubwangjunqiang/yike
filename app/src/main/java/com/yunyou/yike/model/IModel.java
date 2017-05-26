@@ -1,5 +1,11 @@
 package com.yunyou.yike.model;
 
+import com.yunyou.yike.entity.SendCode;
+import com.yunyou.yike.entity.User;
+
+import rx.Observable;
+
+
 /**
  * Created by ${王俊强} on 2017/4/24.
  */
@@ -35,8 +41,22 @@ public interface IModel {
         void getFeelData(AsyCallback callback);//获取朋友圈数据
     }
 
+    /**
+     * 找工作的接口model
+     */
     interface IJobActivityModel {
         void getJobData(AsyCallback callback);//获取工作列表数据
+    }
+
+    /**
+     * 注册界面
+     */
+    interface IRegisterModel {
+
+        Observable<SendCode> sendCode(String phone);//发送验证码
+
+        Observable<User> register(String mobile, String password, String password2, //注册
+                                  String code, String time);
     }
 
     /**

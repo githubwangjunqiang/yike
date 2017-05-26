@@ -24,6 +24,11 @@ public class OrderInfoActivity extends BaseMVPActivity<IView.IOrderInfoActivityV
     }
 
     @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
         mDraweeView = optionView(R.id.order_info_iamgeview);
         mTextViewTitle = optionView(R.id.title_tvtitle);
@@ -43,41 +48,12 @@ public class OrderInfoActivity extends BaseMVPActivity<IView.IOrderInfoActivityV
     }
 
     @Override
-    public void startRefresh(Object object) {
-    }
-
-    @Override
-    public void showLoodingView(Object object) {
-
-    }
-
-    @Override
-    public void showContentView(Object object) {
-
-    }
-
-    @Override
-    public void showErrorView(Object object) {
-
-    }
-
-    @Override
-    public void showEmptyView(Object object) {
-
-    }
-
-    @Override
-    public void showNoNetworkView(Object object) {
-
-    }
-
-    @Override
-    public void showTimeErrorView(Object object) {
-
-    }
-
-    @Override
     protected OrderInfoPresenter mPresenterCreate() {
         return new OrderInfoPresenter();
+    }
+
+    @Override
+    public void startRefresh(Object object) {
+
     }
 }

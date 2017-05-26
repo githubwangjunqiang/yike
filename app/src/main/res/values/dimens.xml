@@ -96,6 +96,7 @@
     <dimen name="pading_25">25px</dimen>
     <dimen name="text_size_12sp">12sp</dimen>
     <dimen name="text_size_10sp">10sp</dimen>
+    <dimen name="pading_34">34px</dimen>
 
 
 </resources>

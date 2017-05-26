@@ -81,6 +81,11 @@ public class CancelOrderFragment extends BaseMVPFragment<IView.IAllOrderFragment
     }
 
     @Override
+    public void showLoodingDialog(Object object) {
+
+    }
+
+    @Override
     public void showContentView(Object object) {
 
     }

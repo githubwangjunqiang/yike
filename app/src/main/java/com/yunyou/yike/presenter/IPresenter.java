@@ -51,9 +51,31 @@ public interface IPresenter {
      */
     interface IOrderInfoPresenter extends IPresenter {
     }
+
     /**
      * 信息管理
      */
     interface IXinxiGuanliPresenter extends IPresenter {
+    }
+
+    /**
+     * 我的钱包
+     */
+    interface IQianBaoPresenter extends IPresenter {
+    }
+
+    /**
+     * 登陆界面
+     */
+    interface ILoginPresenter extends IPresenter {
+        void login(String mobile,String password,String device_num,String j_du,String w_du,String time);
+    }
+
+    /**
+     * 注册界面
+     */
+    interface IRegisterPresenter extends IPresenter {
+        void sendCode(String phone);
+        void registerUser(String phone,String pas,String pass,String code,String time);
     }
 }

@@ -41,6 +41,11 @@ public class WebViewActivity extends BaseActivity {
     }
 
     @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
 
         mView = optionView(R.id.webviewactivity_webview);
@@ -130,6 +135,11 @@ public class WebViewActivity extends BaseActivity {
         intent.putExtra("url", allUrl);
         intent.putExtra("title", title);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void startRefresh(Object object) {
+
     }
 
 

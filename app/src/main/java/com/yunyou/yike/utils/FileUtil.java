@@ -27,6 +27,15 @@ public class FileUtil {
         }
         return context.getCacheDir();
     }
+    public static File getFileDir(Context context) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File cacheDir = context.getExternalFilesDir("user");
+            if (cacheDir != null && (cacheDir.exists() || cacheDir.mkdirs())) {
+                return cacheDir;
+            }
+        }
+        return context.getFilesDir();
+    }
 
     //region getString
     public static String getString(Context context, String url) {
