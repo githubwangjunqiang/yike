@@ -11,11 +11,11 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.baoyz.widget.PullRefreshLayout;
 import com.yunyou.yike.BaseMVPActivity;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.LoadJobAdapter;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.JobList;
 import com.yunyou.yike.presenter.IJobActivityPresenter;
 import com.yunyou.yike.recyleviewadapter.LoadMoreWrapper;
@@ -31,7 +31,6 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
     private ImageView mImageViewBack;
     private RecyclerView mRecyclerView;
     private LoadJobAdapter mLoadJobAdapter;
-    private PullRefreshLayout mRefreshLayout;
     private List<JobList> mJobLists;
 
 
@@ -46,6 +45,11 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
     }
 
     @Override
+    protected int getPullRefreshLayoutID() {
+        return R.id.looking_layout;
+    }
+
+    @Override
     protected int setLayoutResourceID() {
         return R.layout.activity_looking_job;
     }
@@ -56,7 +60,6 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
         mTextViewTitle = optionView(R.id.title_tvtitle);
         mImageViewBack = optionView(R.id.title_ivback);
         mRecyclerView = optionView(R.id.job_recylerview);
-        mRefreshLayout = optionView(R.id.looking_layout);
         mTextViewTitle.setText(R.string.zhaogongzuo);
         mJobLists = new ArrayList<>();
         startRefresh(null);
@@ -76,12 +79,11 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
                 To.oo("调试成功" + isChecked);
             }
         });
-        mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPresenter.getJobData(false);
-            }
-        });
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
+
     }
 
     @Override

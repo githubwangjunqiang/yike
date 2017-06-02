@@ -10,16 +10,20 @@ import android.widget.GridView;
 public class MyGridView extends GridView {
 
 
-    public MyGridView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
     public MyGridView(Context context) {
         super(context);
     }
 
-    public MyGridView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public MyGridView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public MyGridView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    public MyGridView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override

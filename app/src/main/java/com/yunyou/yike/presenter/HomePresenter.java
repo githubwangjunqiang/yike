@@ -1,65 +1,40 @@
 package com.yunyou.yike.presenter;
 
-import com.yunyou.yike.model.IModel;
+import android.support.annotation.NonNull;
+
+import com.google.gson.Gson;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.entity.BannerData;
-import com.yunyou.yike.model.HomeFragmentModel;
+import com.yunyou.yike.http.entity.RxApi;
+import com.yunyou.yike.http.rx.RxExceptionSubscriber;
+import com.yunyou.yike.http.rx.RxHttpRepouseCompat;
 
 /**
  * Created by ${王俊强} on 2017/4/24.
  */
 
 public class HomePresenter extends BasePresenter<IView.IHomeFragmentView> implements IPresenter.IHomeFragmentPrenester {
-    private IModel.IHomeFragmentModel mFragmentModel;
+    private RxApi mApi;
 
-    public HomePresenter() {
-        mFragmentModel = new HomeFragmentModel();
+    public HomePresenter(@NonNull RxApi api) {
+        mApi = api;
     }
-
 
     @Override
     public void getBanner() {
-        mFragmentModel.getBanner(new IModel.AsyCallback() {
-            @Override
-            public void startModel(Object o) {
-                if (getView() == null) {
-                    return;
-                }
-                getView().showLoodingView(null);
-            }
+        mApi.index_banner()
+                .compose(RxHttpRepouseCompat.compatResult())
+                .subscribe(new RxExceptionSubscriber<String>(getView()) {
+                    @Override
+                    protected void apiError(int code, String errorMsg) {
+                        getView().ToToast(errorMsg);
+                    }
 
-            @Override
-            public void noNetWork(Object o) {
-                if (getView() == null) {
-                    return;
-                }
-                getView().showNoNetworkView(null);
-            }
-
-            @Override
-            public void success(Object o) {
-                if (getView() == null) {
-                    return;
-                }
-                getView().showBanner((BannerData) o);
-            }
-
-            @Override
-            public void error(Object o) {
-                if (getView() == null) {
-                    return;
-                }
-                getView().showErrorView(o.toString());
-            }
-
-            @Override
-            public void fail(Object o) {
-                if (getView() == null) {
-                    return;
-                }
-                getView().showErrorView(o);
-            }
-        });
+                    @Override
+                    protected void onSuccess(String string) {
+                        getView().showBanner(new Gson().fromJson(string, BannerData.class));
+                    }
+                });
     }
 
 }

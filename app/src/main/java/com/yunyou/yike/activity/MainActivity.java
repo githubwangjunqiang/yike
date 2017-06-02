@@ -8,8 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
+import com.yunyou.yike.App;
 import com.yunyou.yike.BaseActivity;
 import com.yunyou.yike.R;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.fragment.home.HomeFragment;
 import com.yunyou.yike.fragment.msg.MessageFragment;
 import com.yunyou.yike.fragment.my.MyFragment;
@@ -37,6 +39,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
         return 0;
     }
 
@@ -122,6 +129,11 @@ public class MainActivity extends BaseActivity {
         };
     }
 
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
+
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
     /**
@@ -152,5 +164,12 @@ public class MainActivity extends BaseActivity {
     @Override
     public void startRefresh(Object object) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        App.appOut();
+        System.exit(0);
+        super.onDestroy();
     }
 }

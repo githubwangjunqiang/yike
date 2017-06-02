@@ -22,6 +22,15 @@ public interface IPresenter {
     }
 
     /**
+     * 地址界面的管理者
+     */
+    interface IAddressActivityPrenester extends IPresenter {
+        void getAddressHot();//获取热门城市
+
+        void getAddressCity();//获取城市列表
+    }
+
+    /**
      * 我的界面 管理者
      */
     interface IMyFragmentPrenester extends IPresenter {
@@ -47,6 +56,13 @@ public interface IPresenter {
     }
 
     /**
+     * 找工人 发布订单界面管理者
+     */
+    interface IDecorationWorkerPresenter extends IPresenter {
+
+    }
+
+    /**
      * 订单详情
      */
     interface IOrderInfoPresenter extends IPresenter {
@@ -68,7 +84,7 @@ public interface IPresenter {
      * 登陆界面
      */
     interface ILoginPresenter extends IPresenter {
-        void login(String mobile,String password,String device_num,String j_du,String w_du,String time);
+        void login(String mobile, String password, String device_num, String j_du, String w_du);
     }
 
     /**
@@ -76,6 +92,7 @@ public interface IPresenter {
      */
     interface IRegisterPresenter extends IPresenter {
         void sendCode(String phone);
-        void registerUser(String phone,String pas,String pass,String code,String time);
+
+        void registerUser(String phone, String pas, String pass, String code);
     }
 }

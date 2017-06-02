@@ -5,16 +5,32 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yunyou.yike.BaseActivity;
+import com.yunyou.yike.App;
+import com.yunyou.yike.BaseMVPActivity;
+import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.dagger2.DaggerWorkerCompcoent;
+import com.yunyou.yike.dagger2.PresenterMobule;
+import com.yunyou.yike.entity.EventBusMessage;
+import com.yunyou.yike.presenter.DecorationWorkerPresenter;
 
-public class DecorationWorkerActivity extends BaseActivity {
+import javax.inject.Inject;
+
+public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationWorkerView,
+        DecorationWorkerPresenter> implements IView.IDecorationWorkerView {
     private TextView mTextViewTitle;
     private ImageView mImageViewBack;
+    @Inject
+    DecorationWorkerPresenter mPresenter;
 
     @Override
     protected int getStateLayoutID() {
-        return 0;
+        return R.id.worker_statelayout;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
+        return R.id.lock_worker_layout;
     }
 
     @Override
@@ -24,8 +40,8 @@ public class DecorationWorkerActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        mTextViewTitle = (TextView) optionView(R.id.title_tvtitle);
-        mImageViewBack = (ImageView) optionView(R.id.title_ivback);
+        mTextViewTitle = optionView(R.id.title_tvtitle);
+        mImageViewBack = optionView(R.id.title_ivback);
         mTextViewTitle.setText(R.string.zhuangxiugongren);
         mTextViewTitle.setText(R.string.wanshandingdan);
     }
@@ -41,7 +57,20 @@ public class DecorationWorkerActivity extends BaseActivity {
     }
 
     @Override
-    public void startRefresh(Object object) {
+    protected void rogerMessage(EventBusMessage message) {
 
+    }
+
+    @Override
+    public void startRefresh(Object object) {
+        showContentView(null);
+    }
+
+    @Override
+    protected DecorationWorkerPresenter mPresenterCreate() {
+        DaggerWorkerCompcoent.builder().presenterMobule(new PresenterMobule())
+                .appCompcoent(((App) getApplication()).getAppCompcoent())
+                .build().inJect(this);
+        return mPresenter;
     }
 }

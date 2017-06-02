@@ -31,7 +31,7 @@
         >
 
 
-        <ScrollView
+        <com.yunyou.yike.ui_view.ReboundScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
@@ -538,6 +538,6 @@
                     android:text="@string/tuichudenglu"/>
 
             </LinearLayout>
-        </ScrollView>
+        </com.yunyou.yike.ui_view.ReboundScrollView>
     </com.baoyz.widget.PullRefreshLayout>
 </LinearLayout>

@@ -1,15 +1,12 @@
 package com.yunyou.yike.entity;
 
-import com.yunyou.yike.http.cconstant.RxHttpConstant;
-import com.yunyou.yike.http.entity.RxBaseBean;
-
 import java.io.Serializable;
 
 /**
  * Created by ${王俊强} on 2017/5/22.
  */
 
-public class User extends RxBaseBean{
+public class User implements Serializable{
 
     /**
      * retcode : 2000
@@ -45,10 +42,6 @@ public class User extends RxBaseBean{
         this.data = data;
     }
 
-    @Override
-    public boolean isSuccess() {
-        return retcode == RxHttpConstant.SUCCESS;
-    }
 
     public static class DataBean implements Serializable{
         /**

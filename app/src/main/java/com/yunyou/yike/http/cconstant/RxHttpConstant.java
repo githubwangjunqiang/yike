@@ -5,6 +5,10 @@ package com.yunyou.yike.http.cconstant;
  */
 
 public class RxHttpConstant {
-    public static final int SUCCESS = 2000;
+    public static final int SUCCESS = 2000;//请求成功
+    public static final int TOKEN_ERROR = 3000;//token失败
+    public static final int TOKEN_TIMEOUT = 5000;//token、过期
+    public static final String RETCODE = "retcode";
+    public static final String MSG = "msg";
     public static final String KEY = "YIKEZHUANGSHI";
 }

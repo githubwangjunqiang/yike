@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.yunyou.yike.BaseMainFragment;
 import com.yunyou.yike.R;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.fragment.order.fragment.AllOrderFragment;
 import com.yunyou.yike.fragment.order.fragment.CancelOrderFragment;
 import com.yunyou.yike.fragment.order.fragment.FinishedOrderFragment;
@@ -35,6 +36,20 @@ public class OrderFragment extends BaseMainFragment {
     }
 
 
+    @Override
+    protected void RogerMessage(EventBusMessage message) {
+
+    }
+
+    @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
 
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -126,38 +141,5 @@ public class OrderFragment extends BaseMainFragment {
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    @Override
-    public void showLoodingView(Object object) {
 
-    }
-
-    @Override
-    public void showLoodingDialog(Object object) {
-
-    }
-
-    @Override
-    public void showContentView(Object object) {
-
-    }
-
-    @Override
-    public void showErrorView(Object object) {
-
-    }
-
-    @Override
-    public void showEmptyView(Object object) {
-
-    }
-
-    @Override
-    public void showNoNetworkView(Object object) {
-
-    }
-
-    @Override
-    public void showTimeErrorView(Object object) {
-
-    }
 }

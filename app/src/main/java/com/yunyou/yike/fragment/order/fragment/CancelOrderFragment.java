@@ -14,6 +14,7 @@ import com.yunyou.yike.BaseMVPFragment;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.OrderAdapter;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.Order;
 import com.yunyou.yike.presenter.ALLOrderFragmentPresenter;
 import com.yunyou.yike.recyleviewadapter.LoadMoreScrollListener;
@@ -53,6 +54,11 @@ public class CancelOrderFragment extends BaseMVPFragment<IView.IAllOrderFragment
     }
 
     @Override
+    protected void RogerMessage(EventBusMessage message) {
+
+    }
+
+    @Override
     protected void initView(View viewLayout, Bundle savedInstanceState) {
         mRefreshLayout = (PullRefreshLayout) viewLayout.findViewById(R.id.all_order_layout);
         mRecyclerView = (RecyclerView) viewLayout.findViewById(R.id.all_order_recyleview);
@@ -65,6 +71,16 @@ public class CancelOrderFragment extends BaseMVPFragment<IView.IAllOrderFragment
 
 
     @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_all_order, container, false);
     }
@@ -75,40 +91,6 @@ public class CancelOrderFragment extends BaseMVPFragment<IView.IAllOrderFragment
         mPresenter.getOrder();
     }
 
-    @Override
-    public void showLoodingView(Object object) {
-
-    }
-
-    @Override
-    public void showLoodingDialog(Object object) {
-
-    }
-
-    @Override
-    public void showContentView(Object object) {
-
-    }
-
-    @Override
-    public void showErrorView(Object object) {
-
-    }
-
-    @Override
-    public void showEmptyView(Object object) {
-
-    }
-
-    @Override
-    public void showNoNetworkView(Object object) {
-
-    }
-
-    @Override
-    public void showTimeErrorView(Object object) {
-
-    }
 
     @Override
     public void showOrder(List<Order> listBanners) {

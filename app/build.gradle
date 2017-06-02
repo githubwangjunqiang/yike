@@ -22,6 +22,17 @@ android {
         jackOptions {
             enabled false//开启jack 编译器 及试运行run即将失效
         }
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "9d8d7872b2404226dd2c0d50", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "艺科下载渠道", //用户渠道统计的渠道名称
+        ]
     }
     buildTypes {
         release {
@@ -35,6 +46,11 @@ android {
             signingConfig signingConfigs.yike
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -42,36 +58,44 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    // 支持 GIF 动图，需要添加
+    //autolayout  全局适配器
+    //注解fingdview框架
+    //retrofit2
+    //rxjava
+    //轮播图
+    // 下拉刷新框架
+    // 图片加载框架
+    // 切换布局 框架
+    //path动画
+    //    dagger2
+    //    百度地图jar包
+    compile files('libs/BaiduLBS_Android.jar')
+    //    eventbus
+    //    极光//此处以JPush 3.0.5 版本为例。 // 此处以JCore 1.1.2 版本为例。
+    //    rxBinding
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
-    // 支持 GIF 动图，需要添加
     compile 'com.android.support:support-vector-drawable:25.3.1'
-    //autolayout  全局适配器
     compile 'com.zhy:autolayout:1.4.5'
-    //注解fingdview框架
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.android.support:support-v4:25.3.1'
-    //retrofit2
-    compile 'com.squareup.retrofit2:retrofit:2.0.1'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
-    //rxjava
-    compile 'io.reactivex:rxjava:1.1.2'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    //轮播图
+    compile 'com.squareup.retrofit2:retrofit:2.2.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'io.reactivex:rxjava:1.3.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.youth.banner:banner:1.4.9'
-    // 下拉刷新框架
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
-    // 图片加载框架
     compile 'com.facebook.fresco:fresco:0.12.0'
     compile 'com.facebook.fresco:animated-gif:0.12.0'
-    // 切换布局 框架
     compile 'com.github.fingdo:stateLayout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    //path动画
     compile 'com.eftimoff:android-pathview:1.0.8@aar'
-//    dagger2
-    apt 'com.google.dagger:dagger-compiler:2.2'
     compile 'com.google.dagger:dagger:2.2'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'cn.jiguang.sdk:jpush:3.0.5'
+    compile 'cn.jiguang.sdk:jcore:1.1.2'
+    testCompile 'junit:junit:4.12'
+    apt 'com.google.dagger:dagger-compiler:2.2'
     provided 'javax.annotation:jsr250-api:1.0'
 }

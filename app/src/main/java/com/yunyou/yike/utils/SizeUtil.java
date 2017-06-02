@@ -41,7 +41,8 @@ public class SizeUtil {
 
     //px转sp
     public static float Px2Sp(Context context, float px) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, px, context.getResources().getDisplayMetrics());
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, px,
+                context.getResources().getDisplayMetrics());
     }
 
     //onCreate中强行获取View的宽高

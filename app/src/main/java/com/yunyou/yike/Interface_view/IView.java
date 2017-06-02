@@ -1,8 +1,12 @@
 package com.yunyou.yike.Interface_view;
 
+import com.yunyou.yike.entity.AddressCity;
 import com.yunyou.yike.entity.BannerData;
+import com.yunyou.yike.entity.City;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.Feel;
 import com.yunyou.yike.entity.JobList;
+import com.yunyou.yike.entity.Login;
 import com.yunyou.yike.entity.Order;
 
 import java.util.List;
@@ -13,6 +17,8 @@ import java.util.List;
 
 public interface IView {
     void startRefresh(Object object);//开始刷新数据
+
+    void onMessageEvent(EventBusMessage message);//接受消息
 
     void showLoodingView(Object object);//显示等待圈
 
@@ -27,6 +33,12 @@ public interface IView {
     void showNoNetworkView(Object object);//显示没有网络
 
     void showTimeErrorView(Object object);//超时界面
+
+    void showLoginView(Object object);//超时界面
+
+    void ToToast(String string);//显示土司
+
+    void hideDiaLogView();//显示土司
 
     /**
      * 主页碎片 接口view
@@ -70,6 +82,26 @@ public interface IView {
     }
 
     /**
+     * 修改地址界面
+     */
+    interface IAddressActivityView extends IView {
+        void showAddressHotData(AddressCity feelList);//显示热门城市
+
+        void showAddressHotDataError(String string);//显示热门城市失败
+
+        void showAddressCityData(City city);//显示城市列表
+
+        void showAddressCityDataError(String string);//显示城市列表失败
+    }
+
+    /**
+     * 找工人 发布订单界面
+     */
+    interface IDecorationWorkerView extends IView {
+
+    }
+
+    /**
      * 订单详情页
      */
     interface IOrderInfoActivityView extends IView {
@@ -93,6 +125,7 @@ public interface IView {
      * 登陆界面
      */
     interface ILoginActivityView extends IView {
+        void loginSuccess(Login login);
     }
 
     /**

@@ -26,6 +26,11 @@ public class RxBaseException extends Exception {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }
+    public RxBaseException(int errorCode,int httpcode,String errorMsg) {
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+        this.httpcode = httpcode;
+    }
 
     public int getErrorCode() {
         return errorCode;
@@ -58,7 +63,8 @@ public class RxBaseException extends Exception {
      * API 错误码
      */
     public static final int API_ERROR_CODE = 4000;//失败
-    public static final int API_TOKENOUT_CODE = 3000;//登录超时
+    public static final int API_TOKENOUT_CODE = 5000;//登录超时
+    public static final int API_ERRORTOKEN_CODE = 3000;//token 失败
 
 
     /**

@@ -5,9 +5,12 @@ package com.yunyou.yike.http.exception;
  */
 
 public class RxApiExceptionRx extends RxBaseException {
-
     public RxApiExceptionRx(int errorCode, String errorMsg) {
         super(errorCode, errorMsg);
+    }
+
+    public RxApiExceptionRx(int errorCode, int httpcode, String errorMsg) {
+        super(errorCode, httpcode, errorMsg);
     }
 
     public RxApiExceptionRx() {

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.yunyou.yike.BaseActivity;
 import com.yunyou.yike.R;
+import com.yunyou.yike.entity.EventBusMessage;
 
 public class MyYueActivity extends BaseActivity {
     private TextView mTextViewTitle;
@@ -15,6 +16,11 @@ public class MyYueActivity extends BaseActivity {
 
     @Override
     protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
         return 0;
     }
 
@@ -38,6 +44,11 @@ public class MyYueActivity extends BaseActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
+
     }
 
     /**

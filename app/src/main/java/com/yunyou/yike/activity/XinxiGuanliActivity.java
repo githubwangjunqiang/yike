@@ -10,6 +10,7 @@ import com.yunyou.yike.BaseMVPActivity;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.MyAiHaoAdapter;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.MyAihao;
 import com.yunyou.yike.presenter.XinxiGuanliPresenter;
 
@@ -35,6 +36,11 @@ public class XinxiGuanliActivity extends BaseMVPActivity<IView.IxinxiGuanliActiv
     }
 
     @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
         mImageViewBack = optionView(R.id.title_ivback);
         mTextViewTitle = optionView(R.id.title_tvtitle);
@@ -52,6 +58,11 @@ public class XinxiGuanliActivity extends BaseMVPActivity<IView.IxinxiGuanliActiv
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
+
     }
 
     @Override

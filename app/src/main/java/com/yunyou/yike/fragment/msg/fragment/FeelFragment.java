@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.baoyz.widget.PullRefreshLayout;
-import com.fingdo.statelayout.StateLayout;
 import com.yunyou.yike.BaseMVPFragment;
 import com.yunyou.yike.ExListViewAdapter.LoadMoreExListviewAdapter;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.FeelAdapter;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.Feel;
 import com.yunyou.yike.presenter.FeelFragmentPresenter;
 import com.yunyou.yike.ui_view.ScrollExpandableListView;
@@ -28,6 +28,16 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
     }
 
     @Override
+    protected int getStateLayoutID() {
+        return R.id.top_statrlayout;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_feel, container, false);
     }
@@ -35,7 +45,6 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
 
     private PullRefreshLayout mRefreshLayout;
     private FeelAdapter mFeelAdapter;
-    private StateLayout mStateLayout;
     private ScrollExpandableListView mExpandableListView;
 
 
@@ -43,8 +52,6 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
     protected void initView(View viewLayout, Bundle savedInstanceState) {
         mExpandableListView = (ScrollExpandableListView) viewLayout.findViewById(R.id.feel_exlistview);
         mRefreshLayout = (PullRefreshLayout) viewLayout.findViewById(R.id.feel_layout);
-        mStateLayout = (StateLayout) viewLayout.findViewById(R.id.top_statrlayout);
-        mStateLayout.setUseAnimation(true);
     }
 
 
@@ -65,45 +72,22 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
     }
 
     @Override
+    protected void RogerMessage(EventBusMessage message) {
+
+    }
+
+    @Override
     public void startRefresh(Object object) {
         mPresenter.getFeelData(true);
     }
 
     @Override
-    public void showLoodingView(Object object) {
-        mStateLayout.showLoadingView();
-    }
-
-    @Override
-    public void showLoodingDialog(Object object) {
-
-    }
-
-    @Override
     public void showContentView(Object object) {
+        super.showContentView(object);
         mRefreshLayout.setRefreshing(false);
-        mStateLayout.showContentView();
     }
 
-    @Override
-    public void showErrorView(Object object) {
-        mStateLayout.showErrorView();
-    }
 
-    @Override
-    public void showEmptyView(Object object) {
-        mStateLayout.showEmptyView();
-    }
-
-    @Override
-    public void showNoNetworkView(Object object) {
-        mStateLayout.showNoNetworkView();
-    }
-
-    @Override
-    public void showTimeErrorView(Object object) {
-        mStateLayout.showTimeoutView();
-    }
 
 
     @Override

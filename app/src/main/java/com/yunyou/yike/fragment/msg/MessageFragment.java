@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.yunyou.yike.BaseMainFragment;
 import com.yunyou.yike.R;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.fragment.msg.fragment.FeelFragment;
 import com.yunyou.yike.fragment.msg.fragment.FriendsFragment;
 import com.yunyou.yike.fragment.msg.fragment.MsgFragment;
@@ -34,6 +35,15 @@ public class MessageFragment extends BaseMainFragment {
     }
 
 
+    @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
 
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,38 +105,10 @@ public class MessageFragment extends BaseMainFragment {
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
+
     @Override
-    public void showLoodingView(Object object) {
+    protected void RogerMessage(EventBusMessage message) {
 
     }
 
-    @Override
-    public void showLoodingDialog(Object object) {
-
-    }
-
-    @Override
-    public void showContentView(Object object) {
-
-    }
-
-    @Override
-    public void showErrorView(Object object) {
-
-    }
-
-    @Override
-    public void showEmptyView(Object object) {
-
-    }
-
-    @Override
-    public void showNoNetworkView(Object object) {
-
-    }
-
-    @Override
-    public void showTimeErrorView(Object object) {
-
-    }
 }

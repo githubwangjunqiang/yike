@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.yunyou.yike.BaseActivity;
 import com.yunyou.yike.R;
+import com.yunyou.yike.entity.EventBusMessage;
 
 public class LookingWorkersActivity extends BaseActivity {
     private ImageView mImageViewBack;//返回按钮
@@ -16,6 +17,11 @@ public class LookingWorkersActivity extends BaseActivity {
 
     @Override
     protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
         return 0;
     }
 
@@ -39,6 +45,11 @@ public class LookingWorkersActivity extends BaseActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
+
     }
 
     /**

@@ -14,15 +14,15 @@ import com.yunyou.yike.BaseMVPActivity;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.dagger2.DaggerDaggerCompcoent;
+import com.yunyou.yike.dagger2.PresenterMobule;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.User;
 import com.yunyou.yike.presenter.RegisterActivityPresenter;
-import com.yunyou.yike.utils.SpUtil;
 import com.yunyou.yike.utils.Time_Down;
 import com.yunyou.yike.utils.To;
 import com.yunyou.yike.utils.ZhengZebiaodashiUtils;
 
 import java.lang.ref.WeakReference;
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -42,6 +42,11 @@ public class RegisterActivity extends BaseMVPActivity<IView.IRegisterActivityVie
 
     @Override
     protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
         return 0;
     }
 
@@ -86,17 +91,26 @@ public class RegisterActivity extends BaseMVPActivity<IView.IRegisterActivityVie
     }
 
     @Override
+    protected void rogerMessage(EventBusMessage message) {
+
+    }
+
+    @Override
     public void startRefresh(Object object) {
         String phone = getIntent().getStringExtra(REGISTENER_PHONE);
         if (!TextUtils.isEmpty(phone)) {
             mEditTextPhone.setText(phone);
         }
+        hideStatusBar();
     }
 
 
     @Override
     protected RegisterActivityPresenter mPresenterCreate() {
-        DaggerDaggerCompcoent.create().inject(this);
+        DaggerDaggerCompcoent.builder()
+                .presenterMobule(new PresenterMobule())
+                .appCompcoent(((App) getApplication()).getAppCompcoent())
+                .build().inject(this);
         return mPresenter;
     }
 
@@ -117,9 +131,6 @@ public class RegisterActivity extends BaseMVPActivity<IView.IRegisterActivityVie
         User user = (User) string;
         To.dd(user.getMsg());
         App.setUserId(user.getData().getUser_id());
-        SpUtil.putString(App.getContext(), SpUtil.mobile, user.getData().getMobile());
-        SpUtil.putString(App.getContext(), SpUtil.nickname, user.getData().getNickname());
-        SpUtil.putString(App.getContext(), SpUtil.r_token, user.getData().getR_token());
         Intent intent = getIntent();
         intent.putExtra(REGISTENER_PHONE, user.getData().getMobile());
         intent.putExtra(REGISTER_PASS, mEditTextpass.getText().toString().trim());
@@ -167,6 +178,6 @@ public class RegisterActivity extends BaseMVPActivity<IView.IRegisterActivityVie
             To.oo("请阅读协议后，勾选同意艺科协议");
             return;
         }
-        mPresenter.registerUser(phone, pas, pass, code, new Date().getTime() + "");
+        mPresenter.registerUser(phone, pas, pass, code);
     }
 }

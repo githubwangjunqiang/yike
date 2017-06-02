@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.yunyou.yike.BaseMVPActivity;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.presenter.QianBaoPresenter;
 
 public class QianbaoActivity extends BaseMVPActivity<IView.IQianBaoActivityView,
@@ -26,6 +27,11 @@ public class QianbaoActivity extends BaseMVPActivity<IView.IQianBaoActivityView,
     }
 
     @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
         mTextViewTitle = optionView(R.id.title_tvtitle);
         mImageViewBack = optionView(R.id.title_ivback);
@@ -40,6 +46,11 @@ public class QianbaoActivity extends BaseMVPActivity<IView.IQianBaoActivityView,
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
+
     }
 
     /**

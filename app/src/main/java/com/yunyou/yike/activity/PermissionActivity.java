@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 import com.yunyou.yike.BaseActivity;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.listener.PermissionListener;
 import com.yunyou.yike.utils.ActivityCollector;
 import com.yunyou.yike.utils.To;
@@ -138,12 +139,22 @@ public class PermissionActivity extends BaseActivity {
     }
 
     @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
 
     }
 
     @Override
     protected void setListener() {
+
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
 
     }
 

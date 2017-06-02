@@ -1,23 +1,13 @@
 package com.yunyou.yike.presenter;
 
+import com.google.gson.Gson;
 import com.yunyou.yike.Interface_view.IView;
-import com.yunyou.yike.entity.BaseSort;
-import com.yunyou.yike.entity.SendCode;
 import com.yunyou.yike.entity.User;
-import com.yunyou.yike.http.cconstant.RxHttpConstant;
 import com.yunyou.yike.http.entity.RxApi;
 import com.yunyou.yike.http.rx.RxExceptionSubscriber;
-import com.yunyou.yike.utils.LogUtils;
-import com.yunyou.yike.utils.MD5Utils;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import com.yunyou.yike.http.rx.RxHttpRepouseCompat;
+import com.yunyou.yike.utils.CallPostUtils;
+import com.yunyou.yike.utils.To;
 
 
 /**
@@ -34,75 +24,54 @@ public class RegisterActivityPresenter extends BasePresenter<IView.IRegisterActi
 
     @Override
     public void sendCode(String phone) {
-        LogUtils.d(""+mApi.hashCode());
         mApi.send(phone)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-//                .compose(RxHttpRepouseCompat.<SendCode>compatResult())
-                .subscribe(new RxExceptionSubscriber<SendCode>((WeakReference<IView>) getView()) {
+                .compose(RxHttpRepouseCompat.compatResult())
+                .subscribe(new RxExceptionSubscriber<String>(getView()) {
                     @Override
-                    protected void apiError(String errorMsg) {
+                    protected void apiError(int code, String errorMsg) {
                         getView().showContentView(null);
                         getView().sendCodeError(errorMsg);
                     }
 
+
                     @Override
-                    public void onNext(SendCode sendCode) {
-                        if (sendCode.isSuccess()) {
-                            getView().showContentView(null);
-                            getView().sendCodeSuccess(sendCode.getData());
-                        } else {
-                            apiError(sendCode.getMsg());
-                        }
+                    protected void onSuccess(String s) {
+                        getView().sendCodeSuccess(s.toString());
                     }
                 });
 
     }
 
     @Override
-    public void registerUser(String mobile, String password, String password2, String code, String time) {
+    public void registerUser(String mobile, String password, String password2, String code) {
 
-        List<BaseSort> list = new ArrayList<>();
-        list.add(new BaseSort("mobile",mobile));
-        list.add(new BaseSort("password",password));
-        list.add(new BaseSort("password2",password2));
-        list.add(new BaseSort("code",code));
-        Collections.sort(list, new Comparator<BaseSort>() {
-            @Override
-            public int compare(BaseSort o1, BaseSort o2) {
-
-                return o1.getKey().compareTo(o2.getKey());
-            }
-        });
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            stringBuilder.append(list.get(i).getContent());
+        String[] sort = CallPostUtils.newBuilder()
+                .addParamt("mobile", mobile)
+                .addParamt("password", password)
+                .addParamt("password2", password2)
+                .addParamt("code", code)
+                .build().sort();
+        if (sort == null) {
+            To.ee("排序签名失败请重试");
+            return;
         }
-        stringBuilder.append(time).append(RxHttpConstant.KEY);
-        LogUtils.d(stringBuilder.toString());
-        String sign = MD5Utils.md5Code(stringBuilder.toString());
-        LogUtils.d("加密="+sign);
-        mApi.register(mobile, password, password2, code, time, sign)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new RxExceptionSubscriber<User>((WeakReference<IView>) getView()) {
+
+        mApi.register(mobile, password, password2, code, sort[0], sort[1])
+                .compose(RxHttpRepouseCompat.compatResult())
+                .subscribe(new RxExceptionSubscriber<String>(getView()) {
                     @Override
-                    protected void apiError(String errorMsg) {
+                    protected void apiError(int code, String errorMsg) {
                         if (getView() != null) {
                             getView().showContentView(null);
                             getView().registerError(errorMsg);
                         }
                     }
 
+
                     @Override
-                    public void onNext(User user) {
+                    protected void onSuccess(String user) {
                         if (getView() != null) {
-                            getView().showContentView(null);
-                            if (user.isSuccess()) {
-                                getView().registerSuccess(user);
-                            } else {
-                                getView().registerError(user.getMsg());
-                            }
+                            getView().registerSuccess(new Gson().fromJson(user, User.class));
                         }
                     }
                 });

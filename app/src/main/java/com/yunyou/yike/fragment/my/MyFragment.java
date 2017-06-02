@@ -17,12 +17,14 @@ import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.activity.MyYueActivity;
 import com.yunyou.yike.activity.XinxiGuanliActivity;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.presenter.MyFragmentPresenter;
 
 /**
  * Created by ${王俊强} on 2017/4/19.
  */
-public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmentPresenter> implements IView.IMyFragmentView {
+public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmentPresenter>
+        implements IView.IMyFragmentView {
 
 
     /**
@@ -36,6 +38,16 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
         return fragment;
     }
 
+
+    @Override
+    protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
+        return 0;
+    }
 
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -87,40 +99,12 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
         mPresenter.getUserInfo();
     }
 
+
     @Override
-    public void showLoodingView(Object object) {
+    protected void RogerMessage(EventBusMessage message) {
 
     }
 
-    @Override
-    public void showLoodingDialog(Object object) {
-
-    }
-
-    @Override
-    public void showContentView(Object object) {
-
-    }
-
-    @Override
-    public void showErrorView(Object object) {
-
-    }
-
-    @Override
-    public void showEmptyView(Object object) {
-
-    }
-
-    @Override
-    public void showNoNetworkView(Object object) {
-
-    }
-
-    @Override
-    public void showTimeErrorView(Object object) {
-
-    }
 
     @Override
     public void showUserInfo() {

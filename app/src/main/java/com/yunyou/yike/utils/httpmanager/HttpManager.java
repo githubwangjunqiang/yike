@@ -56,8 +56,8 @@ public class HttpManager {
      * 创建OkHttpClient 实例
      */
     private void initOkHttpClient() {
-        okHttpClient = new OkHttpClient.Builder().readTimeout(30000, TimeUnit.SECONDS)
-                .connectTimeout(30000, TimeUnit.SECONDS).writeTimeout(30000, TimeUnit.SECONDS).build();
+        okHttpClient = new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).build();
     }
 
     /**

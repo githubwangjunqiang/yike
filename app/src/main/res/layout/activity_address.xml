@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.AddressActivity">
+
+    <include layout="@layout/top_title"/>
+
+    <com.fingdo.statelayout.StateLayout
+        android:id="@+id/address_statslayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            >
+
+
+            <SearchView
+                android:id="@+id/address_searchview"
+                android:layout_width="match_parent"
+                android:layout_height="80px"
+                android:layout_marginBottom="10px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="10px"
+                android:background="@color/background"
+                android:iconifiedByDefault="true"
+                android:queryHint="@string/shuruchengshi"
+                app:layout_scrollFlags="scroll|enterAlways|snap"/>
+
+            <GridView
+                android:id="@+id/address_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:numColumns="7"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <com.yunyou.yike.ui_view.listview.PinnedHeaderListView
+                    android:id="@+id/pinnedheader_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:divider="@color/background"
+                    android:dividerHeight="2px"/>
+
+                <com.yunyou.yike.ui_view.sidebar.SideBar
+                    android:id="@+id/address_sidebar"
+                    android:layout_width="230dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15sp"
+                    app:scaleTime="1"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </com.fingdo.statelayout.StateLayout>
+</LinearLayout>

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.yunyou.yike.BaseActivity;
 import com.yunyou.yike.R;
+import com.yunyou.yike.entity.EventBusMessage;
 
 
 /**
@@ -42,6 +43,11 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     protected int getStateLayoutID() {
+        return 0;
+    }
+
+    @Override
+    protected int getPullRefreshLayoutID() {
         return 0;
     }
 
@@ -128,6 +134,11 @@ public class WebViewActivity extends BaseActivity {
 
             });
         }
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
+
     }
 
     public static void startWebViewActivity(Context context, String allUrl, String title) {

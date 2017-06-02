@@ -18,6 +18,7 @@
         <!-- AppCompatEditText选中的底线颜色 -->
         <!--控制 ratingbar checkedbox radiobutton 选中时的颜色-->
         <item name="colorControlActivated">@color/white</item>
+        <item name="android:windowBackground">@drawable/login_backbitmap</item>
     </style>
 
 

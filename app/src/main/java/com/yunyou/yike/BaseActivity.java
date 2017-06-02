@@ -1,17 +1,31 @@
 package com.yunyou.yike;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.fingdo.statelayout.StateLayout;
 import com.yunyou.yike.Interface_view.IView;
+import com.yunyou.yike.activity.LoginActivity;
+import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.ui_view.dialog.LoadingDialog;
 import com.yunyou.yike.utils.ActivityCollector;
+import com.yunyou.yike.utils.StatusBarCompat;
 import com.yunyou.yike.utils.To;
 import com.zhy.autolayout.AutoLayoutActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by ${王俊强} on 2017/5/18.
@@ -20,17 +34,39 @@ import com.zhy.autolayout.AutoLayoutActivity;
 public abstract class BaseActivity extends AutoLayoutActivity implements IView {
     protected LoadingDialog mLoadingDialog;
     protected StateLayout mStateLayout;
+    protected int statusBarColor = 0;//状态栏颜色
+    protected View statusBarView = null;//
+    protected PullRefreshLayout mRefreshLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         beforeWindow(savedInstanceState);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+
         if (setLayoutResourceID() != 0) {
             setContentView(setLayoutResourceID());
         }
+        if (statusBarColor == 0) {
+            statusBarView = StatusBarCompat.compat(this,
+                    ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        } else if (statusBarColor != -1) {
+            statusBarView = StatusBarCompat.compat(this, statusBarColor);
+        }
+
+
         setPresenter();
+        initDialog();
         init(savedInstanceState);
         setListener();
+    }
+
+    /**
+     * 初始化 加载对话框
+     */
+    private void initDialog() {
         mLoadingDialog = new LoadingDialog(this);
         mLoadingDialog.setListener(new LoadingDialog.LoadingListener() {
             @Override
@@ -43,19 +79,63 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
                 hideLoadingListener();
             }
         });
-        mStateLayout = (StateLayout) findViewById(getStateLayoutID());
+        mStateLayout = optionView(getStateLayoutID());
         if (mStateLayout != null) {
             mStateLayout.setUseAnimation(true);
+            mStateLayout.setRefreshListener(new StateLayout.OnViewRefreshListener() {
+                @Override
+                public void refreshClick() {
+                    startRefresh(null);
+                }
+
+                @Override
+                public void loginClick() {
+                    LoginActivity.startLoginActivity(BaseActivity.this, true);
+                }
+            });
+        }
+        if (getPullRefreshLayoutID() != 0) {
+            mRefreshLayout = optionView(getPullRefreshLayoutID());
+            if (mRefreshLayout != null) {
+                mRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
+                mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        startRefresh(null);
+                    }
+                });
+            }
+        }
+
+    }
+
+
+    @Override
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMessage message) {
+        rogerMessage(message);
+    }
+
+    protected void transparent19and20() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
+                && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            //透明状态栏
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
+
 
     protected abstract int setLayoutResourceID();
 
     protected abstract int getStateLayoutID();
 
+    protected abstract int getPullRefreshLayoutID();
+
     protected abstract void init(Bundle savedInstanceState);
 
     protected abstract void setListener();
+
+    protected abstract void rogerMessage(EventBusMessage message);
 
     /**
      * 对话框显示了
@@ -74,13 +154,23 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
     /**
      * 显示加载对话框
      */
-    protected void showDialog() {
+    protected void showDialog(String msage) {
         if (mLoadingDialog == null) {
             mLoadingDialog = new LoadingDialog(this);
         }
         if (!mLoadingDialog.isShowing()) {
+            if (TextUtils.isEmpty(msage)) {
+                mLoadingDialog.setText("Loading......");
+            } else {
+                mLoadingDialog.setText(msage);
+            }
             mLoadingDialog.show();
         }
+    }
+
+    @Override
+    public void hideDiaLogView() {
+        hideDialog();
     }
 
     /**
@@ -164,6 +254,9 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
 
     @Override
     protected void onDestroy() {
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
         /**
          * 从全局中移除
          */
@@ -172,6 +265,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
             mLoadingDialog.dismiss();
         }
         mLoadingDialog = null;
+        System.gc();
         super.onDestroy();
     }
 
@@ -190,7 +284,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
 
     @Override
     public void showLoodingDialog(Object object) {
-        showDialog();
+        showDialog((String) object);
     }
 
     @Override
@@ -198,6 +292,9 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         hideDialog();
         if (mStateLayout != null) {
             mStateLayout.showContentView();
+        }
+        if (mRefreshLayout != null) {
+            mRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -213,6 +310,9 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         } else {
             To.ee(object);
         }
+        if (mRefreshLayout != null) {
+            mRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -226,6 +326,26 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
             }
         } else {
             To.ee(object);
+        }
+        if (mRefreshLayout != null) {
+            mRefreshLayout.setRefreshing(false);
+        }
+    }
+
+    @Override
+    public void showLoginView(Object object) {
+        if (mStateLayout != null) {
+            if (object != null) {
+                mStateLayout.showLoginView((String) object);
+            } else {
+                mStateLayout.showLoginView();
+            }
+        } else {
+            To.ee(object);
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+        if (mRefreshLayout != null) {
+            mRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -241,6 +361,9 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         } else {
             To.ee(object);
         }
+        if (mRefreshLayout != null) {
+            mRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -254,6 +377,34 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
             }
         } else {
             To.ee(object);
+        }
+        if (mRefreshLayout != null) {
+            mRefreshLayout.setRefreshing(false);
+        }
+    }
+
+    protected void hideStatusBar() {
+        WindowManager.LayoutParams attrs = getWindow().getAttributes();
+        attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        getWindow().setAttributes(attrs);
+        if (statusBarView != null) {
+            statusBarView.setBackgroundColor(Color.TRANSPARENT);
+        }
+    }
+
+    protected void showStatusBar() {
+        WindowManager.LayoutParams attrs = getWindow().getAttributes();
+        attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        getWindow().setAttributes(attrs);
+        if (statusBarView != null) {
+            statusBarView.setBackgroundColor(statusBarColor);
+        }
+    }
+
+    @Override
+    public void ToToast(String string) {
+        if (!TextUtils.isEmpty(string)) {
+            To.oo(string);
         }
     }
 }
