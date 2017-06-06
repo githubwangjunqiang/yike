@@ -41,10 +41,10 @@ public class Text_Size {
     public static void setSize(TextView tv, String text, int one, int tow, String colors, int sizea, int three, int four, String colors1, int sizea1) {
         SpannableString sp = new SpannableString(text);
         DisplayMetrics ff = App.getContext().getResources().getDisplayMetrics();
-        int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, sizea, ff);
+        int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizea, ff);
         sp.setSpan(new AbsoluteSizeSpan(size), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(Color.parseColor(colors)), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        int size2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, sizea1, ff);
+        int size2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizea1, ff);
         sp.setSpan(new AbsoluteSizeSpan(size2), three, four, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(Color.parseColor(colors1)), three, four, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv.setText(sp);

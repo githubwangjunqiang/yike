@@ -60,7 +60,7 @@ public class OrderInfoActivity extends BaseMVPActivity<IView.IOrderInfoActivityV
 
     @Override
     protected OrderInfoPresenter mPresenterCreate() {
-        return new OrderInfoPresenter();
+        return new OrderInfoPresenter(null,null);
     }
 
     @Override

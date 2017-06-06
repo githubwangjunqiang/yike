@@ -16,23 +16,23 @@
         android:layout_height="match_parent"
         >
 
-        <com.yunyou.yike.ui_view.ReboundScrollView
+
+        <com.fingdo.statelayout.StateLayout
+            android:id="@+id/worker_statelayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:emptyText="@string/meiyourenheshuju"
+            app:errorText="@string/jiazaishibai"
+            app:loadingText="@string/jiazaizhong"
+            app:loginText="@string/chongxindenglu"
+            app:noNetworkText="@string/meiyouwangluo"
+            app:timeOutText="@string/chaoshil"
             >
 
-            <com.fingdo.statelayout.StateLayout
-                android:id="@+id/worker_statelayout"
+            <com.yunyou.yike.ui_view.ReboundScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:emptyText="@string/meiyourenheshuju"
-                app:errorText="@string/jiazaishibai"
-                app:loadingText="@string/jiazaizhong"
-                app:loginText="@string/chongxindenglu"
-                app:noNetworkText="@string/meiyouwangluo"
-                app:timeOutText="@string/chaoshil"
                 >
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                                 android:textColor="@color/text_color"
                                 android:textSize="28px"/>
 
-                            <Button
+                            <com.yunyou.yike.ui_view.DelayedClickTextView
                                 android:id="@+id/worker_btnstarttime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -90,12 +90,15 @@
                                 android:textSize="27px"
                                 />
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" —— "/>
 
-                            <Button
+                            <com.yunyou.yike.ui_view.DelayedClickTextView
                                 android:id="@+id/worker_btn_endtime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="20px"
                                 android:background="@drawable/worker_btn_yuan"
                                 android:minHeight="0dp"
                                 android:text="@string/jieshushijian"
@@ -106,7 +109,7 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
+                        <com.yunyou.yike.ui_view.DelayedClickLinearLayout
                             android:id="@+id/worker_map_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -127,7 +130,7 @@
 
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/textView_address"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -152,9 +155,9 @@
                                 android:layout_height="wrap_content"
                                 app:srcCompat="@mipmap/xiala"
                                 />
-                        </LinearLayout>
+                        </com.yunyou.yike.ui_view.DelayedClickLinearLayout>
 
-                        <LinearLayout
+                        <com.yunyou.yike.ui_view.DelayedClickLinearLayout
                             android:id="@+id/worker_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -163,7 +166,6 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingLeft="@dimen/pading_20"
-                            android:paddingRight="@dimen/pading_20"
                             >
 
                             <ImageView
@@ -174,33 +176,29 @@
                                 />
 
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/textView3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:hint="@string/shiyongrenshu"
+                                android:inputType="number"
+                                android:maxLength="10"
                                 android:paddingBottom="36px"
                                 android:paddingLeft="@dimen/pading_20"
                                 android:paddingTop="37px"
-                                android:text="@string/shiyongrenshu"
                                 android:textColor="@color/text_color"
+                                android:textColorHint="@color/text_color_alp"
                                 android:textSize="28px"/>
 
-                            <TextView
+                            <Spinner
+                                android:id="@+id/worker_sptype"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="@dimen/pading_20"
-                                android:text="@string/dianjixuanze"
-                                android:textColor="@color/text_color_alp"
-                                android:textSize="27px"
+                                android:gravity="right"
                                 />
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@mipmap/xiala"
-                                />
-                        </LinearLayout>
+                        </com.yunyou.yike.ui_view.DelayedClickLinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -210,7 +208,6 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingLeft="@dimen/pading_20"
-                            android:paddingRight="@dimen/pading_20"
                             >
 
                             <ImageView
@@ -224,27 +221,22 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:background="@color/white"
+                                android:focusableInTouchMode="false"
                                 android:paddingBottom="36px"
                                 android:paddingLeft="@dimen/pading_20"
                                 android:paddingTop="37px"
                                 android:text="@string/ewaifuwu"
                                 android:textColor="@color/text_color"
+                                android:textIsSelectable="false"
                                 android:textSize="28px"
                                 />
 
-                            <TextView
+                            <Spinner
+                                android:id="@+id/worker_spstyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingRight="@dimen/pading_20"
-                                android:text="@string/dianjixuanze"
-                                android:textColor="@color/text_color_alp"
-                                android:textSize="27px"
-                                />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@mipmap/xiala"
+                                android:gravity="right"
                                 />
                         </LinearLayout>
                     </LinearLayout>
@@ -293,6 +285,7 @@
                         >
 
                         <EditText
+                            android:id="@+id/map_address_price"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
@@ -300,10 +293,10 @@
                             android:gravity="center"
                             android:hint="@string/qingshuruzongjia"
                             android:imeOptions="actionDone"
-                            android:inputType="textMultiLine"
+                            android:inputType="numberDecimal|textMultiLine"
                             android:paddingBottom="40px"
                             android:paddingTop="40px"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/app_color"
                             android:textColorHint="@color/text_color_alp"
                             android:textIsSelectable="false"
                             android:textSize="38px"/>
@@ -334,6 +327,7 @@
                             android:textSize="24px"/>
 
                         <TextView
+                            android:onClick="toWebView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/xieyi"
@@ -342,6 +336,7 @@
                     </LinearLayout>
 
                     <Button
+                        android:onClick="submit"
                         android:layout_width="300px"
                         android:layout_height="80px"
                         android:layout_gravity="center_horizontal"
@@ -351,8 +346,10 @@
                         android:textColor="@color/white"/>
 
                 </LinearLayout>
-            </com.fingdo.statelayout.StateLayout>
-        </com.yunyou.yike.ui_view.ReboundScrollView>
+            </com.yunyou.yike.ui_view.ReboundScrollView>
+
+        </com.fingdo.statelayout.StateLayout>
+
 
     </com.baoyz.widget.PullRefreshLayout>
 </LinearLayout>

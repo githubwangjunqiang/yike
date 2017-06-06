@@ -8,6 +8,8 @@ import com.yunyou.yike.entity.Feel;
 import com.yunyou.yike.entity.JobList;
 import com.yunyou.yike.entity.Login;
 import com.yunyou.yike.entity.Order;
+import com.yunyou.yike.entity.WorkerStyle;
+import com.yunyou.yike.entity.WorkerType;
 
 import java.util.List;
 
@@ -98,7 +100,8 @@ public interface IView {
      * 找工人 发布订单界面
      */
     interface IDecorationWorkerView extends IView {
-
+        void showWorkerTypeSuccess(WorkerType workerType);
+        void showWorkerStyleSuccess(WorkerStyle workerStyle);
     }
 
     /**

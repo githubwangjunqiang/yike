@@ -1,6 +1,7 @@
 package com.yunyou.yike.dagger2;
 
 
+import com.google.gson.Gson;
 import com.yunyou.yike.http.entity.RxApi;
 import com.yunyou.yike.presenter.AddressActivityPresenter;
 import com.yunyou.yike.presenter.DecorationWorkerPresenter;
@@ -19,25 +20,28 @@ import dagger.Provides;
 public class PresenterMobule {
 
     @Provides
-    public RegisterActivityPresenter gprovidesRegisterActivityPresenter(RxApi mapi) {
-        return new RegisterActivityPresenter(mapi);
+    public RegisterActivityPresenter gprovideRegisterActivityPresenter(RxApi mapi, Gson gson) {
+        return new RegisterActivityPresenter(mapi,gson);
     }
 
     @Provides
-    public DecorationWorkerPresenter providesDecorationWorkerPresenter(RxApi mapi) {
-        return new DecorationWorkerPresenter(mapi);
+    public DecorationWorkerPresenter provideDecorationWorkerPresenter(RxApi mapi, Gson gson) {
+        return new DecorationWorkerPresenter(mapi, gson);
     }
+
     @Provides
-    public AddressActivityPresenter gprovidesAddressActivityPresenter(RxApi mapi) {
-        return new AddressActivityPresenter(mapi);
+    public AddressActivityPresenter gprovideAddressActivityPresenter(RxApi mapi, Gson gson) {
+        return new AddressActivityPresenter(mapi,gson);
     }
+
     @Provides
-    public LoginActivityPresenter gprovidesLoginActivityPresenter(RxApi mapi) {
-        return new LoginActivityPresenter(mapi);
+    public LoginActivityPresenter gprovideLoginActivityPresenter(RxApi mapi, Gson gson) {
+        return new LoginActivityPresenter(mapi,gson);
     }
+
     @Provides
-    public HomePresenter gprovidesHomePresenter(RxApi mapi) {
-        return new HomePresenter(mapi);
+    public HomePresenter gprovideHomePresenter(RxApi mapi, Gson gson) {
+        return new HomePresenter(mapi,gson);
     }
 }
 

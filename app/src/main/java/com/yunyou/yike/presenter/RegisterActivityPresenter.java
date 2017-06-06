@@ -16,10 +16,10 @@ import com.yunyou.yike.utils.To;
 
 public class RegisterActivityPresenter extends BasePresenter<IView.IRegisterActivityView> implements
         IPresenter.IRegisterPresenter {
-    private RxApi mApi;
 
-    public RegisterActivityPresenter(RxApi api) {
-        mApi = api;
+
+    public RegisterActivityPresenter(RxApi mApi, Gson mGson) {
+        super(mApi, mGson);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class RegisterActivityPresenter extends BasePresenter<IView.IRegisterActi
                     @Override
                     protected void onSuccess(String user) {
                         if (getView() != null) {
-                            getView().registerSuccess(new Gson().fromJson(user, User.class));
+                            getView().registerSuccess(mGson.fromJson(user, User.class));
                         }
                     }
                 });

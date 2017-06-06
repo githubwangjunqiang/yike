@@ -78,6 +78,6 @@ public class XinxiGuanliActivity extends BaseMVPActivity<IView.IxinxiGuanliActiv
 
     @Override
     protected XinxiGuanliPresenter mPresenterCreate() {
-        return new XinxiGuanliPresenter();
+        return new XinxiGuanliPresenter(null,null);
     }
 }

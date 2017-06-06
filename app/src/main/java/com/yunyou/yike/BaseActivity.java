@@ -41,7 +41,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        beforeWindow(savedInstanceState);
+        boolean booleanss = beforeWindow(savedInstanceState);
+        if (booleanss) {
+            finish();
+            return;
+        }
+
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
@@ -79,7 +84,9 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
                 hideLoadingListener();
             }
         });
-        mStateLayout = optionView(getStateLayoutID());
+        if (getStateLayoutID() != 0) {
+            mStateLayout = optionView(getStateLayoutID());
+        }
         if (mStateLayout != null) {
             mStateLayout.setUseAnimation(true);
             mStateLayout.setRefreshListener(new StateLayout.OnViewRefreshListener() {
@@ -219,11 +226,12 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
     /***
      * 用于在初始化View之前做一些事
      */
-    protected void beforeWindow(Bundle savedInstanceState) {
+    protected boolean beforeWindow(Bundle savedInstanceState) {
         /**
          * 全局 activity 容器 添加activity
          */
         ActivityCollector.addActivity(this);
+        return false;
     }
 
 

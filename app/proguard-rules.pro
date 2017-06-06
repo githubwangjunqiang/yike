@@ -34,6 +34,7 @@
 -keep class com.baidu.** {*;}
 -keep class vi.com.** {*;}
 -dontwarn com.baidu.**
+
 #百度地图结束
 
 

@@ -59,7 +59,8 @@ public interface IPresenter {
      * 找工人 发布订单界面管理者
      */
     interface IDecorationWorkerPresenter extends IPresenter {
-
+        void loodWorkType();//获取工种类型
+        void loodWorkStyle();//获取工种风格
     }
 
     /**

@@ -73,7 +73,7 @@ public abstract class RxExceptionSubscriber<E> extends RxBaseSubscriber<E> {
         onSuccess(e);
     }
 
-    protected abstract void onSuccess(E e);
+    protected abstract void onSuccess(E string);
 
     @Override
     public void onCompleted() {

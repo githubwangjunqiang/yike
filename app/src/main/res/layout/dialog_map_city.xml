@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="100px"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_color"
+        android:padding="20px"
+        android:text="@string/qingxuanzenazuochengshi"
+        android:textColor="@color/white"
+        android:textSize="28px"/>
+
+    <ListView
+        android:id="@+id/dailog_map_city_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:divider="@color/background"
+        android:paddingBottom="20px"
+        android:dividerHeight="2px"
+        android:minHeight="200px"/>
+
+</LinearLayout>

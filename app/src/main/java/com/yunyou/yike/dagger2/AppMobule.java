@@ -1,5 +1,6 @@
 package com.yunyou.yike.dagger2;
 
+import com.google.gson.Gson;
 import com.yunyou.yike.entity.Bean;
 import com.yunyou.yike.http.entity.RxApi;
 
@@ -23,7 +24,7 @@ public class AppMobule {
 
     @Provides
     @Singleton
-    public RxApi providersRxApi(OkHttpClient okHttpClient) {
+    public RxApi providerRxApi(OkHttpClient okHttpClient) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Bean.url)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) // 添加Rx适配器
@@ -37,7 +38,7 @@ public class AppMobule {
 
     @Provides
     @Singleton
-    public OkHttpClient providesOkHttpClient() {
+    public OkHttpClient provideOkHttpClient() {
         LoggingInterceptor logging = new LoggingInterceptor(new Logger());
         logging.setLevel(LoggingInterceptor.Level.BODY);
 
@@ -49,6 +50,13 @@ public class AppMobule {
                 .addInterceptor(logging);
         OkHttpClient okHttpClient = builder.build();
         return okHttpClient;
+    }
+
+    @Singleton
+    @Provides
+    public Gson provideGson() {
+        Gson gson = new Gson();
+        return gson;
     }
 
 }

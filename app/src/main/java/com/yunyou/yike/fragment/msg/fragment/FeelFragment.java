@@ -123,6 +123,6 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
 
     @Override
     protected FeelFragmentPresenter mPresenterCreate() {
-        return new FeelFragmentPresenter();
+        return new FeelFragmentPresenter(null,null);
     }
 }

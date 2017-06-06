@@ -107,6 +107,6 @@ public class UnfinishedOrderFragment extends BaseMVPFragment<IView.IAllOrderFrag
 
     @Override
     protected ALLOrderFragmentPresenter mPresenterCreate() {
-        return new ALLOrderFragmentPresenter();
+        return new ALLOrderFragmentPresenter(null,null);
     }
 }

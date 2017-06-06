@@ -78,6 +78,6 @@ public class QianbaoActivity extends BaseMVPActivity<IView.IQianBaoActivityView,
 
     @Override
     protected QianBaoPresenter mPresenterCreate() {
-        return new QianBaoPresenter();
+        return new QianBaoPresenter(null,null);
     }
 }

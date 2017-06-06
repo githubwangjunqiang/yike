@@ -1,9 +1,19 @@
 package com.yunyou.yike.presenter;
 
+import com.google.gson.Gson;
+import com.yunyou.yike.http.entity.RxApi;
+
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 
 public abstract class BasePresenter<T> {
+    protected RxApi mApi;
+    protected Gson mGson;
+
+    public BasePresenter(RxApi mApi, Gson mGson) {
+        this.mApi = mApi;
+        this.mGson = mGson;
+    }
 
     protected Reference<T> mTReference;//view 接口类型弱引用
 

@@ -20,6 +20,11 @@
         <item name="colorControlActivated">@color/white</item>
         <item name="android:windowBackground">@drawable/login_backbitmap</item>
     </style>
+    <!--地图显示列表 loading 颜色-->
+
+    <style name="maplist" parent="AppTheme">
+        <item name="colorControlActivated">@color/app_color</item>
+    </style>
 
 
     <style name="ratingbar" parent="Base.Widget.AppCompat.RatingBar.Small">
@@ -63,6 +68,7 @@
         <item name="android:windowSoftInputMode">stateAlwaysVisible|adjustPan</item>
     </style>
 
+
     <style name="WinDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -72,6 +78,16 @@
         <item name="android:background">@android:color/transparent</item>
         <!--背景不变暗-->
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="CityDialog" parent="AppTheme">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!--背景不变暗-->
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 
 </resources>

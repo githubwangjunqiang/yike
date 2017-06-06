@@ -43,7 +43,7 @@
     <string name="shiyongshijian">选择时间</string>
     <string name="dianjixuanze">点击选择</string>
     <string name="shigongdizhi">请选择施工地址</string>
-    <string name="shiyongrenshu">请选择工种/人数/天数</string>
+    <string name="shiyongrenshu">请输入需要的天数</string>
     <string name="ewaifuwu">额外/风格-服务</string>
     <string name="geishifuliuyan">给师傅留言</string>
     <string name="zuizhongfeiyong">最终费用以工程报表为准...</string>
@@ -91,4 +91,21 @@
     <string name="kaishishijian">开始时间</string>
     <string name="jieshushijian">结束时间</string>
     <string name="qingshuruzongjia">请输入总价</string>
+    <string name="xuanzedizhi">选择地址</string>
+    <string name="shurudiming">输入位置</string>
+    <string name="qingxuanzenazuochengshi">请选择是哪做城市呢？</string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="xlistview_header_hint_success">刷新成功</string>
+    <string name="xlistview_header_hint_failt">刷新失败</string>
+    <string name="not_updated_yet">暂未更新过</string>
+    <string name="updated_at">上次更新于%1$s前</string>
+    <string name="updated_just_now">刚刚更新</string>
+    <string name="time_error">时间有问题</string>
+    <string name="qingxuanzegonzhong">请选择工种</string>
+
 </resources>

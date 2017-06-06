@@ -1,5 +1,6 @@
 package com.yunyou.yike.dagger2;
 
+import com.google.gson.Gson;
 import com.yunyou.yike.http.entity.RxApi;
 
 import javax.inject.Singleton;
@@ -13,5 +14,6 @@ import dagger.Component;
 @Component(modules = AppMobule.class)
 public interface AppCompcoent {
     RxApi providerRxApi();
+    Gson providerGson();
 
 }

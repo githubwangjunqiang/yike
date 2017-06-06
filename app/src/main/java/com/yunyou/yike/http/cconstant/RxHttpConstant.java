@@ -11,4 +11,5 @@ public class RxHttpConstant {
     public static final String RETCODE = "retcode";
     public static final String MSG = "msg";
     public static final String KEY = "YIKEZHUANGSHI";
+    public static final String YIGEXIEYI = "http://image.so.com/z?ch=beauty";//艺科协议 网址
 }

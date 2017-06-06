@@ -33,6 +33,8 @@ public interface RxApi {
     Call<ResponseBody> ulogin(@Url String s, @Header("token") String token, @Field("mobile") String mobile, @Field("password") String password
             , @Field("device_token") String device_token);
 
+
+
     /**
      * 1、首页banner图
      * http://120.27.118.19:902/index.php/api/user/index_banner/
@@ -103,4 +105,18 @@ public interface RxApi {
      */
     @GET("index.php/api/user/region_info")
     Observable<JsonObject> region_info();
+
+    /**
+     * 接口名称    10
+     * 找工人--发布订单选择工种  http://120.27.118.19:902/index.php/api/user/work_type
+     */
+    @GET("index.php/api/user/work_type")
+    Observable<JsonObject> work_type();
+
+    /**
+     * 接口名称        12
+     * 找工人--发布订单选择风格   http://120.27.118.19:902/index.php/api/user/style
+     */
+    @GET("index.php/api/user/style")
+    Observable<JsonObject> style();
 }

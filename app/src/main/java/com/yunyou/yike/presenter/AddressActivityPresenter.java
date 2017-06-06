@@ -14,10 +14,9 @@ import com.yunyou.yike.http.rx.RxHttpRepouseCompat;
 
 public class AddressActivityPresenter extends BasePresenter<IView.IAddressActivityView> implements
         IPresenter.IAddressActivityPrenester {
-    private RxApi mApi;
 
-    public AddressActivityPresenter(RxApi api) {
-        mApi = api;
+    public AddressActivityPresenter(RxApi mApi, Gson mGson) {
+        super(mApi, mGson);
     }
 
     @Override
@@ -36,7 +35,7 @@ public class AddressActivityPresenter extends BasePresenter<IView.IAddressActivi
 
                     @Override
                     public void onNext(String s) {
-                        getView().showAddressHotData(new Gson().fromJson(s, AddressCity.class));
+                        getView().showAddressHotData(mGson.fromJson(s, AddressCity.class));
                     }
 
                     @Override
@@ -64,7 +63,7 @@ public class AddressActivityPresenter extends BasePresenter<IView.IAddressActivi
 
                     @Override
                     protected void onSuccess(String s) {
-                        getView().showAddressCityData(new Gson().fromJson(s, City.class));
+                        getView().showAddressCityData(mGson.fromJson(s, City.class));
                     }
                 });
     }

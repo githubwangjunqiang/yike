@@ -145,7 +145,11 @@ public class AddressActivity extends BaseMVPActivity<IView.IAddressActivityView,
         mImageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                if (mSearchView.isIconified()) {
+                    finish();
+                } else {
+                    mSearchView.setIconified(true);
+                }
             }
         });
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {//搜索按钮
@@ -178,7 +182,7 @@ public class AddressActivity extends BaseMVPActivity<IView.IAddressActivityView,
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int section, int position,
                                     long id) {
-                    To.oo(section+"--"+position);
+                To.oo(section + "--" + position);
             }
 
             @Override
@@ -194,4 +198,12 @@ public class AddressActivity extends BaseMVPActivity<IView.IAddressActivityView,
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!mSearchView.isIconified()) {
+            mSearchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
+    }
 }

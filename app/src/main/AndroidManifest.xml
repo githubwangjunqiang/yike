@@ -123,6 +123,12 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="adjustNothing"
             />
+        <!--地图选点界面-->
+        <activity
+            android:name=".activity.MapAddressActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="adjustNothing"
+            />
 
 
         <!-- 百度地图开始 -->

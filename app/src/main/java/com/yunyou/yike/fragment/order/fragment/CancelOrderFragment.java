@@ -105,6 +105,6 @@ public class CancelOrderFragment extends BaseMVPFragment<IView.IAllOrderFragment
 
     @Override
     protected ALLOrderFragmentPresenter mPresenterCreate() {
-        return new ALLOrderFragmentPresenter();
+        return new ALLOrderFragmentPresenter(null,null);
     }
 }

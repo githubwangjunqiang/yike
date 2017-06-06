@@ -1,7 +1,5 @@
 package com.yunyou.yike.presenter;
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.Gson;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.entity.BannerData;
@@ -14,10 +12,9 @@ import com.yunyou.yike.http.rx.RxHttpRepouseCompat;
  */
 
 public class HomePresenter extends BasePresenter<IView.IHomeFragmentView> implements IPresenter.IHomeFragmentPrenester {
-    private RxApi mApi;
 
-    public HomePresenter(@NonNull RxApi api) {
-        mApi = api;
+    public HomePresenter(RxApi mApi, Gson mGson) {
+        super(mApi, mGson);
     }
 
     @Override
@@ -32,7 +29,7 @@ public class HomePresenter extends BasePresenter<IView.IHomeFragmentView> implem
 
                     @Override
                     protected void onSuccess(String string) {
-                        getView().showBanner(new Gson().fromJson(string, BannerData.class));
+                        getView().showBanner(mGson.fromJson(string, BannerData.class));
                     }
                 });
     }

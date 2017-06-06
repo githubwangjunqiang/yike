@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -57,11 +58,13 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
         return R.layout.activity_login;
     }
 
+
+
     @Override
-    protected void beforeWindow(Bundle savedInstanceState) {
-        super.beforeWindow(savedInstanceState);
+    protected boolean beforeWindow(Bundle savedInstanceState) {
         statusBarColor = Color.TRANSPARENT;
         getWindow().setBackgroundDrawable(null);
+        return super.beforeWindow(savedInstanceState);
     }
 
     @Override
@@ -120,6 +123,12 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
                 showDialog("正在定位您当前的位置");
                 if (!App.getLocationClient().isStarted()) {
                     App.getLocationClient().start();
+                }
+                LocationManager locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+                if (!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    // 未打开位置开关，可能导致定位失败或定位不准，提示用户或做相应处理
+                    To.ss(mEditTextPas, "未打开位置开关，可能导致定位失败或定位不准");
                 }
 
             }

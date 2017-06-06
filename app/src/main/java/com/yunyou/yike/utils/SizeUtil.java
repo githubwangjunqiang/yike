@@ -70,7 +70,7 @@ public class SizeUtil {
     }
 
     //获取状态栏高度
-    public int getStatusBarHeight(Context context) {
+    public static int getStatusBarHeight(Context context) {
         int result = 0;
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {

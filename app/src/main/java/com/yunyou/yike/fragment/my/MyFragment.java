@@ -20,6 +20,8 @@ import com.yunyou.yike.activity.XinxiGuanliActivity;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.presenter.MyFragmentPresenter;
 
+
+
 /**
  * Created by ${王俊强} on 2017/4/19.
  */
@@ -117,6 +119,6 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
 
     @Override
     protected MyFragmentPresenter mPresenterCreate() {
-        return new MyFragmentPresenter();
+        return new MyFragmentPresenter(null,null);
     }
 }

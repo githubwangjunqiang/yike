@@ -17,14 +17,14 @@ import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.LoadJobAdapter;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.JobList;
-import com.yunyou.yike.presenter.IJobActivityPresenter;
+import com.yunyou.yike.presenter.JobActivityPresenter;
 import com.yunyou.yike.recyleviewadapter.LoadMoreWrapper;
 import com.yunyou.yike.utils.To;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobActivityPresenter>
+public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, JobActivityPresenter>
         implements IView.IJobActivityView {
     private Switch mSwitch;
     private TextView mTextViewTitle;
@@ -32,11 +32,9 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, IJobAct
     private RecyclerView mRecyclerView;
     private LoadJobAdapter mLoadJobAdapter;
     private List<JobList> mJobLists;
-
-
     @Override
-    protected IJobActivityPresenter mPresenterCreate() {
-        return new IJobActivityPresenter();
+    protected JobActivityPresenter mPresenterCreate() {
+        return new JobActivityPresenter(null,null);
     }
 
     @Override
