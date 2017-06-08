@@ -6,6 +6,7 @@ import com.yunyou.yike.http.entity.RxApi;
 import com.yunyou.yike.presenter.AddressActivityPresenter;
 import com.yunyou.yike.presenter.DecorationWorkerPresenter;
 import com.yunyou.yike.presenter.HomePresenter;
+import com.yunyou.yike.presenter.JobActivityPresenter;
 import com.yunyou.yike.presenter.LoginActivityPresenter;
 import com.yunyou.yike.presenter.RegisterActivityPresenter;
 
@@ -19,6 +20,10 @@ import dagger.Provides;
 @Module
 public class PresenterMobule {
 
+    @Provides
+    public JobActivityPresenter gprovideJobActivityPresenter(RxApi mapi, Gson gson) {
+        return new JobActivityPresenter(mapi,gson);
+    }
     @Provides
     public RegisterActivityPresenter gprovideRegisterActivityPresenter(RxApi mapi, Gson gson) {
         return new RegisterActivityPresenter(mapi,gson);

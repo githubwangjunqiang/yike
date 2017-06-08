@@ -22,7 +22,7 @@ public class To {
     private static TextView tv;
     private static TextView tv3;
     private static ImageView iviamge;
-    private static String string = "可能是网络接口返回异常";
+    private static String string = "亲这个 真不懂是啥子情况....";
 
     public static void oo(Object s) {
         if(toast != null){

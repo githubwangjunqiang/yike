@@ -14,6 +14,7 @@ public class SpService {
     private final String PHONE = "phone";
     private final String PASSSWORD = "pass";
     private final String RTOKEN = "r_token";
+    private final String RONGIMUSERNAM = "r_userId";
     private final String TOKEN = "user_token";
     private final String USERID = "user_id";
 
@@ -83,13 +84,37 @@ public class SpService {
      *
      * @return
      */
-    public boolean saveR_Token(String token) {
+    public boolean saveR_Token(String phone,String token) {
         SharedPreferences preferences = context.getSharedPreferences(appName, Context.MODE_PRIVATE);
         Editor editor = preferences.edit();
-        editor.putString(RTOKEN, token);
+        editor.putString(RTOKEN+phone, token);
+        return editor.commit();
+    }
+    /**
+     * 写入融云 userid
+     *
+     * @return
+     */
+    public boolean saveR_userId(String phone,String saveR_userId) {
+        SharedPreferences preferences = context.getSharedPreferences(appName, Context.MODE_PRIVATE);
+        Editor editor = preferences.edit();
+        editor.putString(RONGIMUSERNAM+phone, saveR_userId);
         return editor.commit();
     }
 
+    /**
+     * 获取融云token
+     */
+    public String getR_Token(String phone) {
+        return getStringName(RTOKEN+phone, appName);
+    }
+
+    /**
+     * 获取融云 userid
+     */
+    public String getR_userid(String phone) {
+        return getStringName(RONGIMUSERNAM+phone, appName);
+    }
 
     /**
      * 获取密码
@@ -107,12 +132,6 @@ public class SpService {
         return getStringName(PHONE, appName);
     }
 
-    /**
-     * 获取融云token
-     */
-    public String getR_Token() {
-        return getStringName(RTOKEN, appName);
-    }
 
     /**
      * 根据名称 获取值

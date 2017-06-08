@@ -92,7 +92,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
             mStateLayout.setRefreshListener(new StateLayout.OnViewRefreshListener() {
                 @Override
                 public void refreshClick() {
-                    startRefresh(null);
+                    startRefresh(true);
                 }
 
                 @Override
@@ -108,7 +108,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
                 mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        startRefresh(null);
+                        startRefresh(true);
                     }
                 });
             }

@@ -46,7 +46,7 @@ public class XinxiGuanliActivity extends BaseMVPActivity<IView.IxinxiGuanliActiv
         mTextViewTitle = optionView(R.id.title_tvtitle);
         mGridView = optionView(R.id.xinxi_gvaihao);
         mTextViewTitle.setText(R.string.xinxiguanli);
-        startRefresh(null);
+        startRefresh(false);
 
     }
 
@@ -66,7 +66,7 @@ public class XinxiGuanliActivity extends BaseMVPActivity<IView.IxinxiGuanliActiv
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         List<MyAihao> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             list.add(new MyAihao("爱好", false));
@@ -78,6 +78,6 @@ public class XinxiGuanliActivity extends BaseMVPActivity<IView.IxinxiGuanliActiv
 
     @Override
     protected XinxiGuanliPresenter mPresenterCreate() {
-        return new XinxiGuanliPresenter(null,null);
+        return new XinxiGuanliPresenter(null, null);
     }
 }

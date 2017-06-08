@@ -12,7 +12,7 @@ public class EventBusMessage implements Serializable {
      */
     public static final int LOCATION = 0x1;
     /*
-     * //接收到 地图选择地址(MapAddressActivity)发出的消息，包含对象（PoiInfo）
+     * //接收到 地图选择地址(MapAddressActivity)发出的消息，包含对象（MyAddress）
      */
     public static final int MAPADDRESS = 0x2;
     private int msgCode;

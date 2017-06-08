@@ -52,7 +52,7 @@ public abstract class BaseMainFragment extends Fragment implements IView {
                 mStateLayout.setRefreshListener(new StateLayout.OnViewRefreshListener() {
                     @Override
                     public void refreshClick() {
-                        startRefresh(null);
+                        startRefresh(true);
                     }
 
                     @Override
@@ -69,7 +69,7 @@ public abstract class BaseMainFragment extends Fragment implements IView {
                 mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        startRefresh(null);
+                        startRefresh(false);
                     }
                 });
             }
@@ -89,7 +89,7 @@ public abstract class BaseMainFragment extends Fragment implements IView {
 
             }
         });
-        startRefresh(null);
+        startRefresh(true);
         return mRootView;
     }
 

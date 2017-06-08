@@ -3,11 +3,12 @@ package com.yunyou.yike.Interface_view;
 import com.yunyou.yike.entity.AddressCity;
 import com.yunyou.yike.entity.BannerData;
 import com.yunyou.yike.entity.City;
+import com.yunyou.yike.entity.CityId;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.Feel;
-import com.yunyou.yike.entity.JobList;
 import com.yunyou.yike.entity.Login;
 import com.yunyou.yike.entity.Order;
+import com.yunyou.yike.entity.OrderSuccess;
 import com.yunyou.yike.entity.WorkerStyle;
 import com.yunyou.yike.entity.WorkerType;
 
@@ -18,7 +19,7 @@ import java.util.List;
  */
 
 public interface IView {
-    void startRefresh(Object object);//开始刷新数据
+    void startRefresh(boolean isShowLoadingView);//开始刷新数据
 
     void onMessageEvent(EventBusMessage message);//接受消息
 
@@ -78,9 +79,9 @@ public interface IView {
      * 找工作 接口 view
      */
     interface IJobActivityView extends IView {
-        void showJobData(List<JobList> feelList);//显示工作数据
+        void showJobData(Object feelList);//显示工作数据
 
-        void loodMoreJobData(List<JobList> feelList);//现实更多工作数据
+        void loodMoreJobData(Object feelList);//现实更多工作数据
     }
 
     /**
@@ -101,7 +102,14 @@ public interface IView {
      */
     interface IDecorationWorkerView extends IView {
         void showWorkerTypeSuccess(WorkerType workerType);
+
         void showWorkerStyleSuccess(WorkerStyle workerStyle);
+
+        void releaseOrdersSuccess(OrderSuccess orderSuccess);
+
+        void accidentServerSuccess(WorkerStyle orderSuccess);
+
+        void getCityIdSuccess(CityId strings);
     }
 
     /**

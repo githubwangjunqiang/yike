@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.baoyz.widget.PullRefreshLayout;
@@ -15,11 +16,13 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.yunyou.yike.BaseMVPFragment;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.RongIM.RongIMLoginManager;
+import com.yunyou.yike.activity.LoginActivity;
 import com.yunyou.yike.activity.MyYueActivity;
 import com.yunyou.yike.activity.XinxiGuanliActivity;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.presenter.MyFragmentPresenter;
-
+import com.yunyou.yike.utils.ActivityCollector;
 
 
 /**
@@ -28,7 +31,7 @@ import com.yunyou.yike.presenter.MyFragmentPresenter;
 public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmentPresenter>
         implements IView.IMyFragmentView {
 
-
+    private Button mButtonLoginOut;
     /**
      * 传参构造方法
      *
@@ -65,6 +68,7 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
     protected void initView(View viewLayout, Bundle savedInstanceState) {
         mRefreshLayout = obtainView(R.id.my_layout);
         mDraweeView = obtainView(R.id.my_image);
+        mButtonLoginOut = obtainView(R.id.my_btn_loginout);
         mTextViewDataInfo = obtainView(R.id.my_tvxinxiguanli);
         mTextViewQianbao = obtainView(R.id.my_qianbao);
     }
@@ -94,10 +98,18 @@ public class MyFragment extends BaseMVPFragment<IView.IMyFragmentView, MyFragmen
                 startActivity(new Intent(getContext(), MyYueActivity.class));
             }
         });
+        mButtonLoginOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//点击退出登录
+                RongIMLoginManager.getInstance().disConnectRongIM(true);
+                ActivityCollector.finishAll();
+                LoginActivity.startLoginActivity(getContext(),true);
+            }
+        });
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         mPresenter.getUserInfo();
     }
 

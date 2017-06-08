@@ -71,6 +71,17 @@ public class DateUtil {
     }
 
     /**
+     * 获取两个时间段 有多少天
+     * @return
+     */
+    public static int getSubmitCountDay(Long startMilliseconds, Long endMilliseconds) {
+        long daySeconds = 1000L*60*60*24;//24 * 60 * 60*1000;
+        long lount = (endMilliseconds - startMilliseconds) / daySeconds;
+
+        return (int) lount;
+    }
+
+    /**
      * 转换日期到指定格式方便查看的描述说明
      *
      * @return 几秒前，几分钟前，几小时前，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知

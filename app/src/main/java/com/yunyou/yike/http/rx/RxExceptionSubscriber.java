@@ -2,6 +2,7 @@ package com.yunyou.yike.http.rx;
 
 import com.google.gson.JsonParseException;
 import com.yunyou.yike.Interface_view.IView;
+import com.yunyou.yike.RongIM.RongIMLoginManager;
 import com.yunyou.yike.http.exception.RxApiExceptionRx;
 import com.yunyou.yike.http.exception.RxBaseException;
 
@@ -45,6 +46,7 @@ public abstract class RxExceptionSubscriber<E> extends RxBaseSubscriber<E> {
             if (mRxApiExceptionRx.getHttpcode() == RxBaseException.API_TOKENOUT_CODE//5000登陆超时
                     || mRxApiExceptionRx.getHttpcode() == RxBaseException.API_ERRORTOKEN_CODE) {//3000token验证失败
                 mIView.get().showLoginView(null);
+                RongIMLoginManager.getInstance().disConnectRongIM(true);//关闭融云
             } else {
                 apiError(mRxApiExceptionRx.getHttpcode(), mRxApiExceptionRx.getErrorMsg());
             }

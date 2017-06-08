@@ -43,7 +43,7 @@ public class UnfinishedOrderFragment extends BaseMVPFragment<IView.IAllOrderFrag
         mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                startRefresh(null);
+                startRefresh(false);
             }
         });
         mRecyclerView.addOnScrollListener(new LoadMoreScrollListener() {
@@ -82,7 +82,7 @@ public class UnfinishedOrderFragment extends BaseMVPFragment<IView.IAllOrderFrag
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         mRefreshLayout.setRefreshing(true);
         mPresenter.getOrder();
     }

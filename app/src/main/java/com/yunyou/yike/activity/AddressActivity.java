@@ -50,7 +50,7 @@ public class AddressActivity extends BaseMVPActivity<IView.IAddressActivityView,
 
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         mPresenter.getAddressHot();
         mPresenter.getAddressCity();
     }
@@ -137,7 +137,7 @@ public class AddressActivity extends BaseMVPActivity<IView.IAddressActivityView,
         mGridView = optionView(R.id.address_gv);
         mImageViewBack = optionView(R.id.title_ivback);
         mTextViewTitle.setText(R.string.xuanzechengshi);
-        startRefresh(null);
+        startRefresh(true);
     }
 
     @Override

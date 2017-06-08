@@ -49,7 +49,7 @@ public class FriendsFragment extends BaseMainFragment {
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
 
     }
 }

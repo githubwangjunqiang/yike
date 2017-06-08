@@ -1,9 +1,6 @@
 package com.yunyou.yike.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -16,13 +13,8 @@ import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.LoadJobAdapter;
 import com.yunyou.yike.entity.EventBusMessage;
-import com.yunyou.yike.entity.JobList;
 import com.yunyou.yike.presenter.JobActivityPresenter;
-import com.yunyou.yike.recyleviewadapter.LoadMoreWrapper;
 import com.yunyou.yike.utils.To;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, JobActivityPresenter>
         implements IView.IJobActivityView {
@@ -31,10 +23,15 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, JobActi
     private ImageView mImageViewBack;
     private RecyclerView mRecyclerView;
     private LoadJobAdapter mLoadJobAdapter;
-    private List<JobList> mJobLists;
+
+//    @Inject
+    JobActivityPresenter mPresenter;
+
     @Override
     protected JobActivityPresenter mPresenterCreate() {
-        return new JobActivityPresenter(null,null);
+//        DaggerJobCompcope.builder().appCompcoent(((App) getApplication()).getAppCompcoent())
+//                .presenterMobule(new PresenterMobule()).build().inject(this);
+        return mPresenter;
     }
 
     @Override
@@ -59,8 +56,7 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, JobActi
         mImageViewBack = optionView(R.id.title_ivback);
         mRecyclerView = optionView(R.id.job_recylerview);
         mTextViewTitle.setText(R.string.zhaogongzuo);
-        mJobLists = new ArrayList<>();
-        startRefresh(null);
+        startRefresh(true);
     }
 
     @Override
@@ -84,12 +80,11 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, JobActi
 
     }
 
+
     @Override
-    public void startRefresh(Object object) {
-        mPresenter.getJobData(true);
+    public void startRefresh(boolean isShowLoadingView) {
+
     }
-
-
 
     @Override
     public void showContentView(Object object) {
@@ -98,36 +93,36 @@ public class JobActivity extends BaseMVPActivity<IView.IJobActivityView, JobActi
     }
 
     @Override
-    public void showJobData(List<JobList> jobList) {
-        mJobLists.clear();
-        mJobLists.addAll(jobList);
-        if (mLoadJobAdapter != null) {
-            mLoadJobAdapter.notifyDataSetChanged();
-        } else {
-            mLoadJobAdapter = new LoadJobAdapter(this, mJobLists);
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            mRecyclerView.setAdapter(mLoadJobAdapter);
-            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-            mRecyclerView.addItemDecoration(new DividerItemDecoration(this,
-                    DividerItemDecoration.VERTICAL));
-            mLoadJobAdapter.setOnLoadListener(new LoadMoreWrapper.OnLoadListener() {
-                @Override
-                public void onRetry() {
-                    mPresenter.loodMoreJobData();
-                }
-
-                @Override
-                public void onLoadMore() {
-                    mPresenter.loodMoreJobData();
-                }
-            });
-        }
+    public void showJobData(Object jobList) {
+//        mJobLists.clear();
+//        mJobLists.addAll(jobList);
+//        if (mLoadJobAdapter != null) {
+//            mLoadJobAdapter.notifyDataSetChanged();
+//        } else {
+//            mLoadJobAdapter = new LoadJobAdapter(this, mJobLists);
+//            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//            mRecyclerView.setAdapter(mLoadJobAdapter);
+//            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+//            mRecyclerView.addItemDecoration(new DividerItemDecoration(this,
+//                    DividerItemDecoration.VERTICAL));
+//            mLoadJobAdapter.setOnLoadListener(new LoadMoreWrapper.OnLoadListener() {
+//                @Override
+//                public void onRetry() {
+//                    mPresenter.loodMoreJobData();
+//                }
+//
+//                @Override
+//                public void onLoadMore() {
+//                    mPresenter.loodMoreJobData();
+//                }
+//            });
+//        }
     }
 
     @Override
-    public void loodMoreJobData(List<JobList> jobList) {
-        if (mLoadJobAdapter != null) {
-            mLoadJobAdapter.showLoadSuccess(jobList);
-        }
+    public void loodMoreJobData(Object jobList) {
+//        if (mLoadJobAdapter != null) {
+//            mLoadJobAdapter.showLoadSuccess(jobList);
+//        }
     }
 }

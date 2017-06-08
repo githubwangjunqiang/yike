@@ -14,18 +14,22 @@ import com.yunyou.yike.App;
 import com.yunyou.yike.BaseMVPActivity;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
+import com.yunyou.yike.RongIM.RongIMConnentListener;
+import com.yunyou.yike.RongIM.RongIMLoginManager;
 import com.yunyou.yike.dagger2.DaggerLoginCompcope;
 import com.yunyou.yike.dagger2.PresenterMobule;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.Login;
 import com.yunyou.yike.listener.PermissionListener;
 import com.yunyou.yike.presenter.LoginActivityPresenter;
+import com.yunyou.yike.utils.LogUtils;
 import com.yunyou.yike.utils.SpService;
 import com.yunyou.yike.utils.To;
 
 import javax.inject.Inject;
 
 import cn.jpush.android.api.JPushInterface;
+import io.rong.imlib.RongIMClient;
 
 
 public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
@@ -59,7 +63,6 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
     }
 
 
-
     @Override
     protected boolean beforeWindow(Bundle savedInstanceState) {
         statusBarColor = Color.TRANSPARENT;
@@ -75,7 +78,7 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
         hideStatusBar();
         isTokenLogin = getIntent().getBooleanExtra(TOKENLOGIN, false);
         if (!isTokenLogin) {
-            startRefresh(null);
+            startRefresh(false);
         }
     }
 
@@ -92,7 +95,7 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
                 String userToken = SpService.getSP().getUserToken(phone);
                 if (!TextUtils.isEmpty(userToken)) {
                     showLoodingDialog(null);
-                    toMainActivity();
+                    toMainActivity(false);
                 }
             }
         }
@@ -101,7 +104,7 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
 
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         String phone = SpService.getSP().getPhone();
         String pass = SpService.getSP().getPas();
         if (!TextUtils.isEmpty(phone)) {
@@ -128,7 +131,7 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
 
                 if (!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     // 未打开位置开关，可能导致定位失败或定位不准，提示用户或做相应处理
-                    To.ss(mEditTextPas, "未打开位置开关，可能导致定位失败或定位不准");
+                    To.oo("未打开位置开关，可能导致定位失败或定位不准");
                 }
 
             }
@@ -160,7 +163,7 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
         if (App.getBDLocation() == null) {
             To.ee("请稍后，尚未定位成功");
             if (!App.getLocationClient().isStarted()) {
-                startRefresh(null);
+                startRefresh(false);
             }
             return;
         }
@@ -225,19 +228,44 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
             To.ee("数据返回缺失");
             return;
         }
-        App.setUserId(login.getData().getUser_id());
         SpService.getSP().saveToken(login.getData().getToken(), login.getData().getUser_id()
                 , mEditTextPhone.getText().toString().trim());
-        if (!isTokenLogin) {
-            toMainActivity();
-        }
+        toMainActivity(isTokenLogin);
     }
 
     /**
      * 关闭登陆页面 进入主页
      */
-    private void toMainActivity() {
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+    private void toMainActivity(final boolean isTokenLogins) {
+        String trim = mEditTextPhone.getText().toString().trim();
+        if (TextUtils.isEmpty(trim)) {
+            return;
+        }
+        showLoodingDialog("正在登陆通讯系统...");
+
+        LogUtils.d("登陆融云phone="+trim);
+        RongIMLoginManager.getInstance().connect(SpService.getSP().getR_Token(trim), new RongIMConnentListener() {
+            @Override
+            public void onTokenIncorrect() {
+                hideDialog();
+                To.ee("亲，请重新核对您的账号跟密码，重新登录下试试，可能是应为网络的原因，我们正在努力查找");
+            }
+
+            @Override
+            public void onSuccess(String userid) {
+                hideDialog();
+
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+                hideDialog();
+                To.ee(errorCode == null ? "登录失败,请重试" : errorCode.getMessage());
+            }
+        });
+        if (!isTokenLogins) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
         finish();
     }
 

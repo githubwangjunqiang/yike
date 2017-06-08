@@ -159,7 +159,7 @@ public class PermissionActivity extends BaseActivity {
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
 
     }
 }

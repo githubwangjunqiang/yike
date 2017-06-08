@@ -64,7 +64,7 @@ public class OrderInfoActivity extends BaseMVPActivity<IView.IOrderInfoActivityV
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
 
     }
 }

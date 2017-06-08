@@ -71,7 +71,7 @@ public class QianbaoActivity extends BaseMVPActivity<IView.IQianBaoActivityView,
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
 
     }
 

@@ -77,7 +77,7 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         mPresenter.getFeelData(true);
     }
 

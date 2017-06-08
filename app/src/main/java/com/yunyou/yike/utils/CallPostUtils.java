@@ -1,5 +1,7 @@
 package com.yunyou.yike.utils;
 
+import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 
 import com.yunyou.yike.entity.BaseSort;
@@ -10,22 +12,59 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ${王俊强} on 2017/5/27.
  */
 
 public class CallPostUtils {
+    private static final String TIME = "time";
+    private static final String SIGN = "sign";
     private Builder mBuilder;
 
     private CallPostUtils(Builder builder) {
         this.mBuilder = builder;
     }
 
+    public Map<String, String> getMap() {
+        if (mBuilder == null || mBuilder.mBaseSorts == null) {
+            return null;
+        }
+        Map<String, String> map = new ArrayMap<>();
+        Collections.sort(mBuilder.mBaseSorts, new Comparator<BaseSort>() {
+            @Override
+            public int compare(BaseSort o1, BaseSort o2) {
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        });
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < mBuilder.mBaseSorts.size(); i++) {
+            BaseSort content = mBuilder.mBaseSorts.get(i);
+            stringBuilder.append(content.getContent());
+            map.put(content.getKey(), content.getContent());
+        }
+        Long time = new Date().getTime();
+        stringBuilder.append(time).append(RxHttpConstant.KEY);
+        LogUtils.d(stringBuilder.toString());
+        String sign = MD5Utils.md5Code(stringBuilder.toString());
+        LogUtils.d("加密=" + sign);
+        if (TextUtils.isEmpty(sign)) {
+            return null;
+        }
+        map.put(TIME, String.valueOf(time));
+        map.put(SIGN, sign);
+
+        return map;
+
+    }
 
     public String[] sort() {
         String[] strings = new String[2];
-
+        if (mBuilder == null || mBuilder.mBaseSorts == null) {
+            return null;
+        }
         Collections.sort(mBuilder.mBaseSorts, new Comparator<BaseSort>() {
             @Override
             public int compare(BaseSort o1, BaseSort o2) {
@@ -82,11 +121,9 @@ public class CallPostUtils {
 
 
         /**
-         * 添加头header方法
-         *
          * @return Builder
          */
-        public Builder addParamt(String key, Object vaLue) {
+        public Builder addParamt(String key, String vaLue) {
             if (TextUtils.isEmpty(key)) {
                 throw new NullPointerException("Parameter key cannot be null(排序签名的key是空的)");
             } else if (vaLue == null) {
@@ -96,6 +133,24 @@ public class CallPostUtils {
                     mBaseSorts = new ArrayList<>();
                 }
                 mBaseSorts.add(new BaseSort(key, vaLue));
+            }
+            return this;
+        }
+
+        /**
+         * @return Builder
+         */
+        public Builder addMap(@NonNull Map<String, String> map) {
+            if (map == null) {
+                throw new NullPointerException("Parameter key cannot be null(排序签名的map是空的)");
+            } else {
+                if (mBaseSorts == null) {
+                    mBaseSorts = new ArrayList<>();
+                }
+
+                for (Map.Entry<String, String> maps : map.entrySet()) {
+                    mBaseSorts.add(new BaseSort(maps.getKey(), maps.getValue()));
+                }
             }
             return this;
         }

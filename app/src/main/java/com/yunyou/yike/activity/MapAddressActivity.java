@@ -50,6 +50,7 @@ import com.yunyou.yike.BaseActivity;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.MapListAdapter;
 import com.yunyou.yike.entity.EventBusMessage;
+import com.yunyou.yike.entity.Myaddress;
 import com.yunyou.yike.ui_view.dialog.DiaLogMapCity;
 import com.yunyou.yike.utils.LogUtils;
 import com.yunyou.yike.utils.PoiOverlay;
@@ -60,6 +61,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,7 +85,7 @@ public class MapAddressActivity extends BaseActivity {
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private AppBarLayout mAppBarLayout;
     private GeoCoder mGeoCoder;//正反向检索
-    private PoiInfo mPoiInfo;//最终选择的地址
+    private Myaddress mPoiInfo;//最终选择的地址
     private PoiSearch mPoiSearch;//正向检索
     private final String china = "中国";
     private LinearLayout mNewtonCradleLoading;
@@ -101,7 +103,7 @@ public class MapAddressActivity extends BaseActivity {
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         mTextViewTitle.setText(R.string.xuanzedizhi);
 //        mBaiduMap.setTrafficEnabled(true);  //开启交通图
 //        mBaiduMap.setBaidu/**/HeatMapEnabled(true);//开启热力图
@@ -177,7 +179,7 @@ public class MapAddressActivity extends BaseActivity {
         mSearchTextview.setHint(R.string.shurudiming);
 
 
-        startRefresh(null);
+        startRefresh(false);
     }
 
 
@@ -224,11 +226,12 @@ public class MapAddressActivity extends BaseActivity {
             @Override
             public void onClick(View v) {//点击确定
                 if (mPoiInfo != null) {
-                    if (mPoiInfo.address == null) {
+                    if (mPoiInfo == null) {
                         To.ee("选择地址失败呢亲，抱歉请重新选择吧");
                         return;
                     }
-                    EventBus.getDefault().post(new EventBusMessage(EventBusMessage.MAPADDRESS, mPoiInfo));
+                    EventBus.getDefault()//发送消息给订单界面地址数据
+                            .post(new EventBusMessage(EventBusMessage.MAPADDRESS, mPoiInfo));
                     finish();
                 } else {
                     To.ss(mRecyclerView, "亲 ..快去点击拖动地图或者搜索地址呦");
@@ -299,7 +302,7 @@ public class MapAddressActivity extends BaseActivity {
                 To.ee("亲，没有找到你输入的地址呢 ，请您检查地址是否有误呢");
                 return;
             }
-            if (result.error == SearchResult.ERRORNO.NO_ERROR) {//等于没有错误
+            if (result.error == SearchResult.ERRORNO.NO_ERROR) {//等于没有错误 及成功
                 List<PoiInfo> allPoi = result.getAllPoi();
                 if (allPoi == null || allPoi.isEmpty()) {
                     To.ee("亲，没有找到你输入的地址 ，请您检查地址是否有误呢");
@@ -399,17 +402,42 @@ public class MapAddressActivity extends BaseActivity {
      * 处理检索结果
      */
     private void setPoiListInfo(@NonNull List<PoiInfo> poiList, ReverseGeoCodeResult result) {
-        if (poiList == null) {
-            return;
+        try {
+            if (poiList == null) {
+                return;
+            }
+            List<Myaddress> list = new ArrayList<>();
+
+            if (result != null) {
+                Myaddress myaddress = new Myaddress();
+                myaddress.setAddressInfo(result.getSematicDescription() == null ? "" : result.getSematicDescription());
+                myaddress.setAddress(result.getAddress() == null ? "" : result.getAddress());
+                myaddress.setLatLng(result.getLocation() == null ? new LatLng(0.0, 0.0) : result.getLocation());
+                myaddress.setProvince(result.getAddressDetail().province);
+                myaddress.setCity(result.getAddressDetail().city);
+                myaddress.setCounty(result.getAddressDetail().district);
+                LogUtils.d("address" + myaddress.getAddress());
+                LogUtils.d("addressinfo" + myaddress.getAddressInfo());
+                LogUtils.d("Province" + myaddress.getProvince());
+                LogUtils.d("getCity" + myaddress.getCity());
+                LogUtils.d("getCounty" + myaddress.getCounty());
+                list.add(myaddress);
+            }
+
+            for (int i = 0; i < poiList.size(); i++) {
+                PoiInfo poiInfo = poiList.get(i);
+                Myaddress myaddress1 = new Myaddress();
+                myaddress1.setAddress(poiInfo.address);
+                myaddress1.setAddressInfo(poiInfo.name);
+                myaddress1.setLatLng(poiInfo.location);
+                LogUtils.d(poiInfo.address + "");
+                list.add(myaddress1);
+            }
+            setAdapter(list, result == null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        PoiInfo poiInfo = new PoiInfo();
-        if (result != null) {
-            poiInfo.city = result.getSematicDescription() == null ? "" : result.getSematicDescription();
-            poiInfo.address = result.getAddress() == null ? "" : result.getAddress();
-            poiInfo.location = result.getLocation() == null ? new LatLng(0.0, 0.0) : result.getLocation();
-            poiList.add(0, poiInfo);
-        }
-        setAdapter(poiList);
     }
 
     /**
@@ -417,7 +445,7 @@ public class MapAddressActivity extends BaseActivity {
      *
      * @param poiList
      */
-    private void setAdapter(final List<PoiInfo> poiList) {
+    private void setAdapter(final List<Myaddress> poiList, final boolean isMapautomatically) {
         mAppBarLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -431,8 +459,8 @@ public class MapAddressActivity extends BaseActivity {
                         }
 
                         @Override
-                        public void onSuccess(PoiInfo poiInfo) {
-                            mPoiInfo = poiInfo;
+                        public void onSuccess(Myaddress myaddress) {
+                            mPoiInfo = myaddress;
                         }
                     });
                     mRecyclerView.setHasFixedSize(true);
@@ -442,8 +470,17 @@ public class MapAddressActivity extends BaseActivity {
                     mRecyclerView.setAdapter(mMapListAdapter);
                     mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 }
+
+                if (isMapautomatically) {
+                    mRecyclerView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toMapAnition(mBaiduMap, poiList.get(0).getLatLng());
+                        }
+                    }, 2000);
+                }
             }
-        }, 500);
+        }, 300);
 
     }
 
@@ -453,7 +490,7 @@ public class MapAddressActivity extends BaseActivity {
      */
     private void toMapAnition(BaiduMap baiduMap, LatLng latLng) {
         MapStatus.Builder builder = new MapStatus.Builder();
-        builder.target(latLng).zoom(15.0f);
+        builder.target(latLng).zoom(16.0f);
         baiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
     }
 

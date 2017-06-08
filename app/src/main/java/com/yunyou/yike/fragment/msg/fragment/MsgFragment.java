@@ -1,5 +1,6 @@
 package com.yunyou.yike.fragment.msg.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,17 @@ import com.yunyou.yike.BaseMainFragment;
 import com.yunyou.yike.R;
 import com.yunyou.yike.entity.EventBusMessage;
 
+import io.rong.imkit.fragment.ConversationListFragment;
+import io.rong.imlib.model.Conversation;
+
 public class MsgFragment extends BaseMainFragment {
+    private static MsgFragment mMsgFragment;
 
     public static MsgFragment newInstance() {
-        MsgFragment fragment = new MsgFragment();
-        return fragment;
+        if (mMsgFragment == null) {
+            mMsgFragment = new MsgFragment();
+        }
+        return mMsgFragment;
     }
 
 
@@ -29,11 +36,21 @@ public class MsgFragment extends BaseMainFragment {
 
     @Override
     protected View getViewLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_feel, container, false);
+        View view = inflater.inflate(R.layout.fragment_msg, container, false);
+
+        ConversationListFragment fragment = (ConversationListFragment) getChildFragmentManager().findFragmentById(R.id.conversationlist);
+
+        Uri uri = Uri.parse("rong://" + getActivity().getApplicationInfo().packageName).buildUpon()
+                .appendPath("conversationlist")
+                .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话非聚合显示
+                .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "true")//设置群组会话聚合显示
+                .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")//设置讨论组会话非聚合显示
+                .appendQueryParameter(Conversation.ConversationType.SYSTEM.getName(), "false")//设置系统会话非聚合显示
+                .build();
+
+        fragment.setUri(uri);
+        return view;
     }
-
-
-
 
 
     @Override
@@ -51,7 +68,7 @@ public class MsgFragment extends BaseMainFragment {
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
 
     }
 }

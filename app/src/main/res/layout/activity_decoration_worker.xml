@@ -319,6 +319,7 @@
                         >
 
                         <CheckBox
+                            android:id="@+id/worker_checkox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/pading_20"

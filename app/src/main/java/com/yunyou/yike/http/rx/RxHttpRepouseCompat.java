@@ -18,7 +18,11 @@ import rx.schedulers.Schedulers;
  */
 
 public class RxHttpRepouseCompat {
-    public static  Observable.Transformer<JsonObject, String> compatResult() {
+    public interface GsonListener<T> {
+        T gsonBean(JsonObject jsonObject);
+    }
+
+    public static Observable.Transformer<JsonObject, String> compatResult() {
         return new Observable.Transformer<JsonObject, String>() {
             @Override
             public Observable<String> call(Observable<JsonObject> httpBaseBeanObservable) {
@@ -43,6 +47,7 @@ public class RxHttpRepouseCompat {
                                         @Override
                                         public void call(Subscriber<? super String> subscriber) {
                                             if (!subscriber.isUnsubscribed()) {
+
                                                 subscriber.onNext(tRxHttpBaseBean.toString());
                                             }
                                         }

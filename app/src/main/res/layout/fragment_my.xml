@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".fragment.home.HomeFragment">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -527,15 +527,16 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/my_btn_loginout"
                     android:layout_width="710px"
-                    android:layout_marginTop="16px"
-                    android:layout_marginBottom="16px"
                     android:layout_height="80px"
-                    android:textSize="28px"
-                    android:textColor="@color/app_color"
-                    android:background="@drawable/ic_out_login"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/tuichudenglu"/>
+                    android:layout_marginBottom="16px"
+                    android:layout_marginTop="16px"
+                    android:background="@drawable/ic_out_login"
+                    android:text="@string/tuichudenglu"
+                    android:textColor="@color/app_color"
+                    android:textSize="28px"/>
 
             </LinearLayout>
         </com.yunyou.yike.ui_view.ReboundScrollView>

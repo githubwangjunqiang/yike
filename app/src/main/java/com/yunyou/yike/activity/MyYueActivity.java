@@ -69,7 +69,7 @@ public class MyYueActivity extends BaseActivity {
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
 
     }
 }

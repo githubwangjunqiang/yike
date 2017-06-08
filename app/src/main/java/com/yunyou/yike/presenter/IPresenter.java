@@ -1,5 +1,7 @@
 package com.yunyou.yike.presenter;
 
+import java.util.Map;
+
 /**
  * Created by ${王俊强} on 2017/5/17.
  */
@@ -50,9 +52,9 @@ public interface IPresenter {
      * 找工作 列表
      */
     interface IJobPresenter extends IPresenter {
-        void getJobData(boolean isShowLoading);//获取感想信息
+        void getJobData(boolean isShowLoading,Map<String,String> stringMap);//获取工作列表
 
-        void loodMoreJobData();//获取更多
+        void loodMoreJobData(Map<String, String> stringMap);//获取更多工作列表
     }
 
     /**
@@ -60,7 +62,14 @@ public interface IPresenter {
      */
     interface IDecorationWorkerPresenter extends IPresenter {
         void loodWorkType();//获取工种类型
+
         void loodWorkStyle();//获取工种风格
+
+        void accidentServer();//获取额外服务
+
+        void releaseOrders(Map<String, String> map);//发布订单
+
+        void getCityId(Map<String, String> map);//获取城市id
     }
 
     /**

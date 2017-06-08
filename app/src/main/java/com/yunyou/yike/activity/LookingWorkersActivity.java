@@ -1,6 +1,5 @@
 package com.yunyou.yike.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -60,16 +59,16 @@ public class LookingWorkersActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.looking_worker_ivzhuang://装修工人
-                startActivity(new Intent(this, DecorationWorkerActivity.class));
+                DecorationWorkerActivity.startDecorationWorkerActivity(this, "1");
                 break;
             case R.id.looking_worker_ivjian://建筑工人
-                startActivity(new Intent(this, DecorationWorkerActivity.class));
+                DecorationWorkerActivity.startDecorationWorkerActivity(this, "2");
                 break;
             case R.id.looking_worker_ivanzhuang://安装工人
-                startActivity(new Intent(this, DecorationWorkerActivity.class));
+                DecorationWorkerActivity.startDecorationWorkerActivity(this, "3");
                 break;
             case R.id.looking_worker_ivtuandui://团队
-                startActivity(new Intent(this, DecorationWorkerActivity.class));
+                DecorationWorkerActivity.startDecorationWorkerActivity(this, "4");
                 break;
             default:
                 break;
@@ -77,7 +76,7 @@ public class LookingWorkersActivity extends BaseActivity {
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
 
     }
 }

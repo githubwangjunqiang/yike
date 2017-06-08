@@ -49,6 +49,7 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
     private LinearLayout mLoadWorker;//找工作
     private TextView mTextViewAddres;//点击地址
     private TextView mTextViewEmty;//空数据
+
     @Inject
     HomePresenter mHomePresenter;
 
@@ -97,6 +98,7 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
         banner = obtainView(R.id.banner_home);
         mLoadPeoPle = obtainView(R.id.home_load_gongren);
         mLoadWorker = obtainView(R.id.home_load_worker);
+
         mTextViewEmty = obtainView(R.id.home_tvkong);
         mTextViewAddres = obtainView(R.id.home_address);
         if (App.getBDLocation() != null) {
@@ -142,7 +144,7 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
         mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                startRefresh(null);
+                startRefresh(false);
             }
         });
         mTextViewEmty.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +172,7 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
     }
 
     @Override
-    public void startRefresh(Object object) {
+    public void startRefresh(boolean isShowLoadingView) {
         mTextViewEmty.setVisibility(View.VISIBLE);
         String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,//读sd卡
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,//写sd卡

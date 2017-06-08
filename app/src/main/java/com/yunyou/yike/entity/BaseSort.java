@@ -6,12 +6,12 @@ package com.yunyou.yike.entity;
 
 public class BaseSort {
     private String key;
-    private Object content;
+    private String content;
 
     public BaseSort() {
     }
 
-    public BaseSort(String key, Object content) {
+    public BaseSort(String key, String content) {
         this.key = key;
         this.content = content;
     }
@@ -24,11 +24,11 @@ public class BaseSort {
         this.key = key;
     }
 
-    public Object getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(Object content) {
+    public void setContent(String content) {
         this.content = content;
     }
 

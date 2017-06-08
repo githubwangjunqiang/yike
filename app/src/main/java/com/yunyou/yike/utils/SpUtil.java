@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.yunyou.yike.App;
-
 /**
  * Created by _wangjunqiang
  * Date:2016/9/26
@@ -14,9 +12,6 @@ import com.yunyou.yike.App;
  */
 
 public class SpUtil {
-    public static final String mobile = App.getUserId() + "mobile";
-    public static final String nickname = App.getUserId()+"nickname";
-    public static final String r_token = App.getUserId()+"r_token";
 
 
     public static int getInt(Context context, final String key, int defaultValue) {

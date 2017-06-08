@@ -43,7 +43,7 @@
     <string name="shiyongshijian">选择时间</string>
     <string name="dianjixuanze">点击选择</string>
     <string name="shigongdizhi">请选择施工地址</string>
-    <string name="shiyongrenshu">请输入需要的天数</string>
+    <string name="shiyongrenshu">请输入需要的人数</string>
     <string name="ewaifuwu">额外/风格-服务</string>
     <string name="geishifuliuyan">给师傅留言</string>
     <string name="zuizhongfeiyong">最终费用以工程报表为准...</string>
@@ -107,5 +107,6 @@
     <string name="updated_just_now">刚刚更新</string>
     <string name="time_error">时间有问题</string>
     <string name="qingxuanzegonzhong">请选择工种</string>
+    <string name="qingxuanzefengge">请选择风格/额外服务</string>
 
 </resources>
