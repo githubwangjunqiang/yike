@@ -10,7 +10,8 @@
 
     <include layout="@layout/top_title"/>
 
-    <com.fingdo.statelayout.StateLayout
+
+    <com.yunyou.yike.ui_view.MyStateLayout
         android:id="@+id/qianbao_staslayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,63 +23,77 @@
         app:timeOutText="@string/chaoshil"
         >
 
-
-        <LinearLayout
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@+id/qianbao_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            >
 
-
-            <TextView
+            <com.yunyou.yike.ui_view.ReboundScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center"
-                android:paddingBottom="49px"
-                android:paddingTop="50px"
-                android:text="@string/jine"
-                android:textColor="@color/text_color"
-                android:textSize="28px"/>
+                android:layout_height="match_parent"
+                >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center"
-                android:paddingBottom="59px"
-                android:textColor="@color/app_color"
-                android:textSize="80px"
-                tools:text="00"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-            <Button
-                android:layout_width="300px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="60px"
-                android:background="@drawable/btn_biankuang"
-                android:minHeight="0dp"
-                android:onClick="onClickRecharge"
-                android:paddingBottom="20px"
-                android:paddingTop="20px"
-                android:text="@string/chongzhi"
-                android:textColor="@color/app_color"
-                android:textSize="32px"
-                />
 
-            <Button
-                android:layout_width="300px"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20px"
-                android:background="@drawable/btn_p"
-                android:minHeight="0dp"
-                android:onClick="onClickWithdrawals"
-                android:paddingBottom="20px"
-                android:paddingTop="20px"
-                android:text="@string/tixian"
-                android:textColor="@color/white"
-                android:textSize="32px"
-                />
-        </LinearLayout>
-    </com.fingdo.statelayout.StateLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:paddingBottom="49px"
+                        android:paddingTop="50px"
+                        android:text="@string/jine"
+                        android:textColor="@color/text_color"
+                        android:textSize="28px"/>
+
+                    <TextView
+                        android:id="@+id/tv_money"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:paddingBottom="59px"
+                        android:textColor="@color/app_color"
+                        android:textSize="80px"
+                        tools:text="00"/>
+
+                    <Button
+                        android:layout_width="300px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="60px"
+                        android:background="@drawable/btn_biankuang"
+                        android:minHeight="0dp"
+                        android:onClick="onClickRecharge"
+                        android:paddingBottom="20px"
+                        android:paddingTop="20px"
+                        android:text="@string/chongzhi"
+                        android:textColor="@color/app_color"
+                        android:textSize="32px"
+                        />
+
+                    <Button
+                        android:layout_width="300px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/btn_p"
+                        android:minHeight="0dp"
+                        android:onClick="onClickWithdrawals"
+                        android:paddingBottom="20px"
+                        android:paddingTop="20px"
+                        android:text="@string/tixian"
+                        android:textColor="@color/white"
+                        android:textSize="32px"
+                        />
+                </LinearLayout>
+            </com.yunyou.yike.ui_view.ReboundScrollView>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+    </com.yunyou.yike.ui_view.MyStateLayout>
+
 </LinearLayout>

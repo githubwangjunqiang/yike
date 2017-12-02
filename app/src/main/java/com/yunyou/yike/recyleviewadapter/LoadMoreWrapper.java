@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yunyou.yike.utils.LogUtils;
+
 import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -54,6 +56,7 @@ public abstract class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerVi
         this.list.clear();
         this.list.addAll(list);
         addLastItmeType(ITEM_TYPE_LOAD_MORE_VIEW);
+        notifyDataSetChanged();
     }
 
     public LoadMoreWrapper(@NonNull Context mContext, @NonNull List<T> list) {
@@ -236,30 +239,24 @@ public abstract class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerVi
      * 显示加载完成，添加数据
      */
     public void showLoadSuccess(List<T> listNews) {
-        for (int i = 0; i < list.size(); i++) {
-            if (i != (list.size() - 1)) {
-                listNews.add(0, list.get(i));
-            }
-        }
-        addRefresh(list, listNews, ITEM_TYPE_LOAD_MORE_VIEW);
+        LogUtils.d("listNews"+listNews.size());
+        LogUtils.d("list"+list.size());
+        list.remove(list.size() - 1);
+        list.addAll(listNews);
+        addLastItmeType(ITEM_TYPE_LOAD_MORE_VIEW);
+        notifyDataSetChanged();
+        LogUtils.d("listNews"+listNews.size());
+        LogUtils.d("list"+list.size());
     }
 
     /**
      * 刷新整体数据
      */
     public void reFreshSuccess(List<T> listNews) {
-        addRefresh(list, listNews, ITEM_TYPE_LOAD_MORE_VIEW);
+        list.clear();
+        list.addAll(listNews);
+        notifyDataSetChanged();
     }
-
-
-    /**
-     * 比较完后 要在新数据里面添加最后一个类型
-     *
-     * @param listOlds
-     * @param listNews
-     * @param itemTypeLoadMoreView 制定的类型
-     */
-    protected abstract void addRefresh(List<T> listOlds, List<T> listNews, int itemTypeLoadMoreView);
 
 
     /**

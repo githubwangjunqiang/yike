@@ -1,4 +1,4 @@
-<com.fingdo.statelayout.StateLayout
+<com.yunyou.yike.ui_view.MyStateLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/top_statrlayout"
@@ -13,7 +13,7 @@
     android:background="@color/background"
     >
 
-    <com.baoyz.widget.PullRefreshLayout
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
         android:id="@+id/feel_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,6 +31,6 @@
             android:dividerHeight="1dp"
             android:groupIndicator="@null"/>
 
-    </com.baoyz.widget.PullRefreshLayout>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
-</com.fingdo.statelayout.StateLayout>
+</com.yunyou.yike.ui_view.MyStateLayout>

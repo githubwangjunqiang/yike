@@ -17,6 +17,7 @@ import com.yunyou.yike.fragment.msg.MessageFragment;
 import com.yunyou.yike.fragment.my.MyFragment;
 import com.yunyou.yike.fragment.myorder.MyOrderFragment;
 import com.yunyou.yike.fragment.order.OrderFragment;
+import com.yunyou.yike.utils.LogUtils;
 
 
 public class MainActivity extends BaseActivity {
@@ -29,8 +30,8 @@ public class MainActivity extends BaseActivity {
     private Fragment[] fragments = new Fragment[5];
     private FragmentManager supportFragmentManager;
 
-
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -58,35 +59,43 @@ public class MainActivity extends BaseActivity {
 
         if (savedInstanceState == null) {
             homeFragment = HomeFragment.newInstance();
-            supportFragmentManager.beginTransaction().add(R.id.content_main, homeFragment, "HomeFragment").commit();
+            supportFragmentManager.beginTransaction().
+                    add(R.id.content_main, homeFragment, "HomeFragment").commit();
             orderFragment = OrderFragment.newInstance();
-            supportFragmentManager.beginTransaction().add(R.id.content_main, orderFragment, "OrderFragment").commit();
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.content_main, orderFragment, "OrderFragment").commit();
             mOrderFragment = MyOrderFragment.newInstance();
-            supportFragmentManager.beginTransaction().add(R.id.content_main, mOrderFragment, "mOrderFragment").commit();
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.content_main, mOrderFragment, "mOrderFragment").commit();
             messageFragment = MessageFragment.newInstance("");
-            supportFragmentManager.beginTransaction().add(R.id.content_main, messageFragment, "MessageFragment").commit();
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.content_main, messageFragment, "MessageFragment").commit();
             myFragment = MyFragment.newInstance("");
-            supportFragmentManager.beginTransaction().add(R.id.content_main, myFragment, "MyFragment").commit();
+            supportFragmentManager.beginTransaction()
+                    .add(R.id.content_main, myFragment, "MyFragment").commit();
+
         } else {
+            index = savedInstanceState.getInt("index");
             homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("HomeFragment");
             orderFragment = (OrderFragment) getSupportFragmentManager().findFragmentByTag("OrderFragment");
             mOrderFragment = (MyOrderFragment) getSupportFragmentManager().findFragmentByTag("mOrderFragment");
             messageFragment = (MessageFragment) getSupportFragmentManager().findFragmentByTag("MessageFragment");
             myFragment = (MyFragment) getSupportFragmentManager().findFragmentByTag("MyFragment");
         }
-        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
 
         fragments[0] = homeFragment;
         fragments[1] = orderFragment;
         fragments[2] = mOrderFragment;
         fragments[3] = messageFragment;
         fragments[4] = myFragment;
+        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
         for (int i = 0; i < fragments.length; i++) {
             fragmentTransaction.hide(fragments[i]);
         }
+        LogUtils.d(index + "--1");
         fragmentTransaction.show(fragments[index]);
         fragmentTransaction.commit();
-        index = 0;
+
     }
 
     @Override
@@ -98,6 +107,7 @@ public class MainActivity extends BaseActivity {
         supportFragmentManager.putFragment(outState, "mOrderFragment", mOrderFragment);
         supportFragmentManager.putFragment(outState, "MessageFragment", messageFragment);
         supportFragmentManager.putFragment(outState, "MyFragment", myFragment);
+        outState.putInt("index", index);
     }
 
     @Override
@@ -154,8 +164,12 @@ public class MainActivity extends BaseActivity {
             fragmentTransaction.setCustomAnimations(R.anim.fragment_translate_right_in,
                     R.anim.fragment_translate_right_out);
         }
+        Fragment fragment = fragments[index];
+        if (!fragment.isAdded()) {
+            fragmentTransaction.add(R.id.content_main, fragment);
+        }
         fragmentTransaction.hide(fragments[this.index]);
-        fragmentTransaction.show(fragments[index]);
+        fragmentTransaction.show(fragment);
         fragmentTransaction.commit();
         this.index = index;
 
@@ -168,8 +182,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
         App.appOut();
         System.exit(0);
-        super.onDestroy();
+        super.onBackPressed();
     }
 }

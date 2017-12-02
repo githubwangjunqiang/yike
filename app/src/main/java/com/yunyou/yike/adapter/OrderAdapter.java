@@ -1,150 +1,131 @@
 package com.yunyou.yike.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.text.format.DateUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.yan.pullrefreshlayout.adapter.SWRecyclerAdapter;
+import com.yan.pullrefreshlayout.adapter.SWViewHolder;
 import com.yunyou.yike.R;
 import com.yunyou.yike.activity.OrderInfoActivity;
 import com.yunyou.yike.entity.Order;
-import com.yunyou.yike.utils.LogUtils;
-import com.yunyou.yike.utils.To;
+import com.zhy.autolayout.utils.AutoUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by ${王俊强} on 2017/4/25.
  */
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
-    private List<Order> mList;
-    private Context mContext;
+public class OrderAdapter extends SWRecyclerAdapter<Order.DataBean> {
+    public interface Callback {
+        void onClickStart(Order.DataBean dataBean, int position);
 
-    public OrderAdapter(List<Order> list, Context context) {
-        if (list == null) {
-            mList = new ArrayList<>();
-        } else {
-            mList = list;
-        }
-        mContext = context;
+        void onClickCanle(Order.DataBean dataBean, int position);
+    }
+
+    private Callback mCallback;
+
+    private boolean myOrderNumber;
+
+    public void setMyOrderNumber(boolean myOrderNumber) {
+        this.myOrderNumber = myOrderNumber;
+    }
+
+    public OrderAdapter(Context context, List<Order.DataBean> list, Callback callback) {
+        super(context, list);
+        mCallback = callback;
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return mList.get(position).getType();
-    }
-
-    public void setList(List<Order> list) {
-        this.mList.clear();
-        this.mList.addAll(list);
-        notifyDataSetChanged();
-    }
-
-    public void loodList(List<Order> list) {
-        this.mList.remove(mList.size() - 1);
-        this.mList.addAll(list);
-        notifyDataSetChanged();
-    }
-
-    public void loodError() {
-        this.mList.get(mList.size() - 1).setName("已经到底了");
-        notifyItemChanged(getItemCount());
-    }
-
-
-    @Override
-    public OrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case 0:
-                return new OrderViewHolder(LayoutInflater.from(mContext).inflate(R.layout.itme_order,
-                        parent, false), viewType);
-            case Integer.MAX_VALUE - 1:
-                return new OrderViewHolder(LayoutInflater.from(mContext).inflate(R.layout.itme_order_tvjiazai,
-                        parent, false), viewType);
-        }
-        return null;
+    protected void setAutoUtilsView(View view) {
+        AutoUtils.auto(view);
     }
 
     @Override
-    public void onBindViewHolder(OrderViewHolder holder, int position) {
-        holder.setData(mList.get(position), mContext);
+    public int getItemLayoutId(int viewType) {
+        return R.layout.itme_order;
     }
 
     @Override
-    public int getItemCount() {
-        return mList.size();
-    }
-}
+    public void bindData(SWViewHolder holder, final int position, final Order.DataBean item) {
 
-class OrderViewHolder extends RecyclerView.ViewHolder {
-    private TextView mTvName, mTvOrderSn, mTvOrderTime, mTvOrderContent, mTvOrderStas;
-    private Button mBtnStart, mBtnStop;
-    private SimpleDraweeView mDraweeView;
-    private TextView mTvJiaZai;
-    private LinearLayout mLinearLayout;
+        try {
 
-    public OrderViewHolder(View itemView, int type) {
-        super(itemView);
-        if (type == 0) {
-            mLinearLayout = (LinearLayout) itemView.findViewById(R.id.itme_order_lltop);
-            mTvName = (TextView) itemView.findViewById(R.id.itme_order_tvorder_name);
-            mTvOrderSn = (TextView) itemView.findViewById(R.id.itme_order_tvorder_sn);
-            mTvOrderTime = (TextView) itemView.findViewById(R.id.itme_order_tvorder_time);
-            mTvOrderContent = (TextView) itemView.findViewById(R.id.itme_order_tvorder_content);
-            mTvOrderStas = (TextView) itemView.findViewById(R.id.itme_order_tvorder_stas);
-            mBtnStart = (Button) itemView.findViewById(R.id.itme_order_btnorder_start);
-            mBtnStop = (Button) itemView.findViewById(R.id.itme_order_btnorder_stop);
-            mDraweeView = (SimpleDraweeView) itemView.findViewById(R.id.itme_order_sv_image);
-        } else if (type == (Integer.MAX_VALUE - 1)) {
-            mTvJiaZai = (TextView) itemView.findViewById(R.id.itme_order_tvjiazai);
-        }
-    }
 
-    public void setData(Order data, final Context context) {
-        if (data.getType() == 0) {
-            try {
-                mTvOrderSn.setText("订单编号：00000000");
-                mTvName.setText("林老板");
-                mTvOrderTime.setText("2017/0/0\t00:00");
-                mTvOrderContent.setText("费用：300\n工种：工种\n工作地址：王府井大街，北京饭店");
-                mTvOrderStas.setText("未服务");
-                mDraweeView.setImageURI(Uri.parse("http://ww3.sinaimg.cn/mw600/9e3e41d9jw1dt87pn9kk9j.jpg"));
-                mBtnStart.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        To.oo("开始");
-                    }
-                });
-                mBtnStop.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        To.oo("结束");
-                    }
-                });
-                mLinearLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        context.startActivity(new Intent(context,OrderInfoActivity.class));
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-                LogUtils.e(e.getMessage());
+            holder.setText(R.id.tvitme_fadan, "发单");
+            holder.setText(R.id.itme_order_tvorder_sn, "订单编号：" + item.getOrder_sn());
+            holder.setText(R.id.itme_order_tvorder_name, "" + item.getUser_name());//接单人姓名
+
+//            List<String> word_type = item.getWord_type();
+//            if (word_type != null) {
+//                StringBuffer buffer = new StringBuffer();
+//                for (int i = 0; i < word_type.size(); i++) {
+//                    buffer.append(word_type.get(i));
+//                }
+//            }
+            String info = "费用：" + item.getMoney() +
+                    "\n工种：" + (item.getWord_type() == null ? "?" : item.getWord_type().toString()) +
+                    "\n工作地址：" + item.getAddress();
+            holder.setText(R.id.itme_order_tvorder_content, info);//详情
+            String stats = "未开始";//0 未开始 1 进行中 2 已完成 3 取消订单
+            if (item.getStatus() != null) {
+
+                switch (item.getStatus()) {
+                    case "0":
+                        stats = "未开始";
+                        break;
+                    case "1":
+                        stats = "进行中";
+                        break;
+                    case "2":
+                        stats = "已完成";
+                        break;
+                    case "3":
+                        stats = "已取消订单";
+                        break;
+                }
             }
+            holder.setText(R.id.itme_order_tvorder_stas, stats);//进度状态
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) holder.getView(R.id.itme_order_sv_image);
+            simpleDraweeView.setImageURI(Uri.parse(item.getHead_pic() + ""));
+            if (item.getTime() != null) {
+                long tissm = Long.parseLong(item.getTime()) * 1000L;
+                String time = DateUtils.formatDateTime(getContext(), tissm, DateUtils.FORMAT_SHOW_DATE);
+                holder.setText(R.id.itme_order_tvorder_time, "" + time);//抢单时间
+            }
+            holder.getView(R.id.itme_order_lltop).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {//点击进入详情页
+                    OrderInfoActivity.startOrderInfoActivity(getContext(), item);
+                }
+            });
+            Button mBtnStart = (Button) holder.getView(R.id.itme_order_btnorder_start);
+            mBtnStart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mCallback != null) {
+                        mCallback.onClickStart(item, position);
+                    }
+                }
+            });
+            Button mBtnStop = (Button) holder.getView(R.id.itme_order_btnorder_stop);
+            mBtnStop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mCallback != null) {
+                        mCallback.onClickCanle(item, position);
+                    }
+                }
+            });
 
-        } else if (data.getType() == Integer.MAX_VALUE - 1) {
-            mTvJiaZai.setText(data.getName());
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
-
-
 }

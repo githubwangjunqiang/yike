@@ -18,19 +18,25 @@ public class ActivityCollector {
     public static List<Activity> activities = new ArrayList<Activity>();
 
     public static void addActivity(Activity activity) {
+        LogUtils.d("添加一个活动界面=" + activity.getLocalClassName());
         activities.add(activity);
     }
 
     public static void removeActivity(Activity activity) {
-        activities.remove(activity);
+        if (activities.contains(activity)) {
+            LogUtils.d("删除一个活动界面=" + activity.getLocalClassName());
+            activities.remove(activity);
+        }
     }
 
     public static void finishAll() {
         for (Activity activity : activities) {
             if (activity != null && !activity.isFinishing()) {
+                LogUtils.d("finishing掉一个活动=" + activity.getLocalClassName());
                 activity.finish();
             }
         }
+        activities.clear();
     }
 
     public static Activity getTopActivity() {
@@ -61,7 +67,7 @@ public class ActivityCollector {
             } catch (Exception e) {
                 Toast.makeText(getTopActivity(), "只有MIUI才可以设置哦", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             Intent intent = new Intent(Settings.ACTION_SETTINGS);//系统设置界面
             getTopActivity().startActivity(intent);
         }

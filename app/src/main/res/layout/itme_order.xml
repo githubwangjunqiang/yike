@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:fresco="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/itme_order_lltop"
-              android:orientation="vertical">
+<com.yunyou.yike.ui_view.DelayedClickLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itme_order_lltop"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/itme_order_tvorder_sn"
@@ -53,6 +54,7 @@
             tools:text="姓名"/>
 
         <TextView
+            android:id="@+id/tvitme_fadan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
@@ -113,20 +115,20 @@
             android:textSize="25px"
             />
 
-        <Button
+        <com.yunyou.yike.ui_view.DelayedClickButton
             android:id="@+id/itme_order_btnorder_start"
-            android:layout_width="100px"
-            android:layout_height="45px"
+            android:layout_width="150px"
+            android:layout_height="50px"
             android:background="@drawable/yuan_order_itme_btn"
             android:gravity="center"
             android:text="@string/kaishi"
             android:textColor="@color/white"
             android:textSize="25px"/>
 
-        <Button
+        <com.yunyou.yike.ui_view.DelayedClickButton
             android:id="@+id/itme_order_btnorder_stop"
-            android:layout_width="100px"
-            android:layout_height="45px"
+            android:layout_width="150px"
+            android:layout_height="50px"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:background="@drawable/yuan_order_itme_btn_2"
@@ -135,4 +137,4 @@
             android:textColor="@color/app_color"
             android:textSize="25px"/>
     </LinearLayout>
-</LinearLayout>
+</com.yunyou.yike.ui_view.DelayedClickLinearLayout>

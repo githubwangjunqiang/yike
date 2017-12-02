@@ -1,22 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".fragment.order.fragment.AllOrderFragment">
+<com.fingdo.statelayout.StateLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/orderall_starlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.order.fragment.AllOrderFragment">
 
-    <com.baoyz.widget.PullRefreshLayout
-        android:id="@+id/all_order_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:refreshType="material"
-        >
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/swlayout"-->
+        <!--&gt;-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/all_order_recyleview"
+        <com.yan.pullrefreshlayout.PullRefreshLayout
+            android:id="@+id/all_order_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:refreshType="material"
+            >
 
-    </com.baoyz.widget.PullRefreshLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/all_order_recyleview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-</FrameLayout>
+        </com.yan.pullrefreshlayout.PullRefreshLayout>
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+</com.fingdo.statelayout.StateLayout>

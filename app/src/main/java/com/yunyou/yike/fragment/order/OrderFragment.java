@@ -66,42 +66,13 @@ public class OrderFragment extends BaseMainFragment {
     private List<Fragment> mFragments;
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-//        getChildFragmentManager().putFragment(outState,"mAllOrderFragment",mAllOrderFragment);
-//        getChildFragmentManager().putFragment(outState,"mUnfinishedOrderFragment",mUnfinishedOrderFragment);
-//        getChildFragmentManager().putFragment(outState,"mFinishedOrderFragment",mFinishedOrderFragment);
-//        getChildFragmentManager().putFragment(outState,"mCancelOrderFragment",mCancelOrderFragment);
-    }
-
-    @Override
     protected void initView(View viewLayout, Bundle savedInstanceState) {
         mTabLayout = (TabLayout) viewLayout.findViewById(R.id.order_tablayout);
         mViewPager = (ViewPager) viewLayout.findViewById(R.id.order_viewpager);
-//        if (savedInstanceState != null) {
-//            FragmentManager manager = getChildFragmentManager();
-//            mAllOrderFragment = (AllOrderFragment) manager.getFragment(savedInstanceState,
-//                    "mAllOrderFragment");
-//            manager.beginTransaction().add(mAllOrderFragment, "mAllOrderFragment").commit();
-//            mUnfinishedOrderFragment = (UnfinishedOrderFragment) manager.getFragment(savedInstanceState,
-//                    "mUnfinishedOrderFragment");
-//            manager.beginTransaction().add(mUnfinishedOrderFragment, "mUnfinishedOrderFragment").commit();
-//            mFinishedOrderFragment = (FinishedOrderFragment) manager.getFragment(savedInstanceState,
-//                    "mFinishedOrderFragment");
-//            manager.beginTransaction().add(mFinishedOrderFragment, "mFinishedOrderFragment").commit();
-//            mCancelOrderFragment = (CancelOrderFragment) manager.getFragment(savedInstanceState,
-//                    "mCancelOrderFragment");
-//            manager.beginTransaction().add(mCancelOrderFragment, "mCancelOrderFragment").commit();
-//        } else {
-//            mAllOrderFragment = AllOrderFragment.newInstance();
-//            mUnfinishedOrderFragment = UnfinishedOrderFragment.newInstance();
-//            mFinishedOrderFragment = FinishedOrderFragment.newInstance();
-//            mCancelOrderFragment = CancelOrderFragment.newInstance();
-//        }
-        mAllOrderFragment = AllOrderFragment.newInstance();
-        mUnfinishedOrderFragment = UnfinishedOrderFragment.newInstance();
-        mFinishedOrderFragment = FinishedOrderFragment.newInstance();
-        mCancelOrderFragment = CancelOrderFragment.newInstance();
+        mAllOrderFragment = AllOrderFragment.newInstance(false);
+        mUnfinishedOrderFragment = UnfinishedOrderFragment.newInstance(false);
+        mFinishedOrderFragment = FinishedOrderFragment.newInstance(false);
+        mCancelOrderFragment = CancelOrderFragment.newInstance(false);
         mFragments = new ArrayList<>();
         mFragments.add(mAllOrderFragment);
         mFragments.add(mUnfinishedOrderFragment);

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/itme_myapp_tvtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20px"
+        android:textColor="@color/text_color"
+        android:textSize="28px"
+        tools:text="标题：标题"/>
+
+    <TextView
+        android:id="@+id/itme_myapp_tvtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="20px"
+        android:textColor="@color/text_color"
+        android:textSize="28px"
+        tools:text="发布时间：2007:00:00"
+        />
+
+    <TextView
+        android:id="@+id/itme_myapp_tvcontent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="6px"
+        android:padding="20px"
+        android:textColor="@color/text_color_alp"
+        android:textSize="25px"
+        tools:text="妮妮妮妮您你你你你你你你i你您i你你你你你ini你你你ini你你你inini你你ini你你你你inini你你你你inini你你你ininin"/>
+
+</LinearLayout>

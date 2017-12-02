@@ -106,7 +106,7 @@ public class XListViewHeader extends LinearLayout {
                 if (mState == STATE_REFRESHING) {
                     mArrowImageView.clearAnimation();
                 }
-                mHintTextView.setText(R.string.xlistview_header_hint_normal);
+                mHintTextView.setText(R.string.xlistview_header_hint_normal);//下拉刷新
 
                 break;
             case STATE_READY:

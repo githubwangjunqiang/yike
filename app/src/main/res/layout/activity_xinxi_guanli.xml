@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,250 +11,314 @@
 
     <include layout="@layout/top_title"/>
 
-    <LinearLayout
+    <com.yunyou.yike.ui_view.MyStateLayout
+        android:id="@+id/xinxi_statelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9px"
-        android:background="@color/white"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        app:emptyText="@string/meiyourenheshuju"
+        app:errorText="@string/jiazaishibai"
+        app:loadingText="@string/jiazaizhong"
+        app:loginText="@string/chongxindenglu"
+        app:noNetworkText="@string/meiyouwangluo"
+        app:timeOutText="@string/chaoshil"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="37px"
-            android:paddingLeft="20px"
-            android:paddingTop="37px"
-            android:text="@string/nichen"
-            android:textColor="@color/text_color_alp"
-            android:textSize="28px"/>
 
-        <TextView
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@+id/xinxi_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingBottom="37px"
-            android:paddingRight="20px"
-            android:paddingTop="37px"
-            android:textColor="@color/text_color"
-            android:textSize="28px"
-            tools:text="@string/nichen"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            >
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2px"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingBottom="37px"
-            android:paddingLeft="20px"
-            android:paddingTop="37px"
-            android:text="@string/nichen"
-            android:textColor="@color/text_color_alp"
-            android:textSize="28px"/>
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="61px"
-            android:layout_height="61px"
-            android:layout_marginRight="20px"
-            fresco:actualImageScaleType="focusCrop"
-            fresco:failureImage="@mipmap/a1"
-            fresco:failureImageScaleType="centerInside"
-            fresco:progressBarAutoRotateInterval="1000"
-            fresco:progressBarImage="@mipmap/pressagebar"
-            fresco:progressBarImageScaleType="centerInside"
-            fresco:roundAsCircle="true"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9px"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="37px"
-            android:paddingLeft="20px"
-            android:paddingTop="37px"
-            android:text="@string/xingming"
-            android:textColor="@color/text_color_alp"
-            android:textSize="28px"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingBottom="37px"
-            android:paddingRight="20px"
-            android:paddingTop="37px"
-            android:textColor="@color/text_color"
-            android:textSize="28px"
-            tools:text="@string/nichen"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9px"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="37px"
-            android:paddingLeft="20px"
-            android:paddingTop="37px"
-            android:text="@string/dianhua"
-            android:textColor="@color/text_color_alp"
-            android:textSize="28px"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingBottom="37px"
-            android:paddingRight="20px"
-            android:paddingTop="37px"
-            android:textColor="@color/text_color"
-            android:textSize="28px"
-            tools:text="@string/nichen"/>
-    </LinearLayout>
+            <com.yunyou.yike.ui_view.ReboundScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9px"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="37px"
-            android:paddingLeft="20px"
-            android:paddingTop="37px"
-            android:text="@string/shenfenzhenghao"
-            android:textColor="@color/text_color_alp"
-            android:textSize="28px"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingBottom="37px"
-            android:paddingRight="20px"
-            android:paddingTop="37px"
-            android:textColor="@color/text_color"
-            android:textSize="28px"
-            tools:text="12345467894561234656"/>
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9px"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9px"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="37px"
-            android:paddingLeft="20px"
-            android:paddingTop="37px"
-            android:text="@string/gongzhong"
-            android:textColor="@color/text_color_alp"
-            android:textSize="28px"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="37px"
+                            android:paddingLeft="20px"
+                            android:paddingTop="37px"
+                            android:text="@string/nichen"
+                            android:textColor="@color/text_color_alp"
+                            android:textSize="28px"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingBottom="37px"
-            android:paddingRight="20px"
-            android:paddingTop="37px"
-            android:textColor="@color/text_color"
-            android:textSize="28px"
-            tools:text="工种"/>
-    </LinearLayout>
+                        <EditText
+                            android:id="@+id/edit_nickname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="@string/nichen"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="10"
+                            android:paddingBottom="37px"
+                            android:paddingRight="20px"
+                            android:paddingTop="37px"
+                            android:textColor="@color/text_color"
+                            android:textSize="28px"/>
+                    </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2px"
-        android:background="@color/white"
-        android:paddingBottom="24px"
-        android:paddingLeft="20px"
-        android:paddingTop="25px"
-        android:text="@string/techangaihao"
-        android:textColor="@color/text_color_alp"
-        android:textSize="28px"/>
 
-    <com.yunyou.yike.ui_view.MyGridView
-        android:id="@+id/xinxi_gvaihao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:horizontalSpacing="28px"
-        android:numColumns="5"
-        android:paddingBottom="28px"
-        android:paddingLeft="20px"
-        android:paddingRight="20px"
-        android:verticalSpacing="10px"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2px"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9px"
-        android:background="@color/white"
-        android:paddingBottom="30px"
-        android:paddingLeft="20px"
-        android:paddingTop="30px"
-        android:text="@string/benrenshouchishenzheng"
-        android:textColor="@color/text_color_alp"
-        android:textSize="28px"
-        />
+                        <com.yunyou.yike.ui_view.DelayedClickTextView
+                            android:id="@+id/edit_image_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:gravity="left"
+                            android:paddingBottom="37px"
+                            android:paddingLeft="20px"
+                            android:paddingTop="37px"
+                            android:text="@string/touxiang"
+                            android:textColor="@color/text_color_alp"
+                            android:textSize="28px"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingBottom="20px"
-        android:paddingLeft="20px"
-        >
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/edit_image"
+                            android:layout_width="70px"
+                            android:layout_height="70px"
+                            android:layout_marginLeft="30px"
+                            android:layout_marginRight="20px"
+                            fresco:actualImageScaleType="focusCrop"
+                            fresco:failureImage="@mipmap/a1"
+                            fresco:failureImageScaleType="centerInside"
+                            fresco:progressBarAutoRotateInterval="1000"
+                            fresco:progressBarImage="@mipmap/pressagebar"
+                            fresco:progressBarImageScaleType="centerInside"
+                            fresco:roundAsCircle="true"
+                            />
+                    </LinearLayout>
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="150px"
-            android:layout_height="150px"
-            fresco:actualImageScaleType="focusCrop"
-            fresco:failureImage="@mipmap/a1"
-            fresco:failureImageScaleType="centerInside"
-            fresco:progressBarAutoRotateInterval="1000"
-            fresco:progressBarImage="@mipmap/pressagebar"
-            fresco:progressBarImageScaleType="centerInside"
-            fresco:roundAsCircle="false"
-            />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9px"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        >
 
-    </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="37px"
+                            android:paddingLeft="20px"
+                            android:paddingTop="37px"
+                            android:text="@string/xingming"
+                            android:textColor="@color/text_color_alp"
+                            android:textSize="28px"/>
 
+                        <EditText
+                            android:id="@+id/edit_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="@string/shuruxingming"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="10"
+                            android:paddingBottom="37px"
+                            android:paddingRight="20px"
+                            android:paddingTop="37px"
+                            android:textColor="@color/text_color"
+                            android:textSize="28px"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4px"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="37px"
+                            android:paddingLeft="20px"
+                            android:paddingTop="37px"
+                            android:text="@string/dianhua"
+                            android:textColor="@color/text_color_alp"
+                            android:textSize="28px"/>
+
+                        <EditText
+                            android:id="@+id/edit_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="@string/shurudianhua"
+                            android:imeOptions="actionNext"
+                            android:inputType="phone"
+                            android:maxLength="20"
+                            android:paddingBottom="37px"
+                            android:paddingRight="20px"
+                            android:paddingTop="37px"
+                            android:textColor="@color/text_color"
+                            android:textSize="28px"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4px"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="37px"
+                            android:paddingLeft="20px"
+                            android:paddingTop="37px"
+                            android:text="@string/shenfenzhenghao"
+                            android:textColor="@color/text_color_alp"
+                            android:textSize="28px"/>
+
+                        <EditText
+                            android:id="@+id/edit_shenfennumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="right"
+                            android:hint="输入身份证号码"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="20"
+                            android:paddingBottom="37px"
+                            android:paddingRight="20px"
+                            android:paddingTop="37px"
+                            android:textColor="@color/text_color"
+                            android:textSize="28px"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4px"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="37px"
+                            android:paddingLeft="20px"
+                            android:paddingTop="37px"
+                            android:text="@string/gongzhong"
+                            android:textColor="@color/text_color_alp"
+                            android:textSize="28px"/>
+
+                        <com.yunyou.yike.ui_view.DelayedClickTextView
+                            android:id="@+id/delayedClickButton_gongzhong"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:gravity="right"
+                            android:paddingBottom="37px"
+                            android:paddingRight="20px"
+                            android:paddingTop="37px"
+                            android:textColor="@color/text_color"
+                            android:textSize="28px"
+                            tools:text="工种"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2px"
+                        android:background="@color/white"
+                        android:paddingBottom="24px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="25px"
+                        android:text="@string/techangaihao"
+                        android:textColor="@color/text_color_alp"
+                        android:textSize="28px"/>
+
+                    <com.zhy.view.flowlayout.TagFlowLayout
+                        android:id="@+id/xinxi_gvaihao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingBottom="28px"
+                        android:paddingLeft="20px"
+                        android:paddingRight="20px"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9px"
+                        android:background="@color/white"
+                        android:paddingBottom="30px"
+                        android:paddingLeft="20px"
+                        android:paddingTop="30px"
+                        android:text="@string/benrenshouchishenzheng"
+                        android:textColor="@color/text_color_alp"
+                        android:textSize="28px"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:paddingBottom="20px"
+                        android:paddingLeft="20px"
+                        >
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/simdview_shenfenzheng"
+                            android:layout_width="150px"
+                            android:layout_height="150px"
+                            android:src="@mipmap/a1"
+                            fresco:actualImageScaleType="focusCrop"
+                            fresco:failureImage="@mipmap/a1"
+                            fresco:failureImageScaleType="centerInside"
+                            fresco:progressBarAutoRotateInterval="1000"
+                            fresco:progressBarImage="@mipmap/pressagebar"
+                            fresco:progressBarImageScaleType="centerInside"
+                            fresco:roundAsCircle="false"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.yunyou.yike.ui_view.ReboundScrollView>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+    </com.yunyou.yike.ui_view.MyStateLayout>
 </LinearLayout>

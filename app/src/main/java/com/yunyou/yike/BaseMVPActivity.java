@@ -8,13 +8,12 @@ import com.yunyou.yike.presenter.BasePresenter;
 
 public abstract class BaseMVPActivity<V, A extends BasePresenter<V>> extends BaseActivity {
 
-    protected A mPresenter;
+    private A mPresenter;
 
     @Override
     protected void setPresenter() {
         super.setPresenter();
         mPresenter = mPresenterCreate();
-
 
 
         if (mPresenter == null) {

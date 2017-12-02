@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
-import com.baoyz.widget.PullRefreshLayout;
 import com.yunyou.yike.BaseMVPFragment;
 import com.yunyou.yike.ExListViewAdapter.LoadMoreExListviewAdapter;
 import com.yunyou.yike.Interface_view.IView;
@@ -34,7 +33,7 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
 
     @Override
     protected int getPullRefreshLayoutID() {
-        return 0;
+        return R.id.feel_layout;
     }
 
     @Override
@@ -43,7 +42,6 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
     }
 
 
-    private PullRefreshLayout mRefreshLayout;
     private FeelAdapter mFeelAdapter;
     private ScrollExpandableListView mExpandableListView;
 
@@ -51,18 +49,11 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
     @Override
     protected void initView(View viewLayout, Bundle savedInstanceState) {
         mExpandableListView = (ScrollExpandableListView) viewLayout.findViewById(R.id.feel_exlistview);
-        mRefreshLayout = (PullRefreshLayout) viewLayout.findViewById(R.id.feel_layout);
     }
 
 
     @Override
     protected void setlistener() {
-        mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPresenter.getFeelData(false);
-            }
-        });
         mExpandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
@@ -78,14 +69,8 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
 
     @Override
     public void startRefresh(boolean isShowLoadingView) {
-        mPresenter.getFeelData(true);
     }
 
-    @Override
-    public void showContentView(Object object) {
-        super.showContentView(object);
-        mRefreshLayout.setRefreshing(false);
-    }
 
 
 
@@ -97,7 +82,6 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
             mFeelAdapter.setOnLoadListener(new LoadMoreExListviewAdapter.OnLoadListener() {
                 @Override
                 public void onLoadMore() {
-                    mPresenter.loodMoreFeelData();
                 }
             });
             mExpandableListView.setAdapter(mFeelAdapter);
@@ -107,7 +91,6 @@ public class FeelFragment extends BaseMVPFragment<IView.IFeelFragmentView, FeelF
         for (int i = 0; i < feelList.size(); i++) {
             mExpandableListView.expandGroup(i);
         }
-        mRefreshLayout.setRefreshing(false);
     }
 
     @Override

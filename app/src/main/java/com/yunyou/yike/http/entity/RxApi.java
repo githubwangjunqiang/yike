@@ -13,6 +13,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
 
@@ -33,7 +34,8 @@ public interface RxApi {
 //    Call<ResponseBody> ulogin(@QueryMap Map<String,String> params);
     @FormUrlEncoded
     @POST("ulogin")
-    Call<ResponseBody> ulogin(@Url String s, @Header("token") String token, @Field("mobile") String mobile, @Field("password") String password
+    Call<ResponseBody> ulogin(@Url String s, @Header("token") String token, @Field("mobile")
+            String mobile, @Field("password") String password
             , @Field("device_token") String device_token);
 
 
@@ -177,4 +179,159 @@ public interface RxApi {
     @FormUrlEncoded
     @POST("index.php/api/user/order_list")
     Observable<JsonObject> order_list(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 接口名称    22
+     * 我-- 获取用户基本信息
+     * http://120.27.118.19:902/index.php/api/user/get_user_info
+     * token      token串
+     * time       请求接口时间
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/get_user_info")
+    Observable<JsonObject> get_user_info(@FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称    23     我-- 我的钱包
+     * http://120.27.118.19:902/index.php/api/user/my_money
+     * token                  token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/my_money")
+    Observable<JsonObject> my_money(@FieldMap Map<String, String> map);
+
+    @GET()
+    Observable<JsonObject> get(@Url String url, @QueryMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST()
+    Observable<JsonObject> post(@Url String url, @FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称      39         找工作-- 抢单
+     * http://120.27.118.19:902/index.php/api/user/confirm_order
+     * id               订单id
+     * token          token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/confirm_order")
+    Observable<JsonObject> confirm_order(@FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称       31     我-- 获取文章信息
+     * url            http://120.27.118.19:902/index.php/api/user/get_news
+     * type        1为最新公告  2服务协议   3平台奖惩   4学习园地   5评分说明
+     */
+    @GET("index.php/api/user/get_news")
+    Observable<JsonObject> get_news(@QueryMap Map<String, String> map);
+
+    /**
+     * 接口名称     32  我-- 联系客服
+     * url         http://120.27.118.19:902/index.php/api/user/contact_us
+     */
+    @GET("index.php/api/user/contact_us")
+    Observable<JsonObject> contact_us();
+
+    /**
+     * 接口名称     33   我--反馈
+     * url          http://120.27.118.19:902/index.php/api/user/feedback
+     * token  token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/feedback")
+    Observable<JsonObject> feedback(@FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称  27    我-- 获取用户银行卡列表
+     * url          http://120.27.118.19:902/index.php/api/user/bank_list
+     * token  token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/bank_list")
+    Observable<JsonObject> bank_list(@FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称  24            我-- 绑定银行卡
+     * url         http://120.27.118.19:902/index.php/api/user/bind_bank
+     * token  token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/bind_bank")
+    Observable<JsonObject> bind_bank(@FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称    25              我-- 获取银行卡类型
+     * url         http://120.27.118.19:902/index.php/api/user/get_bink_type
+     * token  token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/get_bink_type")
+    Observable<JsonObject> get_bink_type(@FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称     26            我-- 设置默认卡号
+     * url         http://120.27.118.19:902/index.php/api/user/set_default_bank
+     * token  token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/set_default_bank")
+    Observable<JsonObject> set_default_bank(@FieldMap Map<String, String> map);
+
+    /**
+     * 接口名称     28        我-- 提现申请
+     * url         http://120.27.118.19:902/index.php/api/user/withdraw_cash
+     * money            提现金额
+     * bank_id          绑定银行id
+     * time                请求接口时间
+     * token      token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/withdraw_cash")
+    Observable<JsonObject> withdraw_cash(@FieldMap Map<String, String> map);
+    /**
+     * 接口名称      34     发单管理
+     * url         http://120.27.118.19:902/index.php/api/user/send_order_manage
+     * state       全部订单传0  //未完成订单传1  //已完成传2   //取消订单传3
+     * token      token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/send_order_manage")
+    Observable<JsonObject> send_order_manage(@FieldMap Map<String, String> map);
+    /**
+     * 接口名称 35         待服务 --点击开始
+     * url        http://120.27.118.19:902/index.php/api/user/work_start
+     * id              订单id
+     * token      token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/work_start")
+    Observable<JsonObject> work_start(@FieldMap Map<String, String> map);
+    /**
+     * 接口名称   36            进行中 -- 点击取消和终止
+     * url         http://120.27.118.19:902/index.php/api/user/work_cancel
+     * id              订单id
+     * token      token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/work_cancel")
+    Observable<JsonObject> work_cancel(@FieldMap Map<String, String> map);
+    /**
+     * 接口名称        37       待完成--点击完成
+     * url        http://120.27.118.19:902/index.php/api/user/finish_order
+     * id              订单id
+     * token      token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/finish_order")
+    Observable<JsonObject> finish_order(@FieldMap Map<String, String> map);
+    /**
+     * 接口名称         38            接单管理
+     * url          http://120.27.118.19:902/index.php/api/user/accept_order_manage
+     * state     //全部订单传0  //未完成订单传1  //已完成传2   //取消订单传3
+     * token      token串
+     */
+    @FormUrlEncoded
+    @POST("index.php/api/user/accept_order_manage")
+    Observable<JsonObject> accept_order_manage(@FieldMap Map<String, String> map);
 }

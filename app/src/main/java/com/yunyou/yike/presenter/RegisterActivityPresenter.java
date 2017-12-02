@@ -28,6 +28,11 @@ public class RegisterActivityPresenter extends BasePresenter<IView.IRegisterActi
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
                     @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
+                    @Override
                     protected void apiError(int code, String errorMsg) {
                         getView().showContentView(null);
                         getView().sendCodeError(errorMsg);
@@ -59,6 +64,11 @@ public class RegisterActivityPresenter extends BasePresenter<IView.IRegisterActi
         mApi.register(mobile, password, password2, code, sort[0], sort[1])
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
+                    @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
                     @Override
                     protected void apiError(int code, String errorMsg) {
                         if (getView() != null) {

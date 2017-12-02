@@ -31,6 +31,11 @@ public class DecorationWorkerPresenter extends BasePresenter<IView.IDecorationWo
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
                     @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
+                    @Override
                     protected void apiError(int code, String errorMsg) {
                         getView().showErrorView(errorMsg);
                     }
@@ -50,6 +55,11 @@ public class DecorationWorkerPresenter extends BasePresenter<IView.IDecorationWo
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
                     @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
+                    @Override
                     protected void apiError(int code, String errorMsg) {
                         getView().showErrorView(errorMsg);
                     }
@@ -67,6 +77,11 @@ public class DecorationWorkerPresenter extends BasePresenter<IView.IDecorationWo
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
                     @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
+                    @Override
                     protected void apiError(int code, String errorMsg) {
                         getView().showErrorView(errorMsg);
                     }
@@ -80,7 +95,7 @@ public class DecorationWorkerPresenter extends BasePresenter<IView.IDecorationWo
 
     @Override
     public void releaseOrders(Map<String, String> map) {
-        Map<String, String> sort = CallPostUtils.newBuilder().addMap(map).build().getMap();
+        Map<String, String> sort = CallPostUtils.newBuilder().addMap(map).getMap();
         if (sort == null) {
             getView().showErrorView("排序出错亲，请重试");
             return;
@@ -88,6 +103,11 @@ public class DecorationWorkerPresenter extends BasePresenter<IView.IDecorationWo
         mApi.release_order(sort)
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
+                    @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
                     @Override
                     protected void apiError(int code, String errorMsg) {
                         getView().showErrorView(errorMsg);
@@ -102,7 +122,7 @@ public class DecorationWorkerPresenter extends BasePresenter<IView.IDecorationWo
 
     @Override
     public void getCityId(Map<String, String> map) {
-        Map<String, String> sort = CallPostUtils.newBuilder().addMap(map).build().getMap();
+        Map<String, String> sort = CallPostUtils.newBuilder().addMap(map).getMap();
         if (sort == null) {
             getView().showErrorView("排序出错亲，请重试");
             return;
@@ -111,13 +131,18 @@ public class DecorationWorkerPresenter extends BasePresenter<IView.IDecorationWo
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
                     @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
+                    @Override
                     protected void apiError(int code, String errorMsg) {
                         getView().showErrorView(errorMsg);
                     }
 
                     @Override
                     protected void onSuccess(String string) {
-                        getView().getCityIdSuccess(mGson.fromJson(string, CityId.class));
+                        getView().showCityIdSuccess(mGson.fromJson(string, CityId.class));
                     }
                 });
     }

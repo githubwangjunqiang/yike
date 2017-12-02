@@ -50,6 +50,15 @@ public class WorkerType {
 
         private String id;
         private String name;
+        private boolean checked;
+
+        public boolean isChecked() {
+            return checked;
+        }
+
+        public void setChecked(boolean checked) {
+            this.checked = checked;
+        }
 
         public DataBean() {
         }

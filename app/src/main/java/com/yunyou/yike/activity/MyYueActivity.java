@@ -66,6 +66,7 @@ public class MyYueActivity extends BaseActivity {
      * @param view
      */
     public void onClickBank(View view) {
+        startActivity(new Intent(this, BankActivity.class));
     }
 
     @Override

@@ -20,7 +20,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
-import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 import com.yunyou.yike.R;
 
 
@@ -40,7 +40,7 @@ public class Text_Size {
      */
     public static void setSize(TextView tv, String text, int one, int tow, String colors, int sizea, int three, int four, String colors1, int sizea1) {
         SpannableString sp = new SpannableString(text);
-        DisplayMetrics ff = App.getContext().getResources().getDisplayMetrics();
+        DisplayMetrics ff = AppManager.getInstance().getContext().getResources().getDisplayMetrics();
         int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizea, ff);
         sp.setSpan(new AbsoluteSizeSpan(size), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(Color.parseColor(colors)), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -57,17 +57,17 @@ public class Text_Size {
 
         SpannableStringBuilder builder = new SpannableStringBuilder(str);
 
-        AbsoluteSizeSpan abso = new AbsoluteSizeSpan((int) App.getContext().getResources().
+        AbsoluteSizeSpan abso = new AbsoluteSizeSpan((int) AppManager.getInstance().getContext().getResources().
                 getDimension(sizeId));
         builder.setSpan(abso, fist, tow, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-        ForegroundColorSpan span2 = new ForegroundColorSpan(ContextCompat.getColor(App.getContext(),
+        ForegroundColorSpan span2 = new ForegroundColorSpan(ContextCompat.getColor(AppManager.getInstance().getContext(),
                 colorid));
         builder.setSpan(span2, fist, tow, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
-        AbsoluteSizeSpan abso2 = new AbsoluteSizeSpan((int) App.getContext().getResources().
+        AbsoluteSizeSpan abso2 = new AbsoluteSizeSpan((int) AppManager.getInstance().getContext().getResources().
                 getDimension(sizeId2));
         builder.setSpan(abso2, three, four, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-        ForegroundColorSpan span1 = new ForegroundColorSpan(ContextCompat.getColor(App.getContext(),
+        ForegroundColorSpan span1 = new ForegroundColorSpan(ContextCompat.getColor(AppManager.getInstance().getContext(),
                 colorIdtow));
         builder.setSpan(span1, three, four, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
         StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
@@ -96,7 +96,7 @@ public class Text_Size {
 
 
         SpannableString sp = new SpannableString(text);
-        DisplayMetrics ff = App.getContext().getResources().getDisplayMetrics();
+        DisplayMetrics ff = AppManager.getInstance().getContext().getResources().getDisplayMetrics();
         int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizea, ff);
         sp.setSpan(new AbsoluteSizeSpan(size), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(Color.parseColor(colors)), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -117,22 +117,22 @@ public class Text_Size {
 
 
         SpannableString sp = new SpannableString(text);
-        DisplayMetrics ff = App.getContext().getResources().getDisplayMetrics();
+        DisplayMetrics ff = AppManager.getInstance().getContext().getResources().getDisplayMetrics();
         int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizea, ff);
         sp.setSpan(new AbsoluteSizeSpan(size), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(App.getContext(), colorID)), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AppManager.getInstance().getContext(), colorID)), one, tow, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         int size2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizea1, ff);
         sp.setSpan(new AbsoluteSizeSpan(size2), three, four, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(App.getContext(), colorID1)), three, four, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AppManager.getInstance().getContext(), colorID1)), three, four, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         int size3 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizes2, ff);
         sp.setSpan(new AbsoluteSizeSpan(size3), five, sex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(App.getContext(), colorID2)), five, sex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AppManager.getInstance().getContext(), colorID2)), five, sex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         int size4 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sizes3, ff);
         sp.setSpan(new AbsoluteSizeSpan(size4), seven, eht, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(App.getContext(), colorID3)),
+        sp.setSpan(new ForegroundColorSpan(ContextCompat.getColor(AppManager.getInstance().getContext(), colorID3)),
                 seven, eht, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         tv.setText(sp);
@@ -141,12 +141,13 @@ public class Text_Size {
     /**
      * 在textview 指定位置图换成图片
      */
-    public static void setTextBitmap( TextView tv, String str, int startIndex, int endIndex, int o, int ot, int t, int tt, int h, int ht, int drawableId) {
+    public static void setTextBitmap( TextView tv, String str, int startIndex, int endIndex,
+                                      int o, int ot, int t, int tt, int h, int ht, int drawableId) {
         SpannableStringBuilder builder = new SpannableStringBuilder(str);
 
 
         if (0 != drawableId) {
-            ImageSpan imageSpan = new ImageSpan(App.getContext(), drawableId);
+            ImageSpan imageSpan = new ImageSpan(AppManager.getInstance().getContext(), drawableId);
             builder.setSpan(imageSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
         }
 
@@ -154,17 +155,18 @@ public class Text_Size {
 //        Drawable drawable = content.getResources().getDrawable(R.mipmap.vip);
 //        drawable.setBounds(0,0,drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight());
 //        ImageSpan imageSpan1 = new ImageSpan(drawable);
-        AbsoluteSizeSpan absoluteSizeSpan = new AbsoluteSizeSpan((int) App.getContext()
+        AbsoluteSizeSpan absoluteSizeSpan = new AbsoluteSizeSpan((int)
+                AppManager.getInstance().getContext()
                 .getResources().getDimension(R.dimen.text_size_12sp));
         builder.setSpan(absoluteSizeSpan, o, ot, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
         AbsoluteSizeSpan absoluteSizeSpan1 = new AbsoluteSizeSpan((int)
-                App.getContext().getResources().getDimension(R.dimen.text_size_10sp));
+                AppManager.getInstance().getContext().getResources().getDimension(R.dimen.text_size_10sp));
         builder.setSpan(absoluteSizeSpan1, t, tt, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
 
         AbsoluteSizeSpan absoluteSizeSpan2 = new AbsoluteSizeSpan((int)
-                App.getContext().getResources().getDimension(R.dimen.text_size_12sp));
+                AppManager.getInstance().getContext().getResources().getDimension(R.dimen.text_size_12sp));
         builder.setSpan(absoluteSizeSpan2, h, ht, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
 
 
@@ -174,7 +176,8 @@ public class Text_Size {
     /**
      * 在textview 指定位置图换成图片
      */
-    public static void setTextBitmap2(Context content, TextView tv, String str, int startIndex, int endIndex, int drawableId) {
+    public static void setTextBitmap2(Context content, TextView tv, String str, int startIndex,
+                                      int endIndex, int drawableId) {
         SpannableStringBuilder builder = new SpannableStringBuilder(str);
 
 
@@ -192,7 +195,9 @@ public class Text_Size {
     /**
      * 在textview 指定位置加点击监听器
      */
-    public static void setTextIndexClick(Context content, TextView tv, String str, int startIndex, int endIndex, int size, String backColors, String textColor, final OnClick click) {
+    public static void setTextIndexClick(Context content, TextView tv, String str, int startIndex,
+                                         int endIndex, int size, String backColors, String textColor,
+                                         final OnClick click) {
         SpannableStringBuilder builder = new SpannableStringBuilder(str);
 
         //指定位置的字体

@@ -5,8 +5,7 @@
               android:background="@color/background"
               android:gravity="center_vertical"
               android:orientation="horizontal"
-              android:padding="@dimen/pading_20"
-    >
+              android:padding="@dimen/pading_20">
 
 
     <EditText

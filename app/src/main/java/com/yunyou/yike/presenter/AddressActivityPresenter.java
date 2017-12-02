@@ -24,8 +24,10 @@ public class AddressActivityPresenter extends BasePresenter<IView.IAddressActivi
         mApi.get_double_addr()
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
+
                     @Override
-                    public void onStart() {
+                    protected boolean isShowLoadingDialog() {
+                        return false;
                     }
 
                     @Override
@@ -33,15 +35,12 @@ public class AddressActivityPresenter extends BasePresenter<IView.IAddressActivi
                         getView().showAddressHotDataError(errorMsg);
                     }
 
-                    @Override
-                    public void onNext(String s) {
-                        getView().showAddressHotData(mGson.fromJson(s, AddressCity.class));
-                    }
 
                     @Override
-                    protected void onSuccess(String s) {
-
+                    protected void onSuccess(String string) {
+                        getView().showAddressHotData(mGson.fromJson(string, AddressCity.class));
                     }
+
                 });
     }
 
@@ -50,9 +49,11 @@ public class AddressActivityPresenter extends BasePresenter<IView.IAddressActivi
         mApi.region_info()
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView()) {
+
                     @Override
-                    public void onStart() {
+                    protected boolean isShowLoadingDialog() {
                         getView().showLoodingView(null);
+                        return false;
                     }
 
                     @Override

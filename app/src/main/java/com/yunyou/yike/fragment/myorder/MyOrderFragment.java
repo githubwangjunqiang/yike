@@ -60,25 +60,33 @@ public class MyOrderFragment extends BaseMainFragment {
     private List<String> mStrings;
     private List<Fragment> mFragments;
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+//        getChildFragmentManager().putFragment(outState,"mAllOrderFragment",mAllOrderFragment);
+//        getChildFragmentManager().putFragment(outState,"mUnfinishedOrderFragment",mUnfinishedOrderFragment);
+//        getChildFragmentManager().putFragment(outState,"mFinishedOrderFragment",mFinishedOrderFragment);
+//        getChildFragmentManager().putFragment(outState,"mCancelOrderFragment",mCancelOrderFragment);
+    }
 
     @Override
     protected void initView(View viewLayout, Bundle savedInstanceState) {
         mTabLayout = (TabLayout) viewLayout.findViewById(R.id.order_tablayout);
         mViewPager = (ViewPager) viewLayout.findViewById(R.id.order_viewpager);
-        mAllOrderFragment = AllOrderFragment.newInstance();
-        mUnfinishedOrderFragment = UnfinishedOrderFragment.newInstance();
-        mFinishedOrderFragment = FinishedOrderFragment.newInstance();
-        mCancelOrderFragment = CancelOrderFragment.newInstance();
+        mAllOrderFragment = AllOrderFragment.newInstance(true);
+        mUnfinishedOrderFragment = UnfinishedOrderFragment.newInstance(true);
+        mFinishedOrderFragment = FinishedOrderFragment.newInstance(true);
+        mCancelOrderFragment = CancelOrderFragment.newInstance(true);
         mFragments = new ArrayList<>();
         mFragments.add(mAllOrderFragment);
         mFragments.add(mUnfinishedOrderFragment);
         mFragments.add(mFinishedOrderFragment);
         mFragments.add(mCancelOrderFragment);
         mStrings = new ArrayList<>();
-        mStrings.add("全部订单");
-        mStrings.add("未完订单");
-        mStrings.add("已完订单");
-        mStrings.add("取消订单");
+        mStrings.add(getString(R.string.quanbudingdan));
+        mStrings.add(getString(R.string.weiwandingdan));
+        mStrings.add(getString(R.string.yiwandingdan));
+        mStrings.add(getString(R.string.overdingdan));
     }
 
     @Override
@@ -101,10 +109,16 @@ public class MyOrderFragment extends BaseMainFragment {
             }
 
             @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                super.destroyItem(container, position, object);
+            }
+
+            @Override
             public CharSequence getPageTitle(int position) {
                 return mStrings.get(position);
             }
         });
+
         mTabLayout.setupWithViewPager(mViewPager);
     }
 

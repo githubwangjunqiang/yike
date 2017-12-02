@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 import com.yunyou.yike.utils.LogUtils;
 import com.yunyou.yike.utils.SpService;
 import com.yunyou.yike.utils.To;
@@ -68,7 +69,7 @@ public class RongIMLoginManager {
             return;
         }
         if (mContext.getApplicationInfo().packageName.equals(
-                App.getCurProcessName(mContext.getApplicationContext()))) {
+                AppManager.getInstance().getCurProcessName(mContext.getApplicationContext()))) {
 
             RongIM.connect(token, new RongIMClient.ConnectCallback() {
 
@@ -78,6 +79,7 @@ public class RongIMLoginManager {
                  */
                 @Override
                 public void onTokenIncorrect() {
+                    LogUtils.d("融云token过期");
                     if (listener != null) {
                         listener.onTokenIncorrect();
                     }

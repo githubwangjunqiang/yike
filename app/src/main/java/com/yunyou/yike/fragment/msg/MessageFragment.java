@@ -1,5 +1,6 @@
 package com.yunyou.yike.fragment.msg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 
 import com.yunyou.yike.BaseMainFragment;
 import com.yunyou.yike.R;
+import com.yunyou.yike.activity.SendFeelActivity;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.fragment.msg.fragment.FeelFragment;
 import com.yunyou.yike.fragment.msg.fragment.FriendsFragment;
@@ -79,7 +81,12 @@ public class MessageFragment extends BaseMainFragment {
 
     @Override
     protected void setlistener() {
-
+        mIvEditing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),SendFeelActivity.class));
+            }
+        });
     }
 
 

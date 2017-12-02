@@ -1,4 +1,4 @@
-<com.baoyz.widget.PullRefreshLayout
+<in.srain.cube.views.ptr.PtrClassicFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,6 +34,7 @@
                 android:layout_height="match_parent"
                 app:scroll_time="1000"
                 />
+
             <TextView
                 android:id="@+id/home_tvkong"
                 android:layout_width="match_parent"
@@ -46,6 +47,7 @@
 
 
             <TextView
+                android:freezesText="true"
                 android:id="@+id/home_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,6 +62,7 @@
                 android:textSize="25px"/>
 
             <LinearLayout
+                android:freezesText="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -67,6 +70,7 @@
                 android:paddingTop="35px">
 
                 <ImageView
+                    android:freezesText="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/yikezhuangshi"/>
@@ -77,6 +81,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:freezesText="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -84,6 +89,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:freezesText="true"
                 android:id="@+id/home_load_gongren"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -91,6 +97,7 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:freezesText="true"
                     android:layout_width="74px"
                     android:layout_height="74px"
                     android:layout_gravity="center_horizontal"
@@ -99,6 +106,7 @@
                     app:srcCompat="@drawable/ic_zhaogongren"/>
 
                 <TextView
+                    android:freezesText="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -110,6 +118,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:freezesText="true"
                 android:id="@+id/home_load_worker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -125,6 +134,7 @@
                     app:srcCompat="@drawable/ic_zhaogongzuoi"/>
 
                 <TextView
+                    android:freezesText="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -150,6 +160,7 @@
                     app:srcCompat="@drawable/ic_jiancaidaojia"/>
 
                 <TextView
+                    android:freezesText="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -175,6 +186,7 @@
                     app:srcCompat="@drawable/ic_gonsi"/>
 
                 <TextView
+                    android:freezesText="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -189,4 +201,4 @@
     </LinearLayout>
     <!--</com.yunyou.yike.ui_view.ReboundScrollView>-->
 
-</com.baoyz.widget.PullRefreshLayout>
+</in.srain.cube.views.ptr.PtrClassicFrameLayout>

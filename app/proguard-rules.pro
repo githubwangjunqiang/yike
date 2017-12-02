@@ -99,3 +99,12 @@
 -keep class com.yunyou.yike.RongIM.RongIMNotificationReceive {*;}
 
 #融云结束
+
+#glide 加载图片
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.AppGlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+    **[] $VALUES;
+    public *;
+}
+#glide 加载图片失败

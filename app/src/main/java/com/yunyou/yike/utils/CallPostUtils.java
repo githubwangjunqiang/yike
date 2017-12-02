@@ -1,7 +1,6 @@
 package com.yunyou.yike.utils;
 
 import android.support.annotation.NonNull;
-import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 
 import com.yunyou.yike.entity.BaseSort;
@@ -13,6 +12,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by ${王俊强} on 2017/5/27.
@@ -28,22 +28,15 @@ public class CallPostUtils {
     }
 
     public Map<String, String> getMap() {
-        if (mBuilder == null || mBuilder.mBaseSorts == null) {
+        if (mBuilder == null || mBuilder.mMaps == null) {
             return null;
         }
-        Map<String, String> map = new ArrayMap<>();
-        Collections.sort(mBuilder.mBaseSorts, new Comparator<BaseSort>() {
-            @Override
-            public int compare(BaseSort o1, BaseSort o2) {
-                return o1.getKey().compareTo(o2.getKey());
-            }
-        });
-
+        if (mBuilder.mMaps.isEmpty()) {
+            return mBuilder.mMaps;
+        }
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < mBuilder.mBaseSorts.size(); i++) {
-            BaseSort content = mBuilder.mBaseSorts.get(i);
-            stringBuilder.append(content.getContent());
-            map.put(content.getKey(), content.getContent());
+        for (Map.Entry<String, String> map : mBuilder.mMaps.entrySet()) {
+            stringBuilder.append(map.getValue());
         }
         Long time = new Date().getTime();
         stringBuilder.append(time).append(RxHttpConstant.KEY);
@@ -53,10 +46,10 @@ public class CallPostUtils {
         if (TextUtils.isEmpty(sign)) {
             return null;
         }
-        map.put(TIME, String.valueOf(time));
-        map.put(SIGN, sign);
+        mBuilder.mMaps.put(TIME, String.valueOf(time));
+        mBuilder.mMaps.put(SIGN, sign);
 
-        return map;
+        return mBuilder.mMaps;
 
     }
 
@@ -106,6 +99,7 @@ public class CallPostUtils {
      */
     public static class Builder {
         private List<BaseSort> mBaseSorts;
+        private Map<String, String> mMaps;
 
         private Builder() {
         }
@@ -140,19 +134,21 @@ public class CallPostUtils {
         /**
          * @return Builder
          */
-        public Builder addMap(@NonNull Map<String, String> map) {
+        public CallPostUtils addMap(@NonNull Map<String, String> map) {
             if (map == null) {
                 throw new NullPointerException("Parameter key cannot be null(排序签名的map是空的)");
             } else {
-                if (mBaseSorts == null) {
-                    mBaseSorts = new ArrayList<>();
+                if (mMaps == null) {
+                    mMaps = new TreeMap<>(new Comparator<String>() {
+                        @Override
+                        public int compare(String o1, String o2) {
+                            return o1.compareTo(o2);
+                        }
+                    });
                 }
-
-                for (Map.Entry<String, String> maps : map.entrySet()) {
-                    mBaseSorts.add(new BaseSort(maps.getKey(), maps.getValue()));
-                }
+                mMaps.putAll(map);
             }
-            return this;
+            return new CallPostUtils(this);
         }
 
     }

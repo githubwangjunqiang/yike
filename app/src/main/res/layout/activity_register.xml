@@ -32,7 +32,7 @@
 
     </RelativeLayout>
 
-    <com.fingdo.statelayout.StateLayout
+    <com.yunyou.yike.ui_view.MyStateLayout
         android:id="@+id/login_staslayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,184 +44,191 @@
         app:timeOutText="@string/chaoshil"
         >
 
-        <LinearLayout
+        <com.yunyou.yike.ui_view.ReboundScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="260px"
             >
 
-
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="450px"
-                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="260px"
                 >
 
-                <EditText
-                    android:id="@+id/register_etphone"
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="450px"
+                    android:orientation="horizontal"
+                    >
+
+                    <EditText
+                        android:id="@+id/register_etphone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:drawableLeft="@drawable/ic_zhanghu"
+                        android:hint="@string/qingshurushoujihao"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="20"
+                        android:paddingRight="20px"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="30px"
+                        />
+
+                    <com.yunyou.yike.ui_view.DelayedClickButton
+                        android:id="@+id/register_sendcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#66ffffff"
+                        android:minHeight="0dp"
+                        android:minWidth="118px"
+                        android:padding="10px"
+                        android:text="@string/huoquyanzhengma"
+                        android:textColor="@color/white"
+                        android:textSize="25px"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10px"
+                    android:background="@color/white"
+                    android:minWidth="450px"
+                    />
+
+                <EditText
+                    android:id="@+id/register_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35px"
                     android:background="@null"
-                    android:drawableLeft="@drawable/ic_zhanghu"
-                    android:hint="@string/qingshurushoujihao"
+                    android:drawableLeft="@drawable/ic_yanzhengma"
+                    android:hint="@string/yanzhengma"
                     android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="20"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:minWidth="450px"
                     android:paddingRight="20px"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="30px"
                     />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10px"
+                    android:background="@color/white"
+                    android:minWidth="450px"
+                    />
+
+                <EditText
+                    android:id="@+id/register_pas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35px"
+                    android:background="@null"
+                    android:drawableLeft="@drawable/ic_mima"
+                    android:hint="@string/shezhizhanghaomima"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:minWidth="450px"
+                    android:paddingRight="20px"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="30px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10px"
+                    android:background="@color/white"
+                    android:minWidth="450px"
+                    />
+
+                <EditText
+                    android:id="@+id/register_pas1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35px"
+                    android:background="@null"
+                    android:drawableLeft="@drawable/ic_mima"
+                    android:hint="@string/querenmima"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:minWidth="450px"
+                    android:paddingRight="20px"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="30px"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10px"
+                    android:background="@color/white"
+                    android:minWidth="450px"
+                    />
+
                 <com.yunyou.yike.ui_view.DelayedClickButton
-                    android:id="@+id/register_sendcode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#66ffffff"
+                    android:layout_marginTop="60px"
+                    android:background="@drawable/btn_loginp"
                     android:minHeight="0dp"
-                    android:minWidth="118px"
-                    android:padding="10px"
-                    android:text="@string/huoquyanzhengma"
+                    android:minWidth="500px"
+                    android:onClick="register"
+                    android:paddingBottom="20px"
+                    android:paddingTop="20px"
+                    android:text="@string/register"
                     android:textColor="@color/white"
-                    android:textSize="25px"
-                    />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_marginTop="10px"
-                android:background="@color/white"
-                android:minWidth="450px"
-                />
-
-            <EditText
-                android:id="@+id/register_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35px"
-                android:background="@null"
-                android:drawableLeft="@drawable/ic_yanzhengma"
-                android:hint="@string/yanzhengma"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:maxLength="10"
-                android:minWidth="450px"
-                android:paddingRight="20px"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="30px"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_marginTop="10px"
-                android:background="@color/white"
-                android:minWidth="450px"
-                />
-
-            <EditText
-                android:id="@+id/register_pas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35px"
-                android:background="@null"
-                android:drawableLeft="@drawable/ic_mima"
-                android:hint="@string/shezhizhanghaomima"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:maxLength="20"
-                android:minWidth="450px"
-                android:paddingRight="20px"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="30px"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_marginTop="10px"
-                android:background="@color/white"
-                android:minWidth="450px"
-                />
-
-            <EditText
-                android:id="@+id/register_pas1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35px"
-                android:background="@null"
-                android:drawableLeft="@drawable/ic_mima"
-                android:hint="@string/querenmima"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLength="20"
-                android:minWidth="450px"
-                android:paddingRight="20px"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="30px"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_marginTop="10px"
-                android:background="@color/white"
-                android:minWidth="450px"
-                />
-
-            <com.yunyou.yike.ui_view.DelayedClickButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60px"
-                android:background="@drawable/btn_loginp"
-                android:minHeight="0dp"
-                android:minWidth="500px"
-                android:onClick="register"
-                android:paddingBottom="20px"
-                android:paddingTop="20px"
-                android:text="@string/register"
-                android:textColor="@color/white"
-                android:textSize="30px"
-                />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12px"
-                android:gravity="center_vertical"
-                android:minWidth="500px"
-                android:orientation="horizontal"
-                >
-
-                <CheckBox
-                    android:id="@+id/register_box"
-                    style="@style/AppTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/wotongyui"
-                    android:textColor="@color/white"
-                    android:textSize="25px"
+                    android:textSize="30px"
                     />
 
-                <com.yunyou.yike.ui_view.DelayedClickTextView
-                    android:id="@+id/register_tvxieyi"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/xieyi"
-                    android:textColor="@color/app_color"
-                    android:textSize="25px"/>
+                    android:layout_marginTop="12px"
+                    android:gravity="center_vertical"
+                    android:minWidth="500px"
+                    android:orientation="horizontal"
+                    >
+
+                    <CheckBox
+                        android:id="@+id/register_box"
+                        style="@style/AppTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/wotongyui"
+                        android:textColor="@color/white"
+                        android:textSize="25px"
+                        />
+
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
+                        android:id="@+id/register_tvxieyi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/xieyi"
+                        android:textColor="@color/app_color"
+                        android:textSize="25px"/>
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
-
-        </LinearLayout>
-    </com.fingdo.statelayout.StateLayout>
+        </com.yunyou.yike.ui_view.ReboundScrollView>
+    </com.yunyou.yike.ui_view.MyStateLayout>
 </LinearLayout>

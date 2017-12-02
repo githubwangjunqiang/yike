@@ -37,8 +37,13 @@ public class LoginActivityPresenter extends BasePresenter<IView.ILoginActivityVi
                 .compose(RxHttpRepouseCompat.compatResult())
                 .subscribe(new RxExceptionSubscriber<String>(getView())  {
                     @Override
+                    protected boolean isShowLoadingDialog() {
+                        return true;
+                    }
+
+                    @Override
                     protected void apiError(int code, String errorMsg) {
-                        getView().showErrorView(errorMsg);
+                        getView().ToToast(errorMsg);
                     }
 
                     @Override

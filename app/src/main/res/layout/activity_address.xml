@@ -10,7 +10,7 @@
 
     <include layout="@layout/top_title"/>
 
-    <com.fingdo.statelayout.StateLayout
+    <com.yunyou.yike.ui_view.MyStateLayout
         android:id="@+id/address_statslayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -70,5 +70,5 @@
             </RelativeLayout>
 
         </LinearLayout>
-    </com.fingdo.statelayout.StateLayout>
+    </com.yunyou.yike.ui_view.MyStateLayout>
 </LinearLayout>

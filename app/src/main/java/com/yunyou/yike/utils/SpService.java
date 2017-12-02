@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 
 
 public class SpService {
     private Context context;
     private static SpService sp;
-    private final String appName = App.getContext().getPackageName();
+    private final String appName = AppManager.getInstance().getContext().getPackageName();
     private final String PHONE = "phone";
     private final String PASSSWORD = "pass";
     private final String RTOKEN = "r_token";
@@ -26,7 +26,7 @@ public class SpService {
         if (sp == null) {
             synchronized (SpService.class) {
                 if (sp == null) {
-                    sp = new SpService(App.getContext());
+                    sp = new SpService(AppManager.getInstance().getContext());
                 }
             }
         }

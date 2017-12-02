@@ -5,17 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 import com.yunyou.yike.BaseMVPActivity;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
-import com.yunyou.yike.RongIM.RongIMConnentListener;
-import com.yunyou.yike.RongIM.RongIMLoginManager;
 import com.yunyou.yike.dagger2.DaggerLoginCompcope;
 import com.yunyou.yike.dagger2.PresenterMobule;
 import com.yunyou.yike.entity.EventBusMessage;
@@ -26,10 +27,11 @@ import com.yunyou.yike.utils.LogUtils;
 import com.yunyou.yike.utils.SpService;
 import com.yunyou.yike.utils.To;
 
+import org.greenrobot.eventbus.EventBus;
+
 import javax.inject.Inject;
 
 import cn.jpush.android.api.JPushInterface;
-import io.rong.imlib.RongIMClient;
 
 
 public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
@@ -90,13 +92,8 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
     protected void rogerMessage(EventBusMessage message) {
         showContentView(null);
         if (message.getMsgCode() == EventBusMessage.LOCATION) {
-            String phone = mEditTextPhone.getText().toString().trim();
-            if (!TextUtils.isEmpty(phone) && !isTokenLogin) {
-                String userToken = SpService.getSP().getUserToken(phone);
-                if (!TextUtils.isEmpty(userToken)) {
-                    showLoodingDialog(null);
-                    toMainActivity(false);
-                }
+            if (!isTokenLogin) {
+                logIn(null);
             }
         }
 
@@ -124,11 +121,8 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
             @Override
             public void success() {
                 showDialog("正在定位您当前的位置");
-                if (!App.getLocationClient().isStarted()) {
-                    App.getLocationClient().start();
-                }
+                AppManager.getInstance().startLocationClient();
                 LocationManager locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
                 if (!locManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     // 未打开位置开关，可能导致定位失败或定位不准，提示用户或做相应处理
                     To.oo("未打开位置开关，可能导致定位失败或定位不准");
@@ -138,6 +132,10 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
 
             @Override
             public void error(String[] permission) {
+                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
                 To.ee("您关闭了重要权限，影响您的使用，请您手动去权限管理中心开启本应用权限亲");
             }
         });
@@ -160,10 +158,12 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
      * @param view
      */
     public void logIn(View view) {
-        if (App.getBDLocation() == null) {
+        if (AppManager.getInstance().getBDLocation() == null) {
             To.ee("请稍后，尚未定位成功");
-            if (!App.getLocationClient().isStarted()) {
+            if (!AppManager.getInstance().getLocationClient().isStarted()) {
                 startRefresh(false);
+            } else {
+                AppManager.getInstance().getLocationClient().requestLocation();
             }
             return;
         }
@@ -178,8 +178,9 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
             return;
         }
         mPresenter.login(phone, pass,
-                JPushInterface.getRegistrationID(App.getContext()),
-                App.getBDLocation().getLongitude() + "", App.getBDLocation().getLatitude() + "");
+                JPushInterface.getRegistrationID(AppManager.getInstance().getContext()),
+                AppManager.getInstance().getBDLocation().getLongitude() + "",
+                AppManager.getInstance().getBDLocation().getLatitude() + "");
     }
 
 
@@ -228,7 +229,10 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
             To.ee("数据返回缺失");
             return;
         }
-        SpService.getSP().saveToken(login.getData().getToken(), login.getData().getUser_id()
+        SpService.getSP().savePhone(mEditTextPhone.getText().toString().trim(),
+                mEditTextPas.getText().toString().toString());
+        SpService.getSP().saveR_Token(SpService.getSP().getPhone(), data.getR_token());
+        SpService.getSP().saveToken(data.getToken(), data.getUser_id()
                 , mEditTextPhone.getText().toString().trim());
         toMainActivity(isTokenLogin);
     }
@@ -243,28 +247,12 @@ public class LoginActivity extends BaseMVPActivity<IView.ILoginActivityView,
         }
         showLoodingDialog("正在登陆通讯系统...");
 
-        LogUtils.d("登陆融云phone="+trim);
-        RongIMLoginManager.getInstance().connect(SpService.getSP().getR_Token(trim), new RongIMConnentListener() {
-            @Override
-            public void onTokenIncorrect() {
-                hideDialog();
-                To.ee("亲，请重新核对您的账号跟密码，重新登录下试试，可能是应为网络的原因，我们正在努力查找");
-            }
-
-            @Override
-            public void onSuccess(String userid) {
-                hideDialog();
-
-            }
-
-            @Override
-            public void onError(RongIMClient.ErrorCode errorCode) {
-                hideDialog();
-                To.ee(errorCode == null ? "登录失败,请重试" : errorCode.getMessage());
-            }
-        });
+        LogUtils.d("登陆融云phone=" + trim);
+        AppManager.getInstance().loginRongIM(SpService.getSP().getR_Token(trim));
         if (!isTokenLogins) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        } else {
+            EventBus.getDefault().post(new EventBusMessage(EventBusMessage.TOKENLOGIN));
         }
         finish();
     }

@@ -53,6 +53,7 @@ import javax.inject.Inject;
 
 public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationWorkerView,
         DecorationWorkerPresenter> implements IView.IDecorationWorkerView {
+    private static final int ADRESS = 0x1002;
     private TextView mTextViewTitle, mTextViewAddress;
     private EditText mEditTextPrice, mEditTextPeoPle, mEditTextEwmarks;
     private ImageView mImageViewBack;
@@ -83,6 +84,7 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
         intent.putExtra(DECORATING, order_type);
         context.startActivity(intent);
     }
+
 
     @Override
     protected int getStateLayoutID() {
@@ -118,6 +120,25 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
         mTextViewTitle.setText(R.string.zhuangxiugongren);
         mTextViewTitle.setText(R.string.wanshandingdan);
 
+
+        if (savedInstanceState != null) {
+            mMyaddress = savedInstanceState.getParcelable(MapAddressActivity.MAPDATA);
+            if (mMyaddress != null) {
+                String address = mMyaddress.getAddress() + "\n" + mMyaddress.getAddressInfo();
+                if (!TextUtils.isEmpty(address)) {
+                    mTextViewAddress.setText(address);
+                }
+                String city = mMyaddress.getCity();
+                if (!TextUtils.isEmpty(city)) {
+                    int indexOf = city.lastIndexOf("市");
+                    if (indexOf != -1) {
+                        String substring = city.substring(0, indexOf);
+                        mMyaddress.setCity(substring);
+                    }
+                }
+            }
+        }
+
         startRefresh(false);
     }
 
@@ -145,7 +166,7 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
             @Override
             public void onClick(View v) {//点击选择地址
                 Intent intent = new Intent(DecorationWorkerActivity.this, MapAddressActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, ADRESS);
             }
         });
         mLinearLayoutWorkNum.setOnClickListener(new View.OnClickListener() {
@@ -185,10 +206,11 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
     private Myaddress mMyaddress;
 
     @Override
-    protected void rogerMessage(EventBusMessage message) {
-        if (message.getMsgCode() == EventBusMessage.MAPADDRESS) {
-            if ((message.getObject() != null) && (message.getObject() instanceof Myaddress)) {
-                mMyaddress = (Myaddress) message.getObject();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ADRESS && resultCode == RESULT_OK && data != null) {
+            mMyaddress = data.getParcelableExtra(MapAddressActivity.MAPDATA);
+            if (mMyaddress != null) {
                 String address = mMyaddress.getAddress() + "\n" + mMyaddress.getAddressInfo();
                 if (!TextUtils.isEmpty(address)) {
                     mTextViewAddress.setText(address);
@@ -203,6 +225,10 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
                 }
             }
         }
+    }
+
+    @Override
+    protected void rogerMessage(EventBusMessage message) {
     }
 
     @Override
@@ -223,6 +249,7 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
      */
     private void showTimeDialog(final boolean isStartTime, final TextView button) {
         final DatePickerDialog datePickerDialog = new DatePickerDialog(this, null, 0, 0, 0);
+        datePickerDialog.setTitle("设置时间");
         if (isStartTime) {
             datePickerDialog.getDatePicker().setMinDate(new Date().getTime());
             if (startyear != 0) {
@@ -378,7 +405,7 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
     }
 
     @Override
-    public void getCityIdSuccess(CityId strings) {
+    public void showCityIdSuccess(CityId strings) {
 
         CityId.DataBean data = strings.getData();
         if (mMyaddress.getProvince().equals(data.getName())) {
@@ -448,6 +475,7 @@ public class DecorationWorkerActivity extends BaseMVPActivity<IView.IDecorationW
             mPresenter.releaseOrders(map);
         } catch (Exception e) {
             e.printStackTrace();
+            To.oo("亲请重试");
         }
     }
 

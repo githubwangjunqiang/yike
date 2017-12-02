@@ -57,7 +57,7 @@
     <string name="zhongzhidingdan">终止订单</string>
     <string name="dingdanwancheng">订单完成结算</string>
     <string name="dingdanxiangqing">订单详情</string>
-    <string name="nichen">昵称</string>
+    <string name="nichen">输入昵称</string>
     <string name="xingming">姓名</string>
     <string name="dianhua">电话</string>
     <string name="shenfenzhenghao">身份证号</string>
@@ -104,9 +104,33 @@
     <string name="xlistview_header_hint_failt">刷新失败</string>
     <string name="not_updated_yet">暂未更新过</string>
     <string name="updated_at">上次更新于%1$s前</string>
-    <string name="updated_just_now">刚刚更新</string>
+    <string name="updated_just_now">上次更新:刚刚更新</string>
     <string name="time_error">时间有问题</string>
     <string name="qingxuanzegonzhong">请选择工种</string>
     <string name="qingxuanzefengge">请选择风格/额外服务</string>
+    <string name="app_name_tixingnin">艺科提醒您：</string>
+    <string name="rongim_incorrect">亲，不好意思，给您带来的不便我们深感抱歉，您的通讯系统验证失败，您需要重新登陆验证信息，目前您可能无法正常聊天........</string>
+    <string name="over">取消</string>
+    <string name="touxiang">头像</string>
+    <string name="shuruxingming">输入姓名</string>
+    <string name="shurudianhua">输入电话</string>
+    <string name="tuku">图库选择</string>
+    <string name="paizhao">拍照</string>
+    <string name="qingxuanzefangshi">请选择方式</string>
+    <string name="xuanzegongzhong">选择工种</string>
+    <string name="yikekefudianjiboda">艺科客服-点击拨打电话</string>
+    <string name="qingshurunindejianyi">请输入您的建议</string>
+    <string name="shanglajiazaigengduo">上拉加载更多...</string>
+    <string name="shifangshuaxin">释放加载...</string>
+    <string name="shuaxinwancheng">加载完成...</string>
+    <string name="tianjiaxinka">添加新卡</string>
+    <string name="mybank">我的银行卡</string>
+    <string name="quanbudingdan">全部订单</string>
+    <string name="weiwandingdan">为完订单</string>
+    <string name="yiwandingdan">已完订单</string>
+    <string name="overdingdan">取消订单</string>
+    <string name="qingshuruneieroing">请输入内容</string>
+    <string name="fabuganxiang">发布感想</string>
+    <string name="xiangce">相册选择</string>
 
 </resources>

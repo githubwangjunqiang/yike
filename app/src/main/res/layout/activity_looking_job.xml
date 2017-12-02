@@ -35,8 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingBottom="23px"
             android:paddingRight="@dimen/pading_20"
             android:paddingTop="22px"
@@ -51,14 +51,14 @@
                 />
 
             <ImageView
+                android:layout_marginLeft="20px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20px"
                 android:src="@mipmap/shengyin"/>
         </LinearLayout>
     </RelativeLayout>
 
-    <com.fingdo.statelayout.StateLayout
+    <com.yunyou.yike.ui_view.MyStateLayout
         android:id="@+id/job_looking_statslayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -71,11 +71,10 @@
         app:timeOutText="@string/chaoshil"
         >
 
-        <com.baoyz.widget.PullRefreshLayout
+        <com.yan.pullrefreshlayout.PullRefreshLayout
             android:id="@+id/looking_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:refreshType="material"
             >
 
             <android.support.v7.widget.RecyclerView
@@ -84,8 +83,8 @@
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 />
-        </com.baoyz.widget.PullRefreshLayout>
-    </com.fingdo.statelayout.StateLayout>
+        </com.yan.pullrefreshlayout.PullRefreshLayout>
+    </com.yunyou.yike.ui_view.MyStateLayout>
 
 
 </LinearLayout>

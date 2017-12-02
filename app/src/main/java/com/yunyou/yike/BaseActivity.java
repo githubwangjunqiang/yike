@@ -1,23 +1,26 @@
 package com.yunyou.yike;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import com.baoyz.widget.PullRefreshLayout;
 import com.fingdo.statelayout.StateLayout;
+import com.yan.pullrefreshlayout.PullRefreshLayout;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.activity.LoginActivity;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.ui_view.dialog.LoadingDialog;
+import com.yunyou.yike.ui_view.pulllayout.FootView;
+import com.yunyou.yike.ui_view.pulllayout.HeadView;
 import com.yunyou.yike.utils.ActivityCollector;
 import com.yunyou.yike.utils.StatusBarCompat;
 import com.yunyou.yike.utils.To;
@@ -27,16 +30,22 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+
+import static com.baidu.mapapi.BMapManager.getContext;
+
 /**
  * Created by ${王俊强} on 2017/5/18.
  */
 
 public abstract class BaseActivity extends AutoLayoutActivity implements IView {
-    protected LoadingDialog mLoadingDialog;
-    protected StateLayout mStateLayout;
+    private LoadingDialog mLoadingDialog;
+    private StateLayout mStateLayout;
     protected int statusBarColor = 0;//状态栏颜色
-    protected View statusBarView = null;//
-    protected PullRefreshLayout mRefreshLayout;
+    private View statusBarView = null;//
+    private PtrFrameLayout mRefreshLayout;
+    protected PullRefreshLayout mPullRefreshLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +55,22 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
             finish();
             return;
         }
+        setContentCiew();
+        setPresenter();
+        initDialog();
+        init(savedInstanceState);
+        setListener();
+    }
 
+    protected void setPresenter() {
+
+    }
+
+    /**
+     * 设置
+     */
+    private void setContentCiew() {
+        ActivityCollector.addActivity(this);
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
@@ -60,12 +84,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         } else if (statusBarColor != -1) {
             statusBarView = StatusBarCompat.compat(this, statusBarColor);
         }
-
-
-        setPresenter();
-        initDialog();
-        init(savedInstanceState);
-        setListener();
     }
 
     /**
@@ -104,22 +122,64 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         if (getPullRefreshLayoutID() != 0) {
             mRefreshLayout = optionView(getPullRefreshLayoutID());
             if (mRefreshLayout != null) {
-                mRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
-                mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+                mRefreshLayout.setResistance(1.7F);//阻力
+                mRefreshLayout.setRatioOfHeaderHeightToRefresh(1.2F);//标头的高度与触发刷新的比例
+                mRefreshLayout.setDurationToClose(300);//从您将视图相对位置移动到标题高度的持续时间为默认值
+                mRefreshLayout.setDurationToCloseHeader(1000);//关闭标题的持续时间
+                mRefreshLayout.setKeepHeaderWhenRefresh(true);//在刷新时保持标题
+                mRefreshLayout.setPullToRefresh(false);//拉动就刷新还是释放后刷新
+                mRefreshLayout.setLoadingMinTime(500);//最小等待时间|
+                mRefreshLayout.setPtrHandler(new PtrDefaultHandler() {
                     @Override
-                    public void onRefresh() {
-                        startRefresh(true);
+                    public void onRefreshBegin(PtrFrameLayout frame) {
+                        startRefresh(false);
+                    }
+
+                    @Override
+                    public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                        return super.checkCanDoRefresh(frame, content, header);
                     }
                 });
             }
         }
+        if (getRecyerViewLayoutID() != 0) {
+            mPullRefreshLayout = optionView(getRecyerViewLayoutID());
+            if (mPullRefreshLayout != null) {
+                initRecyerViewLayout();
+            }
+        }
 
+    }
+
+    /**
+     * 设置recyerview layout 刷新布局参数
+     */
+    protected void initRecyerViewLayout() {
+        mPullRefreshLayout.setHeaderView(new HeadView(this));
+        mPullRefreshLayout.setFooterView(new FootView(this));
+        mPullRefreshLayout.setRefreshEnable(true);
+        mPullRefreshLayout.setLoadMoreEnable(true);
+    }
+
+    /**
+     * 是否使用列表刷新布局
+     *
+     * @return
+     */
+    protected int getRecyerViewLayoutID() {
+        return 0;
     }
 
 
     @Override
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMessage message) {
+        if (message != null && message.getMsgCode() == EventBusMessage.RONGIMTOKENINCORRECT) {//融云失效
+            To.ee(getString(R.string.rongim_incorrect));
+        }
+        if (message != null && message.getMsgCode() == EventBusMessage.TOKENLOGIN) {
+            startRefresh(true);
+        }
         rogerMessage(message);
     }
 
@@ -181,7 +241,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
     }
 
     /**
-     * 显示加载对话框
+     * 关闭加载对话框
      */
     protected void hideDialog() {
         if (mLoadingDialog == null) {
@@ -190,15 +250,15 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         if (mLoadingDialog.isShowing()) {
             mLoadingDialog.dismiss();
         }
+        if (mRefreshLayout != null && mRefreshLayout.isRefreshing()) {
+            mRefreshLayout.refreshComplete();
+        }
+        if (mPullRefreshLayout != null) {
+            mPullRefreshLayout.refreshComplete();
+            mPullRefreshLayout.loadMoreComplete();
+        }
     }
 
-
-    /**
-     * 创建presenter
-     */
-    protected void setPresenter() {
-
-    }
 
     /**
      * 隐藏软键盘
@@ -227,10 +287,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
      * 用于在初始化View之前做一些事
      */
     protected boolean beforeWindow(Bundle savedInstanceState) {
-        /**
-         * 全局 activity 容器 添加activity
-         */
-        ActivityCollector.addActivity(this);
+
         return false;
     }
 
@@ -301,9 +358,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         if (mStateLayout != null) {
             mStateLayout.showContentView();
         }
-        if (mRefreshLayout != null) {
-            mRefreshLayout.setRefreshing(false);
-        }
+
     }
 
     @Override
@@ -317,9 +372,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
             }
         } else {
             To.ee(object);
-        }
-        if (mRefreshLayout != null) {
-            mRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -335,13 +387,11 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         } else {
             To.ee(object);
         }
-        if (mRefreshLayout != null) {
-            mRefreshLayout.setRefreshing(false);
-        }
     }
 
     @Override
     public void showLoginView(Object object) {
+        hideDialog();
         if (mStateLayout != null) {
             if (object != null) {
                 mStateLayout.showLoginView((String) object);
@@ -349,12 +399,24 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
                 mStateLayout.showLoginView();
             }
         } else {
-            To.ee(object);
-            startActivity(new Intent(this, LoginActivity.class));
+            showLoginDiaLog();
         }
-        if (mRefreshLayout != null) {
-            mRefreshLayout.setRefreshing(false);
-        }
+    }
+
+    /**
+     * 显示登陆对话框
+     */
+    private void showLoginDiaLog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("您的登陆已过期，为了您的安全，请您重新登陆");
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                LoginActivity.startLoginActivity(getContext(), true);
+            }
+        });
+        builder.show();
     }
 
     @Override
@@ -369,9 +431,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
         } else {
             To.ee(object);
         }
-        if (mRefreshLayout != null) {
-            mRefreshLayout.setRefreshing(false);
-        }
     }
 
     @Override
@@ -385,9 +444,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
             }
         } else {
             To.ee(object);
-        }
-        if (mRefreshLayout != null) {
-            mRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -411,6 +467,7 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IView {
 
     @Override
     public void ToToast(String string) {
+        hideDialog();
         if (!TextUtils.isEmpty(string)) {
             To.oo(string);
         }

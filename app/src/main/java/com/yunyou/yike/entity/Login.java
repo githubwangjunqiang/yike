@@ -14,7 +14,6 @@ public class Login implements Serializable{
      * data : {"token":"7de8a7787ee12357142de898ea24b0a6",
      * "user_id":"10","rank":"0.0","head_pic":"","is_listen":"1"}
      */
-
     private int retcode;
     private String msg;
     private DataBean data;
@@ -58,6 +57,15 @@ public class Login implements Serializable{
         private String rank;
         private String head_pic;
         private String is_listen;
+        private String r_token;
+
+        public String getR_token() {
+            return r_token;
+        }
+
+        public void setR_token(String r_token) {
+            this.r_token = r_token;
+        }
 
         public String getToken() {
             return token;

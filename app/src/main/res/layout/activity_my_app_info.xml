@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.MyAppInfoActivity">
+
+    <include layout="@layout/top_title"/>
+
+    <com.yunyou.yike.ui_view.MyStateLayout
+        android:id="@+id/myinfo_statlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:emptyText="@string/meiyourenheshuju"
+        app:errorText="@string/jiazaishibai"
+        app:loadingText="@string/jiazaizhong"
+        app:loginText="@string/chongxindenglu"
+        app:noNetworkText="@string/meiyouwangluo"
+        app:timeOutText="@string/chaoshil"
+        >
+
+        <!--<in.srain.cube.views.ptr.PtrClassicFrameLayout-->
+        <!--android:id="@+id/myinfo_ptrlayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<com.angel.layout.SWPullRecyclerLayout-->
+        <!--android:id="@+id/myinfo_recyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+
+        <!--</in.srain.cube.views.ptr.PtrClassicFrameLayout>-->
+
+
+        <com.yan.pullrefreshlayout.PullRefreshLayout
+            android:id="@+id/layout_pull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/yappinfp_recyleview"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="match_parent"/>
+        </com.yan.pullrefreshlayout.PullRefreshLayout>
+
+    </com.yunyou.yike.ui_view.MyStateLayout>
+
+
+</LinearLayout>

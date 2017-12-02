@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="60px"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20px"
+    >
+
+    <com.yunyou.yike.ui_view.DelayedClickButton
+        android:id="@+id/dialog_worker_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/text_color"
+        android:textSize="28px"
+        android:padding="20px"
+        android:minWidth="220px"
+        android:minHeight="50px"
+        android:background="@color/background"
+        android:text="@string/ok"/>
+
+
+    <ListView
+        android:id="@+id/dialog_listview_workertyeo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:divider="@color/background"
+        android:dividerHeight="2px"/>
+
+</com.zhy.autolayout.AutoLinearLayout>

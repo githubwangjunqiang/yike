@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,7 +46,7 @@ import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiIndoorResult;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
-import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 import com.yunyou.yike.BaseActivity;
 import com.yunyou.yike.R;
 import com.yunyou.yike.adapter.MapListAdapter;
@@ -57,8 +58,6 @@ import com.yunyou.yike.utils.PoiOverlay;
 import com.yunyou.yike.utils.SizeUtil;
 import com.yunyou.yike.utils.To;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -69,6 +68,7 @@ import java.util.List;
  */
 
 public class MapAddressActivity extends BaseActivity {
+    public static final String MAPDATA = "Myaddress";
     private MapView mMapView = null;//百度地图view
     private BaiduMap mBaiduMap = null;
     private BitmapDescriptor bitmapDescriptor;//当前定位位置
@@ -95,7 +95,7 @@ public class MapAddressActivity extends BaseActivity {
     protected boolean beforeWindow(Bundle savedInstanceState) {
         super.beforeWindow(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
-        if (App.getBDLocation() == null) {
+        if (AppManager.getInstance().getBDLocation() == null) {
             To.ee("还没有定为成功呢亲");
             return true;
         }
@@ -110,9 +110,9 @@ public class MapAddressActivity extends BaseActivity {
         mBaiduMap.setMyLocationEnabled(true);
         MyLocationData data = new MyLocationData.Builder()
 //                .direction(mCurrentX)
-                .accuracy(App.getBDLocation().getRadius())
-                .latitude(App.getBDLocation().getLatitude())
-                .longitude(App.getBDLocation().getLongitude())
+                .accuracy(AppManager.getInstance().getBDLocation().getRadius())
+                .latitude(AppManager.getInstance().getBDLocation().getLatitude())
+                .longitude(AppManager.getInstance().getBDLocation().getLongitude())
                 .build();
         mBaiduMap.setMyLocationData(data);
         //自定义图标
@@ -121,14 +121,19 @@ public class MapAddressActivity extends BaseActivity {
                 new MyLocationConfiguration
                         (MyLocationConfiguration.LocationMode.NORMAL, true, bitmapDescriptor);
         mBaiduMap.setMyLocationConfiguration(myLocationConfiguration);
-        mLatLng = new LatLng(App.getBDLocation().getLatitude(), App.getBDLocation().getLongitude());
+        mLatLng = new LatLng(AppManager.getInstance().getBDLocation().getLatitude(),
+                AppManager.getInstance().getBDLocation().getLongitude());
         toMapAnition(mBaiduMap, mLatLng);
-        LogUtils.d("类型=" + App.getBDLocation().getCoorType());
+        LogUtils.d("类型=" + AppManager.getInstance().getBDLocation().getCoorType());
         mAppBarLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
-                toSearch(mBaiduMap.getMapStatus().target, null, china);
-                mNewtonCradleLoading.setVisibility(View.GONE);
+                try {
+                    toSearch(mBaiduMap.getMapStatus().target, null, china);
+                    mNewtonCradleLoading.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }, 1500);
 
@@ -230,8 +235,9 @@ public class MapAddressActivity extends BaseActivity {
                         To.ee("选择地址失败呢亲，抱歉请重新选择吧");
                         return;
                     }
-                    EventBus.getDefault()//发送消息给订单界面地址数据
-                            .post(new EventBusMessage(EventBusMessage.MAPADDRESS, mPoiInfo));
+                    setResult(RESULT_OK, getIntent().putExtra(MAPDATA,mPoiInfo));
+//                    EventBus.getDefault()//发送消息给订单界面地址数据
+//                            .post(new EventBusMessage(EventBusMessage.MAPADDRESS, mPoiInfo));
                     finish();
                 } else {
                     To.ss(mRecyclerView, "亲 ..快去点击拖动地图或者搜索地址呦");
@@ -502,7 +508,8 @@ public class MapAddressActivity extends BaseActivity {
         float yy = viewReference.get().getTranslationY();
         if (animator == null) {
             animator = ObjectAnimator.ofFloat(viewReference.get(),
-                    "translationY", yy, -180f, yy, -40f, yy, -20f, yy);
+                    "translationY", yy, -180f, yy);
+            animator.setInterpolator(new BounceInterpolator());
             animator.setDuration(800);
         }
         if (animator.isRunning()) {
@@ -555,7 +562,7 @@ public class MapAddressActivity extends BaseActivity {
             isFist = false;
             ViewGroup.LayoutParams layoutParams = mCollapsingToolbarLayout.getLayoutParams();
             if (layoutParams != null) {
-                int deviceHeight = SizeUtil.getDeviceHeight(App.getContext());
+                int deviceHeight = SizeUtil.getDeviceHeight(AppManager.getInstance().getContext());
 
                 int mheight = (deviceHeight - SizeUtil.getStatusBarHeight(this)) / 2;
 

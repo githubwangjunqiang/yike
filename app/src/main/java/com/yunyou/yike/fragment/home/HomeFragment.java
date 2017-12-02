@@ -3,18 +3,19 @@ package com.yunyou.yike.fragment.home;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.baoyz.widget.PullRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 import com.yunyou.yike.BaseMVPFragment;
 import com.yunyou.yike.Interface_view.IView;
 import com.yunyou.yike.R;
@@ -28,6 +29,7 @@ import com.yunyou.yike.dagger2.DaggerHomeFragmentCompcoent;
 import com.yunyou.yike.dagger2.PresenterMobule;
 import com.yunyou.yike.entity.BannerData;
 import com.yunyou.yike.entity.Bean;
+import com.yunyou.yike.entity.CityId;
 import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.listener.PermissionListener;
 import com.yunyou.yike.presenter.HomePresenter;
@@ -36,6 +38,7 @@ import com.yunyou.yike.utils.To;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -95,20 +98,22 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        banner = obtainView(R.id.banner_home);
-        mLoadPeoPle = obtainView(R.id.home_load_gongren);
-        mLoadWorker = obtainView(R.id.home_load_worker);
+        if (savedInstanceState != null) {
 
-        mTextViewEmty = obtainView(R.id.home_tvkong);
-        mTextViewAddres = obtainView(R.id.home_address);
-        if (App.getBDLocation() != null) {
-            mTextViewAddres.setText(App.getBDLocation().getCity());
         }
-
+        banner = optainView(R.id.banner_home);
+        mLoadPeoPle = optainView(R.id.home_load_gongren);
+        mLoadWorker = optainView(R.id.home_load_worker);
+        mTextViewEmty = optainView(R.id.home_tvkong);
+        mTextViewAddres = optainView(R.id.home_address);
+        if (AppManager.getInstance().getBDLocation() != null) {
+            mTextViewAddres.setText(AppManager.getInstance().getBDLocation().getCity());
+        }
         banner.setImageLoader(new GlideImageLoader());
         banner.setBannerAnimation(Transformer.ZoomOut);
         banner.setDelayTime(3000);
         banner.setIndicatorGravity(BannerConfig.CENTER);
+
     }
 
     @Override
@@ -141,25 +146,12 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
                 startActivity(intent);
             }
         });
-        mRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                startRefresh(false);
-            }
-        });
-        mTextViewEmty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
 
     @Override
     public void showBanner(BannerData list) {
         mTextViewEmty.setVisibility(View.GONE);
-        mRefreshLayout.setRefreshing(false);
         mBannerData = list;
         List<BannerData.DataBean> data = mBannerData.getData();
         List<String> list1 = new ArrayList<>();
@@ -172,7 +164,15 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
     }
 
     @Override
-    public void startRefresh(boolean isShowLoadingView) {
+    public void showCityIDSuccess(Object cityID) {
+        if (cityID != null && cityID instanceof CityId) {
+            CityId city = (CityId) cityID;
+            AppManager.getInstance().setCityID(city.getData().getId());
+        }
+    }
+
+    @Override
+    public void startRefresh(final boolean isShowLoadingView) {
         mTextViewEmty.setVisibility(View.VISIBLE);
         String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,//读sd卡
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,//写sd卡
@@ -181,7 +181,15 @@ public class HomeFragment extends BaseMVPFragment<IView.IHomeFragmentView, HomeP
         PermissionActivity.startPermissionActivity(permissions, new PermissionListener() {
             @Override
             public void success() {
-                mPresenter.getBanner();
+                mHomePresenter.getBanner(isShowLoadingView);
+                String cityName = AppManager.getInstance().getCityName();
+                if (cityName == null) {
+                    To.oo("亲可能定位没有成功，请您刷新界面试试呢...");
+                } else {
+                    Map<String, String> maps = new ArrayMap<>();
+                    maps.put("name", cityName);
+                    mHomePresenter.getCityID(maps, isShowLoadingView);
+                }
             }
 
             @Override

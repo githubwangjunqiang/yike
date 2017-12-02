@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 import com.yunyou.yike.R;
 
 
@@ -29,8 +29,8 @@ public class To {
             toast.cancel();
             toast = null;
         }
-        View view = LayoutInflater.from(App.getContext()).inflate(R.layout.toast_tv, null);
-        toast = new Toast(App.getContext());
+        View view = LayoutInflater.from(AppManager.getInstance().getContext()).inflate(R.layout.toast_tv, null);
+        toast = new Toast(AppManager.getInstance().getContext());
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(view);
         TextView tvToast = (TextView) view.findViewById(R.id.toast_tvnumber);
@@ -47,8 +47,9 @@ public class To {
 
     public static void dd(Object s) {
         if (toast2 == null) {
-            View view = LayoutInflater.from(App.getContext()).inflate(R.layout.toast, null);
-            toast2 = new Toast(App.getContext());
+            View view = LayoutInflater.from(AppManager.getInstance().getContext()).
+                    inflate(R.layout.toast, null);
+            toast2 = new Toast(AppManager.getInstance().getContext());
             toast2.setDuration(Toast.LENGTH_LONG);
             toast2.setGravity(Gravity.CENTER, 0, 0);
             toast2.setView(view);
@@ -61,15 +62,14 @@ public class To {
     }
     public static void ee(Object s) {
         if (toast3 == null) {
-            View view = LayoutInflater.from(App.getContext()).inflate(R.layout.toast, null);
-            toast3 = new Toast(App.getContext());
+            View view = LayoutInflater.from(AppManager.getInstance().getContext()).
+                    inflate(R.layout.toast_ee, null);
+            toast3 = new Toast(AppManager.getInstance().getContext());
             toast3.setDuration(Toast.LENGTH_LONG);
             toast3.setGravity(Gravity.CENTER, 0, 0);
             toast3.setView(view);
             tv3 = (TextView) view.findViewById(R.id.toast_tv);
             tv3.setText(s == null ? string : s.toString());
-            iviamge = (ImageView) view.findViewById(R.id.toast_iviamge);
-            iviamge.setImageResource(R.drawable.ic_error);
         } else {
             tv3.setText(s == null ? string : s.toString());
         }

@@ -11,16 +11,26 @@ public interface IPresenter {
      * 主页碎片管理层
      */
     interface IHomeFragmentPrenester extends IPresenter {
-        void getBanner();//获取banner 图片
+        void getBanner(boolean isShowLoading);//获取banner 图片
+
+        void getCityID(Map<String, String> map, boolean isShowLoading);//获取城市id
     }
 
     /**
      * 全部订单界面的 管理者
      */
     interface IAllOrderFragmentPrenester extends IPresenter {
-        void getOrder();//获取订单
+        void getOrder(Map map, boolean isShowLoading);//获取订单
 
-        void loodOrder();//获取更多订单
+        void getMyJiedanOrder(Map map, boolean isShowLoading);//获取我的接单
+
+        void loodOrder(Map map);//获取更多订单
+
+        void loodMyjieOrder(Map map);//获取更多我的接单
+
+        void workStart(Map map, int position);//点击开始
+
+        void workCancel(Map map, int position);//点击终止 或者结束
     }
 
     /**
@@ -36,7 +46,18 @@ public interface IPresenter {
      * 我的界面 管理者
      */
     interface IMyFragmentPrenester extends IPresenter {
-        void getUserInfo();//获取我的信息
+        void getUserInfo(Map<String, String> map, boolean isShowLoading);//获取我的信息
+
+        void getCustomerService();//获取客服信息
+
+        void setfeedback(Map<String, String> map);//提交投诉建议
+    }
+
+    /**
+     * 1为最新公告  2服务协议   3平台奖惩   4学习园地   5评分说明
+     */
+    interface IMyAppInfoActivityPresenter extends IPresenter {
+        void getData(Map<String, String> map, boolean isShowLoading);//获取我的信息
     }
 
     /**
@@ -49,12 +70,21 @@ public interface IPresenter {
     }
 
     /**
+     * 发布感想界面 管理者
+     */
+    interface ISendFeelPrenester extends IPresenter {
+        void subMitFeelData();//发布感想
+    }
+
+    /**
      * 找工作 列表
      */
     interface IJobPresenter extends IPresenter {
-        void getJobData(boolean isShowLoading,Map<String,String> stringMap);//获取工作列表
+        void getJobData(boolean isShowLoading, Map<String, String> stringMap);//获取工作列表
 
         void loodMoreJobData(Map<String, String> stringMap);//获取更多工作列表
+
+        void confirmOrder(Map<String, String> stringMap);//抢单
     }
 
     /**
@@ -76,18 +106,51 @@ public interface IPresenter {
      * 订单详情
      */
     interface IOrderInfoPresenter extends IPresenter {
+
+        void canleOrder(Map map);//终止订单
+
+        void finishOrder(Map map);//点击完成订单
+    }
+
+    /**
+     * 银行卡界面
+     */
+    interface IBankPresenter extends IPresenter {
+        void getBankList(Map<String, String> map, boolean isShowLoading);//获取银行卡列表
+
+        void setDefaultBank(Map<String, String> map);//   我-- 设置默认卡号
+    }
+
+    /**
+     * 添加银行卡
+     */
+    interface IAddBankPresenter extends IPresenter {
+
+        void getBankName(Map<String, String> map);//获取银行卡名字
+
+        void bandBank(Map<String, String> map);//绑定银行卡
     }
 
     /**
      * 信息管理
      */
     interface IXinxiGuanliPresenter extends IPresenter {
+        void getUserInfo(boolean isShowload, Map<String, String> map);//获取用户信息
+
+        void getHobbyList(Map<String, String> map);//获取用户爱好列表
+
+        void updata_info(Map<String, String> map);//修改用户信息
+
+        void getWorkerType();//修改用户信息
     }
 
     /**
      * 我的钱包
      */
     interface IQianBaoPresenter extends IPresenter {
+        void getMoney(Map<String, String> map, boolean isShowLoading);//获取我的余额
+
+        void setWithdrawCash(Map<String, String> mapBankList, Map<String, String> mapTiXian);//申请提现
     }
 
     /**

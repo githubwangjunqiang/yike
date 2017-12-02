@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+>
+    <com.yan.pullrefreshlayout.PullRefreshLayout
+        android:id="@+id/all_order_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:refreshType="material"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/all_order_recyleview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.yan.pullrefreshlayout.PullRefreshLayout>
+
+</FrameLayout>

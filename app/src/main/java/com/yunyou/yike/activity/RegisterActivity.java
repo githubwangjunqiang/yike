@@ -19,7 +19,6 @@ import com.yunyou.yike.entity.EventBusMessage;
 import com.yunyou.yike.entity.User;
 import com.yunyou.yike.presenter.RegisterActivityPresenter;
 import com.yunyou.yike.utils.LogUtils;
-import com.yunyou.yike.utils.SpService;
 import com.yunyou.yike.utils.Time_Down;
 import com.yunyou.yike.utils.To;
 import com.yunyou.yike.utils.ZhengZebiaodashiUtils;
@@ -133,7 +132,7 @@ public class RegisterActivity extends BaseMVPActivity<IView.IRegisterActivityVie
         User user = (User) string;
         To.dd(user.getMsg());
         LogUtils.d("注册成功存入融云=" + user.getData().getMobile());
-        SpService.getSP().saveR_Token(user.getData().getMobile(), user.getData().getR_token());
+//        SpService.getSP().saveR_Token(user.getData().getMobile(), user.getData().getR_token());
         Intent intent = getIntent();
         intent.putExtra(REGISTENER_PHONE, user.getData().getMobile());
         intent.putExtra(REGISTER_PASS, mEditTextpass.getText().toString().trim());

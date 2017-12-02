@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     xmlns:tools="http://schemas.android.com/tools"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="match_parent"
+                                     android:orientation="vertical">
+
+    <CheckedTextView
+        android:id="@+id/itme_dialog_worker_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/chedked_listitme_type"
+        android:padding="28px"
+        android:gravity="left|center_vertical"
+        android:textColor="@color/text_color"
+        android:textSize="28px"
+        tools:text="@string/app_name"
+        />
+</com.zhy.autolayout.AutoLinearLayout>

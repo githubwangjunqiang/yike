@@ -81,7 +81,7 @@
             android:textSize="25px"
             tools:text="工种：工种\t\t姓名：姓名\n工作地址：王府井大街\t北京饭店\n合计价格：300.00"/>
 
-        <Button
+        <com.yunyou.yike.ui_view.DelayedClickButton
             android:id="@+id/itme_job_btn"
             android:layout_width="100px"
             android:layout_height="45px"

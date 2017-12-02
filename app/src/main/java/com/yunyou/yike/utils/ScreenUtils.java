@@ -25,7 +25,7 @@ import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.yunyou.yike.App;
+import com.yunyou.yike.AppManager;
 
 import java.lang.reflect.Field;
 
@@ -68,7 +68,7 @@ public class ScreenUtils {
      * @return
      */
     public static int getScreenWidth() {
-        return App.getContext().getResources().getDisplayMetrics().widthPixels;
+        return AppManager.getInstance().getContext().getResources().getDisplayMetrics().widthPixels;
     }
 
     /**
@@ -77,7 +77,7 @@ public class ScreenUtils {
      * @return
      */
     public static int getScreenHeight() {
-        return App.getContext().getResources().getDisplayMetrics().heightPixels;
+        return AppManager.getInstance().getContext().getResources().getDisplayMetrics().heightPixels;
     }
 
     /**
@@ -87,7 +87,7 @@ public class ScreenUtils {
      * @return
      */
     public static float dpToPx(float dp) {
-        return dp * App.getContext().getResources().getDisplayMetrics().density;
+        return dp * AppManager.getInstance().getContext().getResources().getDisplayMetrics().density;
     }
 
     public static int dpToPxInt(float dp) {
@@ -101,7 +101,7 @@ public class ScreenUtils {
      * @return
      */
     public static float pxToDp(float px) {
-        return px / App.getContext().getResources().getDisplayMetrics().density;
+        return px / AppManager.getInstance().getContext().getResources().getDisplayMetrics().density;
     }
 
     public static int pxToDpInt(float px) {
@@ -115,7 +115,7 @@ public class ScreenUtils {
      * @return
      */
     public static float pxToSp(float pxValue) {
-        return pxValue / App.getContext().getResources().getDisplayMetrics().scaledDensity;
+        return pxValue / AppManager.getInstance().getContext().getResources().getDisplayMetrics().scaledDensity;
     }
 
     /**
@@ -125,7 +125,7 @@ public class ScreenUtils {
      * @return
      */
     public static float spToPx(float spValue) {
-        return spValue * App.getContext().getResources().getDisplayMetrics().scaledDensity;
+        return spValue * AppManager.getInstance().getContext().getResources().getDisplayMetrics().scaledDensity;
     }
 
     public static int getStatusBarHeight(Context context) {
@@ -156,7 +156,7 @@ public class ScreenUtils {
             obj = c.newInstance();
             field = c.getField("status_bar_height");
             x = Integer.parseInt(field.get(obj).toString());
-            sbar = App.getContext().getResources().getDimensionPixelSize(x);
+            sbar = AppManager.getInstance().getContext().getResources().getDimensionPixelSize(x);
         } catch (Exception e1) {
             e1.printStackTrace();
         }

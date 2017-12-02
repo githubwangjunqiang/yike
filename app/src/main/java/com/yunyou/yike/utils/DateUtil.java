@@ -72,10 +72,11 @@ public class DateUtil {
 
     /**
      * 获取两个时间段 有多少天
+     *
      * @return
      */
     public static int getSubmitCountDay(Long startMilliseconds, Long endMilliseconds) {
-        long daySeconds = 1000L*60*60*24;//24 * 60 * 60*1000;
+        long daySeconds = 1000L * 60 * 60 * 24;//24 * 60 * 60*1000;
         long lount = (endMilliseconds - startMilliseconds) / daySeconds;
 
         return (int) lount;
@@ -87,39 +88,44 @@ public class DateUtil {
      * @return 几秒前，几分钟前，几小时前，几天前，几个月前，几年前，很久以前（10年前）,如果出现之后的时间，则提示：未知
      */
     public static String getFriendlyTime(Date date) {
-        String showStr = "";
-        long yearSeconds = 31536000L;//365 * 24 * 60 * 60;
-        long monthSeconds = 2592000L;//30 * 24 * 60 * 60;
-        long daySeconds = 86400L;//24 * 60 * 60;
-        long hourSeconds = 3600L;//60 * 60;
-        long minuteSeconds = 60L;
+        try {
+            String showStr = "";
+            long yearSeconds = 31536000L;//365 * 24 * 60 * 60;
+            long monthSeconds = 2592000L;//30 * 24 * 60 * 60;
+            long daySeconds = 86400L;//24 * 60 * 60;
+            long hourSeconds = 3600L;//60 * 60;
+            long minuteSeconds = 60L;
 
-        long time = (System.currentTimeMillis() - date.getTime()) / 1000;
-        if (time <= 50) {
-            showStr = "刚刚";
-            return showStr;
-        }
-        if (time / yearSeconds > 0) {
-            int year = (int) (time / yearSeconds);
-            if (year > 10)
-                showStr = "很久以前";
-            else {
-                showStr = year + "年前";
+            long time = (System.currentTimeMillis() - date.getTime()) / 1000;
+            if (time <= 50) {
+                showStr = "刚刚";
+                return showStr;
             }
-        } else if (time / monthSeconds > 0) {
-            showStr = time / monthSeconds + "个月前";
-        } else if (time / daySeconds > 7) {
-            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd", Locale.getDefault());
-            showStr = formatter.format(date);
-        } else if (time / daySeconds > 0) {
-            showStr = time / daySeconds + "天前";
-        } else if (time / hourSeconds > 0) {
-            showStr = time / hourSeconds + "小时前";
-        } else if (time / minuteSeconds > 0) {
-            showStr = time / minuteSeconds + "分钟前";
-        } else if (time > 0) {
-            showStr = time + "秒前";
+            if (time / yearSeconds > 0) {
+                int year = (int) (time / yearSeconds);
+                if (year > 10)
+                    showStr = "很久以前";
+                else {
+                    showStr = year + "年前";
+                }
+            } else if (time / monthSeconds > 0) {
+                showStr = time / monthSeconds + "个月前";
+            } else if (time / daySeconds > 7) {
+                SimpleDateFormat formatter = new SimpleDateFormat("MM-dd", Locale.getDefault());
+                showStr = formatter.format(date);
+            } else if (time / daySeconds > 0) {
+                showStr = time / daySeconds + "天前";
+            } else if (time / hourSeconds > 0) {
+                showStr = time / hourSeconds + "小时前";
+            } else if (time / minuteSeconds > 0) {
+                showStr = time / minuteSeconds + "分钟前";
+            } else if (time > 0) {
+                showStr = time + "秒前";
+            }
+            return showStr;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
         }
-        return showStr;
     }
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yunyou.yike.activity.AddBankActivity">
+
+    <include layout="@layout/top_title"/>
+
+
+    <com.yunyou.yike.ui_view.ReboundScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+
+            <EditText
+                android:id="@+id/addbank_edname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10px"
+                android:background="@color/white"
+                android:hint="开户人姓名"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="10"
+                android:padding="25px"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color_alp"
+                android:textSize="28px"
+                />
+
+            <EditText
+                android:id="@+id/addbank_ednumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10px"
+                android:background="@color/white"
+                android:hint="银行卡号"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="30"
+                android:padding="28px"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color_alp"
+                android:textSize="28px"
+                />
+
+            <com.yunyou.yike.ui_view.DelayedClickButton
+                android:onClick="getBankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10px"
+                android:background="@drawable/btn_huoqu"
+                android:minHeight="0dp"
+                android:padding="20px"
+                android:text="点击获取银行卡名称"
+                android:textColor="@color/app_color"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/addbank_tvbankname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10px"
+                android:background="@color/white"
+                android:padding="28px"
+                android:text="银行名称："
+                android:textColor="@color/text_color"
+                android:textSize="28px"
+                />
+
+            <com.yunyou.yike.ui_view.DelayedClickButton
+                android:layout_width="300px"
+                android:layout_height="80px"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60px"
+                android:background="@drawable/btn_bankadd"
+                android:onClick="addBank"
+                android:text="确认添加"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+    </com.yunyou.yike.ui_view.ReboundScrollView>
+</LinearLayout>

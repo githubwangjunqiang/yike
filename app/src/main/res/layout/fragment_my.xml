@@ -4,8 +4,8 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-    >
+              android:orientation="vertical">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,19 +15,18 @@
         >
 
         <ImageView
-            android:layout_width="37px"
-            android:layout_height="36px"
+            android:layout_width="50px"
+            android:layout_height="50px"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20px"
-            android:layout_marginTop="42px"
+            android:layout_marginTop="16px"
             app:srcCompat="@drawable/ic_jiahao"/>
     </RelativeLayout>
 
-    <com.baoyz.widget.PullRefreshLayout
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
         android:id="@+id/my_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:refreshType="material"
         >
 
 
@@ -85,10 +84,12 @@
                         android:layout_centerHorizontal="true"
                         android:clickable="true"
                         android:isIndicator="true"
+                        android:max="5"
                         android:maxHeight="50px"
                         android:minHeight="50px"
-                        android:rating="5"
-                        android:stepSize="0.5"/>
+                        android:stepSize="0.5"
+                        tools:rating="5"
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -114,12 +115,13 @@
                                 >
 
                                 <ImageView
-                                    android:layout_width="34px"
-                                    android:layout_height="34px"
+                                    android:layout_width="46px"
+                                    android:layout_height="46px"
                                     android:layout_marginRight="21px"
                                     app:srcCompat="@drawable/ic_iconfont"/>
 
                                 <TextView
+                                    android:id="@+id/my_text_good_comment"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
@@ -154,12 +156,13 @@
                                 >
 
                                 <ImageView
-                                    android:layout_width="34px"
-                                    android:layout_height="34px"
+                                    android:layout_width="46px"
+                                    android:layout_height="46px"
                                     android:layout_marginRight="21px"
                                     app:srcCompat="@drawable/ic_meiyuan"/>
 
                                 <TextView
+                                    android:id="@+id/my_text_yue"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:gravity="center_vertical"
@@ -264,7 +267,7 @@
                         app:srcCompat="@drawable/ic_yaoqinghaoyou"
                         />
 
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -299,7 +302,8 @@
                         app:srcCompat="@drawable/ic_zuixingonggao"
                         />
 
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
+                        android:id="@+id/my_tvgonggao"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -334,8 +338,9 @@
                         app:srcCompat="@drawable/ic_tousujianyi"
                         />
 
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
                         android:layout_width="0dp"
+                        android:id="@+id/my_tousu"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingBottom="33px"
@@ -369,7 +374,8 @@
                         app:srcCompat="@drawable/ic_pingfenshuoming"
                         />
 
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
+                        android:id="@+id/my_tvpingfen"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -404,7 +410,8 @@
                         app:srcCompat="@drawable/ic_fuwuxieyi"
                         />
 
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
+                        android:id="@+id/my_tvxieyi"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -414,6 +421,7 @@
                         android:text="@string/fuwuxieyi"
                         android:textColor="@color/text_color"
                         android:textSize="28px"/>
+
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -439,8 +447,9 @@
                         app:srcCompat="@drawable/ic_pingtaijiangcheng"
                         />
 
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
                         android:layout_width="0dp"
+                        android:id="@+id/my_tvjiang"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingBottom="33px"
@@ -474,8 +483,9 @@
                         app:srcCompat="@drawable/ic_xuexiyuandi"
                         />
 
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
                         android:layout_width="0dp"
+                        android:id="@+id/my_tvyuandi"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingBottom="33px"
@@ -502,13 +512,14 @@
                     android:paddingRight="20px"
                     >
 
+
                     <ImageView
                         android:layout_width="35px"
                         android:layout_height="41px"
                         app:srcCompat="@drawable/ic_lianxikefu"
                         />
-
-                    <TextView
+                    <com.yunyou.yike.ui_view.DelayedClickTextView
+                        android:id="@+id/textView4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -526,7 +537,7 @@
                         />
                 </LinearLayout>
 
-                <Button
+                <com.yunyou.yike.ui_view.DelayedClickButton
                     android:id="@+id/my_btn_loginout"
                     android:layout_width="710px"
                     android:layout_height="80px"
@@ -540,5 +551,5 @@
 
             </LinearLayout>
         </com.yunyou.yike.ui_view.ReboundScrollView>
-    </com.baoyz.widget.PullRefreshLayout>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 </LinearLayout>
